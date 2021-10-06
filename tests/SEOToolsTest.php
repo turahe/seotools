@@ -1,0 +1,126 @@
+<?php
+
+namespace Turahe\Metatags\Tests;
+
+use Turahe\Metatags\Contracts\MetaTags;
+use Turahe\Metatags\Contracts\OpenGraph;
+use Turahe\Metatags\Contracts\TwitterCards;
+
+/**
+ * Class SEOToolsTest.
+ */
+class SEOToolsTest extends BaseTest
+{
+    /**
+     * @var metatags
+     */
+    protected $metatags;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->metatags = $this->app->make('metatags');
+    }
+
+    public function test_metatags_instance()
+    {
+        $this->assertInstanceOf(MetaTags::class, $this->metatags->metatags());
+    }
+
+    public function test_opengraph_instance()
+    {
+        $this->assertInstanceOf(OpenGraph::class, $this->metatags->opengraph());
+    }
+
+    public function test_twitter_instance()
+    {
+        $this->assertInstanceOf(TwitterCards::class, $this->metatags->twitter());
+    }
+
+    public function test_set_title()
+    {
+        $this->metatags->setTitle('Kamehamehaaaaaaa');
+
+        $expected = "<title>Kamehamehaaaaaaa - It's Over 9000!</title>";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $expected .= '<meta property="og:title" content="Kamehamehaaaaaaa" />';
+        $expected .= '<meta property="og:description" content="For those who helped create the Genki Dama" />';
+        $expected .= '<meta name="twitter:title" content="Kamehamehaaaaaaa" />';
+        $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Kamehamehaaaaaaa","description":"For those who helped create the Genki Dama"}</script>';
+
+        $this->assertEquals('Kamehamehaaaaaaa - It\'s Over 9000!', $this->metatags->getTitle());
+        $this->setRightAssertion($expected);
+    }
+
+    public function test_set_description()
+    {
+        $this->metatags->setDescription('Kamehamehaaaaaaa');
+
+        $expected = "<title>It's Over 9000!</title>";
+        $expected .= '<meta name="description" content="Kamehamehaaaaaaa">';
+        $expected .= '<meta property="og:description" content="Kamehamehaaaaaaa" />';
+        $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
+        $expected .= '<meta name="twitter:description" content="Kamehamehaaaaaaa" />';
+        $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"Kamehamehaaaaaaa"}</script>';
+
+
+        $this->setRightAssertion($expected);
+    }
+
+    public function test_set_canonical()
+    {
+        $this->metatags->setCanonical('http://domain.com');
+
+        $expected = "<title>It's Over 9000!</title>";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $expected .= '<link rel="canonical" href="http://domain.com"/>';
+        $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
+        $expected .= '<meta property="og:description" content="For those who helped create the Genki Dama" />';
+        $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>';
+
+        $this->setRightAssertion($expected);
+    }
+
+    public function test_add_images()
+    {
+        $this->metatags->addImages(['Kamehamehaaaaaaa.png']);
+        $this->metatags->addImages('Kamehamehaaaaaaa.png');
+
+        $expected = "<title>It's Over 9000!</title>";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
+        $expected .= '<meta property="og:description" content="For those who helped create the Genki Dama" />';
+        $expected .= '<meta property="og:image" content="Kamehamehaaaaaaa.png" />';
+        $expected .= '<meta property="og:image" content="Kamehamehaaaaaaa.png" />';
+        $expected .= '<meta name="twitter:image" content="Kamehamehaaaaaaa.png" />';
+        $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","image":["Kamehamehaaaaaaa.png","Kamehamehaaaaaaa.png"]}</script>';
+
+        $this->setRightAssertion($expected);
+    }
+
+    public function test_generate()
+    {
+        $expected = "<title>It's Over 9000!</title>";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
+        $expected .= '<meta property="og:description" content="For those who helped create the Genki Dama" />';
+        $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>';
+
+        $this->setRightAssertion($expected);
+    }
+
+    /**
+     * @param $expectedString
+     */
+    protected function setRightAssertion($expectedString)
+    {
+        $expectedDom = $this->makeDomDocument($expectedString);
+        $actualDom = $this->makeDomDocument($this->metatags->generate(true));
+
+        $this->assertEquals($expectedDom->C14N(), str_replace(["\n", "\r"], '', $actualDom->C14N()));
+    }
+}
