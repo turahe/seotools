@@ -1,20 +1,20 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 use Illuminate\Config\Repository as Config;
 
 /**
- * MetaTags defines contract for the HTML meta tags container.
+ * Meta defines contract for the HTML meta tags container.
  *
  * Meta tags container allows specification and rendering of HTML page title and meta tags.
  *
  * Usage example:
  *
  * ```php
- * use Turahe\Metatags\SEOMeta; // implements `Turahe\Metatags\Contracts\MetaTags`
+ * use Turahe\Tools\Meta; // implements `Turahe\Tools\Contracts\Meta`
  *
- * $metaTags = new SEOMeta();
+ * $metaTags = new Meta();
  *
  * // specify meta info
  * $metaTags->setTitle('Home');
@@ -26,34 +26,35 @@ use Illuminate\Config\Repository as Config;
  * echo $metaTags->generate();
  * ```
  *
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\SEOMeta} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\Meta} facade.
  * Facade usage example:
  *
  * ```php
- * use Turahe\Metatags\Facades\SEOMeta;
+ * use Turahe\Tools\Facades\Meta;
  *
  * // specify meta info
- * SEOMeta::setTitle('Home');
- * SEOMeta::setDescription('This is my page description');
- * SEOMeta::setCanonical('https://codecasts.com.br/lesson');
- * SEOMeta::addMeta('author', 'John Doe');
+ * Meta::setTitle('Home');
+ * Meta::setDescription('This is my page description');
+ * Meta::setCanonical('https://codecasts.com.br/lesson');
+ * Meta::addMeta('author', 'John Doe');
  *
  * // render HTML, it should be placed within 'head' HTML tag
- * echo SEOMeta::generate();
+ * echo Meta::generate();
  * ```
  *
  * @see https://www.w3schools.com/tags/tag_meta.asp
- * @see \Turahe\Metatags\SEOMeta
- * @see \Turahe\Metatags\Facades\SEOMeta
+ * @see \Turahe\SEOTools\Meta
+ * @see \Turahe\SEOTools\Facades\Meta
  */
-interface MetaTags
+interface Meta
 {
     /**
      * Configuration.
      *
-     * @param array $config
+     * @param \Illuminate\Config\Repository $config
+     * @return void
      */
-    public function __construct(array $config = []);
+    public function __construct(Config $config);
 
     /**
      * Generates meta tags HTML.

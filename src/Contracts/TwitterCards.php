@@ -1,6 +1,6 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 /**
  * TwitterCards defines contract for the "TwitterCard" meta tags container.
@@ -10,7 +10,7 @@ namespace Turahe\Metatags\Contracts;
  * Usage example:
  *
  * ```php
- * use Turahe\Metatags\TwitterCards; // implements `Turahe\Metatags\Contracts\TwitterCards`
+ * use Turahe\Tools\TwitterCards; // implements `Turahe\Tools\Contracts\TwitterCards`
  *
  * $twitterCards = new TwitterCards();
  *
@@ -23,11 +23,11 @@ namespace Turahe\Metatags\Contracts;
  * echo $twitterCards->generate();
  * ```
  *
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\TwitterCard} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\TwitterCard} facade.
  * Facade usage example:
  *
  * ```php
- * use Turahe\Metatags\Facades\TwitterCard;
+ * use Turahe\Tools\Facades\TwitterCard;
  *
  * // specify meta info
  * TwitterCard::setTitle('Home');
@@ -39,8 +39,8 @@ namespace Turahe\Metatags\Contracts;
  * ```
  *
  * @see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards
- * @see \Turahe\Metatags\TwitterCards
- * @see \Turahe\Metatags\Facades\TwitterCard
+ * @see \Turahe\SEOTools\TwitterCards
+ * @see \Turahe\SEOTools\Facades\TwitterCard
  */
 interface TwitterCards
 {

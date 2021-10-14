@@ -1,16 +1,16 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
-use Turahe\Metatags\SEOMeta;
+use Turahe\SEOTools\Meta;
 
 /**
- * Class SEOMetaTest.
+ * Class MetaTest.
  */
-class SEOMetaTest extends BaseTest
+class MetaTest extends BaseTest
 {
     /**
-     * @var SEOMeta
+     * @var Meta
      */
     protected $seoMeta;
 
@@ -21,7 +21,7 @@ class SEOMetaTest extends BaseTest
     {
         parent::setUp();
 
-        $this->seoMeta = $this->app->make('metatags.meta');
+        $this->seoMeta = $this->app->make('seotools.metatags');
     }
 
     public function test_generate()
@@ -34,11 +34,11 @@ class SEOMetaTest extends BaseTest
 
     public function test_set_title_with_append_default()
     {
-        $fullTitle = "Kamehamehaaaaaaaa - It's Over 9000!";
+        $fullTitle = "Turahe - It's Over 9000!";
         $fullHeader = '<title>' . $fullTitle . '</title>';
         $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
 
-        $this->seoMeta->setTitle('Kamehamehaaaaaaaa');
+        $this->seoMeta->setTitle('Turahe');
 
         $this->assertEquals($fullTitle, $this->seoMeta->getTitle());
         $this->setRightAssertion($fullHeader);
@@ -46,7 +46,7 @@ class SEOMetaTest extends BaseTest
 
     public function test_set_title_without_append_default()
     {
-        $fullTitle = 'Kamehamehaaaaaaaa';
+        $fullTitle = 'Turahe';
         $fullHeader = '<title>' . $fullTitle . '</title>';
         $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
 
@@ -58,7 +58,7 @@ class SEOMetaTest extends BaseTest
 
     public function test_set_default_title()
     {
-        $fullTitle = 'Kamehamehaaaaaaaa';
+        $fullTitle = 'Turahe';
         $fullHeader = '<title>' . $fullTitle . '</title>';
         $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
 
@@ -70,10 +70,10 @@ class SEOMetaTest extends BaseTest
 
     public function test_set_title_sepatator()
     {
-        $fullHeader = "<title>Kamehamehaaaaaaaa | It's Over 9000!</title>";
+        $fullHeader = "<title>Turahe | It's Over 9000!</title>";
         $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
         $separator = ' | ';
-        $fullTitle = 'Kamehamehaaaaaaaa';
+        $fullTitle = 'Turahe';
 
         $this->seoMeta->setTitleSeparator($separator);
         $this->seoMeta->setTitle($fullTitle);
@@ -84,7 +84,7 @@ class SEOMetaTest extends BaseTest
 
     public function test_set_description()
     {
-        $description = 'Kamehamehaaaaaaaa';
+        $description = 'Turahe';
         $fullHeader = "<title>It's Over 9000!</title>";
         $fullHeader .= "<meta name=\"description\" content=\"" . $description . '">';
 
@@ -182,7 +182,7 @@ class SEOMetaTest extends BaseTest
     public function test_get_canonical_null($fullUrl)
     {
         config()->set('defaults.canonical', null);
-        $this->seoMeta = new SEOMeta(config());
+        $this->seoMeta = new Meta(config());
 
         $this->get($fullUrl);
         $this->assertEquals($fullUrl, $this->seoMeta->getCanonical());
@@ -194,7 +194,7 @@ class SEOMetaTest extends BaseTest
     public function test_get_canonical_full($fullUrl)
     {
         config()->set('defaults.canonical', 'full');
-        $this->seoMeta = new SEOMeta(config());
+        $this->seoMeta = new Meta(config());
 
         $this->get($fullUrl);
         $this->assertEquals($fullUrl, $this->seoMeta->getCanonical());
@@ -206,7 +206,7 @@ class SEOMetaTest extends BaseTest
     public function test_get_canonical_current($fullUrl, $currentUrl)
     {
         config()->set('defaults.canonical', 'current');
-        $this->seoMeta = new SEOMeta(config());
+        $this->seoMeta = new Meta(config());
 
         $this->get($fullUrl);
         $this->assertEquals($currentUrl, $this->seoMeta->getCanonical());
@@ -318,7 +318,7 @@ class SEOMetaTest extends BaseTest
 
     /**
      * @depends test_set_description
-     * @see     https://github.com/turahe/metatags/issues/122
+     * @see     https://github.com/Turahe/seotools/issues/122
      */
     public function test_utf8()
     {
@@ -334,7 +334,7 @@ class SEOMetaTest extends BaseTest
 
     public function test_it_can_add_notranslate_class_to_title()
     {
-        $this->seoMeta = new SEOMeta(new \Illuminate\Config\Repository([
+        $this->seoMeta = new Meta(new \Illuminate\Config\Repository([
             'add_notranslate_class' => true,
             'defaults'              => [
                 'title'       => 'It\'s Over 9000!',

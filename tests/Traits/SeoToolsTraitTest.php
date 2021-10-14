@@ -1,23 +1,23 @@
 <?php
 
-namespace Turahe\Metatags\Tests\Traits;
+namespace Turahe\SEOTools\Tests\Traits;
 
-use Turahe\Metatags\Contracts\SEOTools;
-use Turahe\Metatags\Tests\BaseTest;
-use Turahe\Metatags\Tests\stubs\SeoToolsTraitStub;
+use Turahe\SEOTools\Contracts\Tools;
+use Turahe\SEOTools\Tests\BaseTest;
+use Turahe\SEOTools\Tests\stubs\SeoToolsTraitStub;
 use Mockery as m;
 /**
  * Class SeoToolsTraitTest.
  */
 class SeoToolsTraitTest extends BaseTest
 {
-    public function test_metatags_trait()
+    public function test_seotools_trait()
     {
         $stub = m::mock(SeoToolsTraitStub::class);
 
         $stub->shouldReceive('makeSeoForTests')
-            ->andReturn($this->app['metatags']);
+            ->andReturn($this->app['seotools']);
 
-        $this->assertInstanceOf(SEOTools::class, $stub->makeSeoForTests());
+        $this->assertInstanceOf(Tools::class, $stub->makeSeoForTests());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 /**
  * JsonLd defines contract for the JSON Linked Data container.
@@ -8,7 +8,7 @@ namespace Turahe\Metatags\Contracts;
  * Usage example:
  *
  * ```php
- * use Turahe\Metatags\JsonLd; // implements `Turahe\Metatags\Contracts\JsonLd`
+ * use Turahe\Tools\JsonLd; // implements `Turahe\Tools\Contracts\JsonLd`
  *
  * $jsonLd = new JsonLd();
  *
@@ -17,25 +17,25 @@ namespace Turahe\Metatags\Contracts;
  * $jsonLd->setDescription('This is my page description');
  * $jsonLd->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  *
  * // render HTML, it should be placed within 'head' HTML tag
  * echo $jsonLd->generate();
  * ```
  *
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\JsonLd} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\JsonLd} facade.
  * Facade usage example:
  *
  * ```php
- * use Turahe\Metatags\Facades\JsonLd;
+ * use Turahe\Tools\Facades\JsonLd;
  *
  * // specify JSON data
  * JsonLd::setTitle('Homepage');
  * JsonLd::setDescription('This is my page description');
  * JsonLd::addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  *
  * // render HTML, it should be placed within 'head' HTML tag
@@ -43,8 +43,8 @@ namespace Turahe\Metatags\Contracts;
  * ```
  *
  * @see https://json-ld.org/
- * @see \Turahe\Metatags\JsonLd
- * @see \Turahe\Metatags\Facades\JsonLd
+ * @see \Turahe\SEOTools\JsonLd
+ * @see \Turahe\SEOTools\Facades\JsonLd
  */
 interface JsonLd
 {

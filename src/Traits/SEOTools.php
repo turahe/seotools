@@ -1,23 +1,23 @@
 <?php
 
-namespace Turahe\Metatags\Traits;
+namespace Turahe\SEOTools\Traits;
 
-use Turahe\Metatags\Contracts\SEOFriendly;
+use Turahe\SEOTools\Contracts\SEOFriendly;
 
 trait SEOTools
 {
     /**
-     * @return \Turahe\Metatags\Contracts\SEOTools
+     * @return \Turahe\SEOTools\Contracts\Tools
      */
     protected function seo()
     {
-        return app('metatags');
+        return app('seotools');
     }
 
     /**
      * @param SEOFriendly $friendly
      *
-     * @return \Turahe\Metatags\Contracts\SEOTools
+     * @return \Turahe\SEOTools\Contracts\Tools
      */
     protected function loadSEO(SEOFriendly $friendly)
     {

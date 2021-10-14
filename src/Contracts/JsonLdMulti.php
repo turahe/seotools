@@ -1,19 +1,19 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 /**
  * JsonLdMulti defines contract for the JSON Linked Data container.
  * Usage example:
  * ```php
- * use Turahe\Metatags\JsonLdMulti; // implements `Turahe\Metatags\Contracts\JsonLdMulti`
+ * use Turahe\Tools\JsonLdMulti; // implements `Turahe\Tools\Contracts\JsonLdMulti`
  * $jsonLdMulti = new JsonLdMulti();
  * // specify JSON data
  * $jsonLdMulti->setTitle('Home');
  * $jsonLdMulti->setDescription('This is my page description');
  * $jsonLdMulti->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  * $jsonLdMulti->newJsonLd();
  * $jsonLdMulti->setTitle('Homepage');
@@ -21,16 +21,16 @@ namespace Turahe\Metatags\Contracts;
  * // render HTML, it should be placed within 'head' HTML tag
  * echo $jsonLd->generate();
  * ```
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\JsonLdMulti} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\JsonLdMulti} facade.
  * Facade usage example:
  * ```php
- * use Turahe\Metatags\Facades\JsonLdMulti;
+ * use Turahe\Tools\Facades\JsonLdMulti;
  * // specify JSON data
  * JsonLdMulti::setTitle('Home');
  * JsonLdMulti::setDescription('This is my page description');
  * JsonLdMulti::addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  * JsonLdMulti::newJsonLd();
  * JsonLdMulti::setTitle('Homepage');
@@ -40,8 +40,8 @@ namespace Turahe\Metatags\Contracts;
  * ```
  *
  * @see https://json-ld.org/
- * @see \Turahe\Metatags\JsonLdMulti
- * @see \Turahe\Metatags\Facades\JsonLdMulti
+ * @see \Turahe\SEOTools\JsonLdMulti
+ * @see \Turahe\SEOTools\Facades\JsonLdMulti
  */
 interface JsonLdMulti
 {

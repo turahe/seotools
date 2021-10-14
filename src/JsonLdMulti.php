@@ -1,13 +1,13 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
-use Turahe\Metatags\Contracts\JsonLdMulti as JsonLdMultiContract;
+use Turahe\SEOTools\Contracts\JsonLdMulti as JsonLdMultiContract;
 
 /**
  * JsonLdMulti provides implementation for `JsonLdMulti` contract.
  *
- * @see \Turahe\Metatags\Contracts\JsonLdMulti
+ * @see \Turahe\SEOTools\Contracts\JsonLdMulti
  */
 class JsonLdMulti implements JsonLdMultiContract
 {

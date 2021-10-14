@@ -1,21 +1,24 @@
 {
-  "name": "turahe/metatags",
-  "description": "Metatags for Laravel and Lumen",
+  "name": "turahe/seotools",
+  "description": "SEO Tools for Laravel and Lumen",
   "keywords": [
     "laravel",
     "lumen",
     "seo",
-    "Metatags",
+    "seotools",
     "webmaster",
     "metatags",
     "opengraph",
     "json-ld",
-    "service worker"
+    "pwa",
+    "manifest",
+    "sitemap",
+    "feed"
   ],
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/turahe/metatags/issues",
-    "source": "https://github.com/turahe/metatags"
+    "issues": "https://github.com/turahe/seotools/issues",
+    "source": "https://github.com/turahe/seotools"
   },
   "authors": [
     {
@@ -31,16 +34,17 @@
   },
   "require-dev": {
     "orchestra/testbench": "~3.8.4 || ^4.0 || ^5.0",
-    "phpspec/phpspec": "~5.1.1 || ^6.0"
+    "phpspec/phpspec": "~5.1.1 || ^6.0",
+    "ext-dom": "*"
   },
   "autoload": {
     "psr-4": {
-      "Turahe\\Metatags\\": "src/"
+      "Turahe\\SEOTools\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Turahe\\Metatags\\Tests\\": "tests"
+      "Turahe\\SEOTools\\Tests\\": "tests/"
     }
   },
   "config": {
@@ -49,14 +53,14 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Turahe\\Metatags\\Providers\\MetatagsServiceProvider"
+        "Turahe\\SEOTools\\Providers\\SEOToolsServiceProvider"
       ],
       "aliases": {
-        "SEOMeta": "Turahe\\Metatags\\Facades\\SEOMeta",
-        "OpenGraph": "Turahe\\Metatags\\Facades\\OpenGraph",
-        "Twitter": "Turahe\\Metatags\\Facades\\TwitterCard",
-        "JsonLd": "Turahe\\Metatags\\Facades\\JsonLd",
-        "SEO": "Turahe\\Metatags\\Facades\\Metatags"
+        "SEOMeta": "Turahe\\SEOTools\\Facades\\Meta",
+        "OpenGraph": "Turahe\\SEOTools\\Facades\\OpenGraph",
+        "Twitter": "Turahe\\SEOTools\\Facades\\TwitterCard",
+        "JsonLd": "Turahe\\SEOTools\\Facades\\JsonLd",
+        "SEO": "Turahe\\SEOTools\\Facades\\Tools"
       }
     }
   },

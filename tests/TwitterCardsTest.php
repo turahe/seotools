@@ -1,8 +1,8 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
-use Turahe\Metatags\TwitterCards;
+use Turahe\SEOTools\TwitterCards;
 
 /**
  * Class TwitterCardsTest.
@@ -21,41 +21,41 @@ class TwitterCardsTest extends BaseTest
     {
         parent::setUp();
 
-        $this->twitterCards = $this->app->make('metatags.twitter');
+        $this->twitterCards = $this->app->make('seotools.twitter');
     }
 
     public function test_set_title()
     {
-        $this->twitterCards->setTitle('Kamehamehaaaaaaaa');
+        $this->twitterCards->setTitle('Turahe');
 
-        $expected = '<meta name="twitter:title" content="Kamehamehaaaaaaaa" />';
+        $expected = '<meta name="twitter:title" content="Turahe" />';
 
         $this->setRightAssertion($expected);
     }
 
     public function test_set_site()
     {
-        $this->twitterCards->setSite('http://kakaroto.9000');
+        $this->twitterCards->setSite('http://wach.id');
 
-        $expected = '<meta name="twitter:site" content="http://kakaroto.9000" />';
+        $expected = '<meta name="twitter:site" content="http://wach.id" />';
 
         $this->setRightAssertion($expected);
     }
 
     public function test_set_url()
     {
-        $this->twitterCards->setUrl('http://kakaroto.9000');
+        $this->twitterCards->setUrl('http://wach.id');
 
-        $expected = '<meta name="twitter:url" content="http://kakaroto.9000" />';
+        $expected = '<meta name="twitter:url" content="http://wach.id" />';
 
         $this->setRightAssertion($expected);
     }
 
     public function test_set_description()
     {
-        $this->twitterCards->setDescription('Kamehamehaaaaaaaa');
+        $this->twitterCards->setDescription('Turahe');
 
-        $expected = '<meta name="twitter:description" content="Kamehamehaaaaaaaa" />';
+        $expected = '<meta name="twitter:description" content="Turahe" />';
 
         $this->setRightAssertion($expected);
     }

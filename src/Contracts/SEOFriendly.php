@@ -1,13 +1,13 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 interface SEOFriendly
 {
     /**
      * Performs SEO settings.
      *
-     * @param SEOTools $SEOTools
+     * @param Tools $SEOTools
      */
-    public function loadSEO(SEOTools $SEOTools);
+    public function loadSEO(Tools $SEOTools);
 }

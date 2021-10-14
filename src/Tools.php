@@ -1,22 +1,22 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
-use Turahe\Metatags\Contracts\SEOTools as SEOContract;
+use Turahe\SEOTools\Contracts\Tools as SEOContract;
 
 /**
- * SEOTools provides implementation for `SEOTools` contract.
+ * Tools provides implementation for `Tools` contract.
  *
- * @see \Turahe\Metatags\Contracts\SEOTools
+ * @see \Turahe\SEOTools\Contracts\Tools
  */
-class SEOTools implements SEOContract
+class Tools implements SEOContract
 {
     /**
      * {@inheritdoc}
      */
     public function metatags()
     {
-        return app('metatags.meta');
+        return app('seotools.metatags');
     }
 
     /**
@@ -24,7 +24,7 @@ class SEOTools implements SEOContract
      */
     public function opengraph()
     {
-        return app('metatags.opengraph');
+        return app('seotools.opengraph');
     }
 
     /**
@@ -32,7 +32,7 @@ class SEOTools implements SEOContract
      */
     public function twitter()
     {
-        return app('metatags.twitter');
+        return app('seotools.twitter');
     }
 
     /**
@@ -40,7 +40,7 @@ class SEOTools implements SEOContract
      */
     public function jsonLd()
     {
-        return app('metatags.json-ld');
+        return app('seotools.json-ld');
     }
 
     /**
@@ -48,7 +48,7 @@ class SEOTools implements SEOContract
      */
     public function jsonLdMulti()
     {
-        return app('metatags.json-ld-multi');
+        return app('seotools.json-ld-multi');
     }
 
     /**

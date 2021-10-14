@@ -1,8 +1,8 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
-use Turahe\Metatags\OpenGraph;
+use Turahe\SEOTools\OpenGraph;
 
 /**
  * Class OpenGraph Test.
@@ -21,7 +21,7 @@ class OpenGraphTest extends BaseTest
     {
         parent::setUp();
 
-        $this->openGraphs = $this->app->make('metatags.opengraph');
+        $this->openGraphs = $this->app->make('seotools.opengraph');
     }
 
     public function test_set_title_and_description()

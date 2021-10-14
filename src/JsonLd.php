@@ -1,13 +1,13 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
-use Turahe\Metatags\Contracts\JsonLd as JsonLdContract;
+use Turahe\SEOTools\Contracts\JsonLd as JsonLdContract;
 
 /**
  * JsonLd provides implementation for `JsonLd` contract.
  *
- * @see \Turahe\Metatags\Contracts\JsonLd
+ * @see \Turahe\SEOTools\Contracts\JsonLd
  */
 class JsonLd implements JsonLdContract
 {
@@ -246,7 +246,9 @@ class JsonLd implements JsonLdContract
     }
 
     /**
-     * {@inheritdoc}
+     * @param string|array $image
+     *
+     * @return static
      */
     public function setImage($image)
     {

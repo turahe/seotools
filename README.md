@@ -18,7 +18,7 @@ Installation
 The first step is using composer to install the package and automatically update your `composer.json` file, you can do this by running:
 
 ```shell
-composer require turahe/metatags
+composer require turahe/seotools
 ```
 
 > **Note**: If you are using Laravel 5.5, the steps 2 and 3, for providers and aliases, are unnecessaries. SEOTools supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
@@ -85,7 +85,7 @@ You can setup a short-version aliases for these facades in your `config/app.php`
 return [
     // ...
     'aliases' => [
-        'SEOMeta'       => Turahe\Metatags\Facades\SEOMeta::class,
+        'Meta'       => Turahe\Metatags\Facades\SEOMeta::class,
         'OpenGraph'     => Turahe\Metatags\Facades\OpenGraph::class,
         'Twitter'       => Turahe\Metatags\Facades\TwitterCard::class,
         'JsonLd'        => Turahe\Metatags\Facades\JsonLd::class,
@@ -115,11 +115,11 @@ or
 php artisan vendor:publish --provider="Turahe\Metatags\Providers\MetaTagsServiceProvider"
 ```
 
-> Lumen does not support this command, for it you should copy the file `config/metatags.php` to `config/metatags.php` of your project
+> Lumen does not support this command, for it you should copy the file `config/seotools.php` to `config/seotools.php` of your project
 
-In `metatags.php` configuration file you can determine the properties of the default values and some behaviors.
+In `seotools.php` configuration file you can determine the properties of the default values and some behaviors.
 
-#### metatags.php
+#### seotools.php
 
 - **meta**
    - `defaults` - What values are displayed if not specified any value for the page display. If the value is `false`, nothing is displayed.
@@ -143,16 +143,16 @@ Usage
 ```php
 <?php
 
-$metatags = app('metatags');
-$metatags = app('metatags.meta');
-$twitter = app('metatags.twitter');
-$opengraph = app('metatags.opengraph');
-$jsonld = app('metatags.json-ld');
-$jsonldMulti = app('metatags.json-ld-multi');
-$jsonldMulti = app('metatags.manifest');
+$seotools = app('seotools');
+$seotools = app('seotools.meta');
+$twitter = app('seotools.twitter');
+$opengraph = app('seotools.opengraph');
+$jsonld = app('seotools.json-ld');
+$jsonldMulti = app('seotools.json-ld-multi');
+$jsonldMulti = app('seotools.manifest');
 // The behavior is the same as the facade
 
-echo app('metatags')->generate();
+echo app('seotools')->generate();
 ```
 
 ### Meta tags Generator
@@ -460,7 +460,7 @@ class CommomController extends Controller
     {!! SEO::generate(true) !!}
 
     <!-- LUMEN -->
-    {!! app('metatags')->generate() !!}
+    {!! app('seotools')->generate() !!}
 </head>
 <body>
 
@@ -685,7 +685,7 @@ JsonLdMulti::generate();
 
 use Turahe\Metatags\Facades\SEOTools;
 
-SEOTools::metatags();
+SEOTools::seotools();
 SEOTools::twitter();
 SEOTools::opengraph();
 SEOTools::jsonLd();
@@ -781,7 +781,7 @@ To customize service worker functionality, update the `public/serviceworker.js`.
 
 The offline view
 ------------------
-By default, the offline view is implemented in resources/views/vendor/metatags/offline.blade.php
+By default, the offline view is implemented in resources/views/vendor/seotools/offline.blade.php
 ```html
 @extends('layouts.app')
 

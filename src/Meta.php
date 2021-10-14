@@ -1,18 +1,17 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
 use Illuminate\Support\Arr;
 use Illuminate\Config\Repository as Config;
-use Illuminate\Support\Collection;
-use Turahe\Metatags\Contracts\MetaTags as MetaTagsContract;
+use Turahe\SEOTools\Contracts\Meta as MetaTagsContract;
 
 /**
- * SEOMeta provides implementation for `MetaTags` contract.
+ * Meta provides implementation for `Meta` contract.
  *
- * @see \Turahe\Metatags\Contracts\MetaTags
+ * @see \Turahe\SEOTools\Contracts\Meta
  */
-class SEOMeta implements MetaTagsContract
+class Meta implements MetaTagsContract
 {
     /**
      * The meta title.
@@ -119,17 +118,17 @@ class SEOMeta implements MetaTagsContract
         'google'   => 'google-site-verification',
         'bing'     => 'msvalidate.01',
         'alexa'    => 'alexaVerifyID',
-        'pintrest' => 'p:domain_verify',
+        'pinterest' => 'p:domain_verify',
         'yandex'   => 'yandex-verification',
         'norton'   => 'norton-safeweb-site-verification',
     ];
 
     /**
-     * @param array $config
+     * @param \Illuminate\Config\Repository $config
      */
-    public function __construct(array $config = [])
+    public function __construct(Config $config)
     {
-        $this->config = new Collection($config);
+        $this->config = $config;
     }
 
     /**

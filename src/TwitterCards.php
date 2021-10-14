@@ -1,13 +1,13 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
-use Turahe\Metatags\Contracts\TwitterCards as TwitterCardsContract;
+use Turahe\SEOTools\Contracts\TwitterCards as TwitterCardsContract;
 
 /**
  * TwitterCards provides implementation for `TwitterCards` contract.
  *
- * @see \Turahe\Metatags\Contracts\TwitterCards
+ * @see \Turahe\SEOTools\Contracts\TwitterCards
  */
 class TwitterCards implements TwitterCardsContract
 {

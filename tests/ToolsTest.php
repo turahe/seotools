@@ -1,20 +1,21 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
-use Turahe\Metatags\Contracts\MetaTags;
-use Turahe\Metatags\Contracts\OpenGraph;
-use Turahe\Metatags\Contracts\TwitterCards;
+use Turahe\SEOTools\Contracts\Meta;
+use Turahe\SEOTools\Contracts\OpenGraph;
+use Turahe\SEOTools\Contracts\TwitterCards;
+use Turahe\SEOTools\Tools;
 
 /**
- * Class SEOToolsTest.
+ * Class ToolsTest.
  */
-class SEOToolsTest extends BaseTest
+class ToolsTest extends BaseTest
 {
     /**
-     * @var metatags
+     * @var Tools
      */
-    protected $metatags;
+    protected $seoTools;
 
     /**
      * {@inheritdoc}
@@ -23,27 +24,27 @@ class SEOToolsTest extends BaseTest
     {
         parent::setUp();
 
-        $this->metatags = $this->app->make('metatags');
+        $this->seoTools = $this->app->make('seotools');
     }
 
-    public function test_metatags_instance()
+    public function test_metatag_instance()
     {
-        $this->assertInstanceOf(MetaTags::class, $this->metatags->metatags());
+        $this->assertInstanceOf(Meta::class, $this->seoTools->metatags());
     }
 
     public function test_opengraph_instance()
     {
-        $this->assertInstanceOf(OpenGraph::class, $this->metatags->opengraph());
+        $this->assertInstanceOf(OpenGraph::class, $this->seoTools->opengraph());
     }
 
     public function test_twitter_instance()
     {
-        $this->assertInstanceOf(TwitterCards::class, $this->metatags->twitter());
+        $this->assertInstanceOf(TwitterCards::class, $this->seoTools->twitter());
     }
 
     public function test_set_title()
     {
-        $this->metatags->setTitle('Kamehamehaaaaaaa');
+        $this->seoTools->setTitle('Kamehamehaaaaaaa');
 
         $expected = "<title>Kamehamehaaaaaaa - It's Over 9000!</title>";
         $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
@@ -52,13 +53,13 @@ class SEOToolsTest extends BaseTest
         $expected .= '<meta name="twitter:title" content="Kamehamehaaaaaaa" />';
         $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Kamehamehaaaaaaa","description":"For those who helped create the Genki Dama"}</script>';
 
-        $this->assertEquals('Kamehamehaaaaaaa - It\'s Over 9000!', $this->metatags->getTitle());
+        $this->assertEquals('Kamehamehaaaaaaa - It\'s Over 9000!', $this->seoTools->getTitle());
         $this->setRightAssertion($expected);
     }
 
     public function test_set_description()
     {
-        $this->metatags->setDescription('Kamehamehaaaaaaa');
+        $this->seoTools->setDescription('Kamehamehaaaaaaa');
 
         $expected = "<title>It's Over 9000!</title>";
         $expected .= '<meta name="description" content="Kamehamehaaaaaaa">';
@@ -73,7 +74,7 @@ class SEOToolsTest extends BaseTest
 
     public function test_set_canonical()
     {
-        $this->metatags->setCanonical('http://domain.com');
+        $this->seoTools->setCanonical('http://domain.com');
 
         $expected = "<title>It's Over 9000!</title>";
         $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
@@ -87,8 +88,8 @@ class SEOToolsTest extends BaseTest
 
     public function test_add_images()
     {
-        $this->metatags->addImages(['Kamehamehaaaaaaa.png']);
-        $this->metatags->addImages('Kamehamehaaaaaaa.png');
+        $this->seoTools->addImages(['Kamehamehaaaaaaa.png']);
+        $this->seoTools->addImages('Kamehamehaaaaaaa.png');
 
         $expected = "<title>It's Over 9000!</title>";
         $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
@@ -119,7 +120,7 @@ class SEOToolsTest extends BaseTest
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);
-        $actualDom = $this->makeDomDocument($this->metatags->generate(true));
+        $actualDom = $this->makeDomDocument($this->seoTools->generate(true));
 
         $this->assertEquals($expectedDom->C14N(), str_replace(["\n", "\r"], '', $actualDom->C14N()));
     }

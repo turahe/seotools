@@ -1,6 +1,6 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 /**
  * OpenGraph defines contract for the "OpenGraph" meta tags container.
@@ -10,7 +10,7 @@ namespace Turahe\Metatags\Contracts;
  * Usage example:
  *
  * ```php
- * use Turahe\Metatags\OpenGraph; // implements `Turahe\Metatags\Contracts\OpenGraph`
+ * use Turahe\Tools\OpenGraph; // implements `Turahe\Tools\Contracts\OpenGraph`
  *
  * $openGraph = new OpenGraph();
  *
@@ -24,11 +24,11 @@ namespace Turahe\Metatags\Contracts;
  * echo $openGraph->generate();
  * ```
  *
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\OpenGraph} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\OpenGraph} facade.
  * Facade usage example:
  *
  * ```php
- * use Turahe\Metatags\Facades\OpenGraph;
+ * use Turahe\Tools\Facades\OpenGraph;
  *
  * // specify meta info
  * OpenGraph::setTitle('Home');
@@ -54,8 +54,8 @@ namespace Turahe\Metatags\Contracts;
  * ```
  *
  * @see https://ogp.me/
- * @see \Turahe\Metatags\OpenGraph
- * @see \Turahe\Metatags\Facades\OpenGraph
+ * @see \Turahe\SEOTools\OpenGraph
+ * @see \Turahe\SEOTools\Facades\OpenGraph
  */
 interface OpenGraph
 {

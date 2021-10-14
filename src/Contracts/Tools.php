@@ -1,18 +1,18 @@
 <?php
 
-namespace Turahe\Metatags\Contracts;
+namespace Turahe\SEOTools\Contracts;
 
 /**
- * SEOTools defines contract for the SEO tools aggregator.
+ * Tools defines contract for the SEO tools aggregator.
  *
  * Such aggregator allows quick setup of meta information over all available containers.
  *
  * Usage example:
  *
  * ```php
- * use Turahe\Metatags\SEOTools; // implements `Turahe\Metatags\Contracts\SEOTools`
+ * use Turahe\Tools\Tools; // implements `Turahe\Tools\Contracts\Tools`
  *
- * $seoTools = new SEOTools();
+ * $seoTools = new Tools();
  *
  * // specify meta info
  * $seoTools->setTitle('Home');
@@ -24,76 +24,76 @@ namespace Turahe\Metatags\Contracts;
  * $seoTools->twitter()->addValue('app:country', 'US');
  * $seoTools->jsonLd()->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  * $seoTools->jsonLdMulti()->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  *
  * // render HTML, it should be placed within 'head' HTML tag
  * echo $seoTools->generate();
  * ```
  *
- * Implementation of this contract is available via {@see \Turahe\Metatags\Facades\SEOTools} facade.
+ * Implementation of this contract is available via {@see \Turahe\SEOTools\Facades\Tools} facade.
  * Facade usage example:
  *
  * ```php
- * use Turahe\Metatags\Facades\SEOTools;
+ * use Turahe\Tools\Facades\Tools;
  *
  * // specify meta info
- * SEOTools::setTitle('Homepage');
- * SEOTools::setDescription('This is my page description');
+ * Tools::setTitle('Homepage');
+ * Tools::setDescription('This is my page description');
  *
  * // access particular container
- * SEOTools::metatags()->addMeta('author', 'John Doe');
- * SEOTools::opengraph()->addProperty('type', 'articles');
- * SEOTools::twitter()->addValue('app:country', 'US');
- * SEOTools::jsonLd()->addValue('author', [
+ * Tools::metatags()->addMeta('author', 'John Doe');
+ * Tools::opengraph()->addProperty('type', 'articles');
+ * Tools::twitter()->addValue('app:country', 'US');
+ * Tools::jsonLd()->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
- * SEOTools::jsonLdMulti()->addValue('author', [
+ * Tools::jsonLdMulti()->addValue('author', [
  *     '@type' => 'Organization',
- *     'name' => 'Artesaos',
+ *     'name' => 'Turahe',
  * ]));
  *
  * // render HTML, it should be placed within 'head' HTML tag
- * echo SEOTools::generate();
+ * echo Tools::generate();
  * ```
  *
- * @see \Turahe\Metatags\Contracts\MetaTags
- * @see \Turahe\Metatags\Contracts\OpenGraph
- * @see \Turahe\Metatags\Contracts\TwitterCards
- * @see \Turahe\Metatags\Contracts\JsonLd
- * @see \Turahe\Metatags\Contracts\JsonLdMulti
+ * @see \Turahe\SEOTools\Contracts\Meta
+ * @see \Turahe\SEOTools\Contracts\OpenGraph
+ * @see \Turahe\SEOTools\Contracts\TwitterCards
+ * @see \Turahe\SEOTools\Contracts\JsonLd
+ * @see \Turahe\SEOTools\Contracts\JsonLdMulti
  *
- * @author `Vinicius Reis`
+ * @author `Nur Wachid`
  */
-interface SEOTools
+interface Tools
 {
     /**
-     * @return \Turahe\Metatags\Contracts\MetaTags
+     * @return \Turahe\SEOTools\Contracts\Meta
      */
     public function metatags();
 
     /**
-     * @return \Turahe\Metatags\Contracts\OpenGraph
+     * @return \Turahe\SEOTools\Contracts\OpenGraph
      */
     public function opengraph();
 
     /**
-     * @return \Turahe\Metatags\Contracts\TwitterCards
+     * @return \Turahe\SEOTools\Contracts\TwitterCards
      */
     public function twitter();
 
     /**
-     * @return \Turahe\Metatags\Contracts\JsonLd
+     * @return \Turahe\SEOTools\Contracts\JsonLd
      */
     public function jsonLd();
 
     /**
-     * @return \Turahe\Metatags\Contracts\JsonLdMulti
+     * @return \Turahe\SEOTools\Contracts\JsonLdMulti
      */
     public function jsonLdMulti();
 

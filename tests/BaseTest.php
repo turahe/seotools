@@ -1,6 +1,6 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
 use Mockery;
 use DOMDocument;
@@ -26,7 +26,7 @@ abstract class BaseTest extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [\Turahe\Metatags\Providers\MetaTagsServiceProvider::class];
+        return [\Turahe\SEOTools\Providers\SEOToolsServiceProvider::class];
     }
 
     /**

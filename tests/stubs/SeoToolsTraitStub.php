@@ -1,7 +1,7 @@
 <?php
 
-namespace Turahe\Metatags\Tests\stubs;
-use Turahe\Metatags\Traits\SEOTools;
+namespace Turahe\SEOTools\Tests\stubs;
+use Turahe\SEOTools\Traits\SEOTools;
 
 /**
  * Class SeoToolsTraitStub

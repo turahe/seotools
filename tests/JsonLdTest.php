@@ -1,9 +1,9 @@
 <?php
 
-namespace Turahe\Metatags\Tests;
+namespace Turahe\SEOTools\Tests;
 
-use Turahe\Metatags\JsonLd;
-use Turahe\Metatags\JsonLdMulti;
+use Turahe\SEOTools\JsonLd;
+use Turahe\SEOTools\JsonLdMulti;
 
 /**
  * Class TwitterCardsTest.
@@ -22,32 +22,32 @@ class JsonLdTest extends BaseTest
     {
         parent::setUp();
 
-        $this->jsonLd = $this->app->make('metatags.json-ld');
+        $this->jsonLd = $this->app->make('seotools.json-ld');
     }
 
     public function test_set_title()
     {
-        $this->jsonLd->setTitle('Kamehamehaaaaaaaa');
+        $this->jsonLd->setTitle('Turahe');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Kamehamehaaaaaaaa","description":"For those who helped create the Genki Dama"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"For those who helped create the Genki Dama"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
 
     public function test_set_site()
     {
-        $this->jsonLd->setSite('http://kakaroto.9000');
+        $this->jsonLd->setSite('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://kakaroto.9000"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
 
     public function test_set_url()
     {
-        $this->jsonLd->setUrl('http://kakaroto.9000');
+        $this->jsonLd->setUrl('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://kakaroto.9000"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -66,9 +66,9 @@ class JsonLdTest extends BaseTest
 
     public function test_set_description()
     {
-        $this->jsonLd->setDescription('Kamehamehaaaaaaaa');
+        $this->jsonLd->setDescription('Turahe');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"Kamehamehaaaaaaaa"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"Turahe"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -125,11 +125,11 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->addValue('author', [
             '@type' => 'Organization',
-            'name' => 'metatags',
-            'url' => 'https://github.com/turahe/metatags',
+            'name' => 'SeoTools',
+            'url' => 'https://github.com/Turahe/seotools',
         ]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","name":"metatags","url":"https://github.com/turahe/metatags"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -138,11 +138,11 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->addValue('author', new JsonLd([
             'type' => 'Organization',
-            'name' => 'metatags',
-            'url' => 'https://github.com/turahe/metatags',
+            'name' => 'SeoTools',
+            'url' => 'https://github.com/Turahe/seotools',
         ]));
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","url":"https://github.com/turahe/metatags","name":"metatags"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -151,11 +151,11 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->addValue('author', [new JsonLd([
             'type' => 'Organization',
-            'name' => 'metatags',
-            'url' => 'https://github.com/turahe/metatags',
+            'name' => 'SeoTools',
+            'url' => 'https://github.com/Turahe/seotools',
         ])]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":[{"@type":"Organization","url":"https://github.com/turahe/metatags","name":"metatags"}]}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":[{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}]}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -166,11 +166,11 @@ class JsonLdTest extends BaseTest
             'test' => '1-2-3',
             'author' => [
                 '@type' => 'Organization',
-                'name' => 'metatags',
+                'name' => 'SeoTools',
             ],
         ]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","test":"1-2-3","author":{"@type":"Organization","name":"metatags"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","test":"1-2-3","author":{"@type":"Organization","name":"SeoTools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -178,7 +178,7 @@ class JsonLdTest extends BaseTest
     public function test_is_empty()
     {
         // make default json-ld data as empty on create
-        config()->set('metatags.json-ld.defaults',[]);
+        config()->set('seotools.json-ld.defaults',[]);
         $this->jsonLd = new JsonLd();
 
         $this->assertTrue($this->jsonLd->isEmpty());

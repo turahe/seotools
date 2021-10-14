@@ -1,14 +1,14 @@
 <?php
 
-namespace Turahe\Metatags;
+namespace Turahe\SEOTools;
 
 use Illuminate\Support\Arr;
-use Turahe\Metatags\Contracts\OpenGraph as OpenGraphContract;
+use Turahe\SEOTools\Contracts\OpenGraph as OpenGraphContract;
 
 /**
  * OpenGraph provides implementation for `OpenGraph` contract.
  *
- * @see \Turahe\Metatags\Contracts\OpenGraph
+ * @see \Turahe\SEOTools\Contracts\OpenGraph
  */
 class OpenGraph implements OpenGraphContract
 {
