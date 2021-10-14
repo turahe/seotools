@@ -80,6 +80,10 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
             return new \Turahe\SEOTools\JsonLdMulti($app['config']->get('seotools.json-ld.defaults', []));
         });
 
+        $this->app->singleton('seotools.pwa', function ($app) {
+            return new \Turahe\SEOTools\PWA($app['config']->get('seotools.pwa', []));
+        });
+
         $this->app->singleton('seotools', function () {
             return new \Turahe\SEOTools\Tools();
         });

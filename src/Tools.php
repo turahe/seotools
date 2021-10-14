@@ -54,7 +54,15 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title, $appendDefault = true)
+    public function pwa()
+    {
+        return new PWA(config('seotools.manifest'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTitle(string $title, bool $appendDefault = true): self
     {
         $this->metatags()->setTitle($title, $appendDefault);
         $this->opengraph()->setTitle($title);
@@ -67,7 +75,7 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription(string $description): self
     {
         $this->metatags()->setDescription($description);
         $this->opengraph()->setDescription($description);
@@ -80,7 +88,7 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function setCanonical($url)
+    public function setCanonical(string $url): self
     {
         $this->metatags()->setCanonical($url);
 
@@ -90,7 +98,7 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function addImages($urls)
+    public function addImages($urls): self
     {
         if (is_array($urls)) {
             $this->opengraph()->addImages($urls);
@@ -108,7 +116,7 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function getTitle($session = false)
+    public function getTitle(bool $session = false): string
     {
         if ($session) {
             return $this->metatags()->getTitleSession();
@@ -120,13 +128,15 @@ class Tools implements SEOContract
     /**
      * {@inheritdoc}
      */
-    public function generate($minify = false)
+    public function generate(bool $minify = false): string
     {
         $html = $this->metatags()->generate();
         $html .= PHP_EOL;
         $html .= $this->opengraph()->generate();
         $html .= PHP_EOL;
         $html .= $this->twitter()->generate();
+        $html .= PHP_EOL;
+        $html .= $this->pwa()->generate();
         $html .= PHP_EOL;
         // if json ld multi is use don't show simple json ld
         $html .= $this->jsonLdMulti()->generate() ?? $this->jsonLd()->generate();

@@ -98,14 +98,19 @@ interface Tools
     public function jsonLdMulti();
 
     /**
+     * @return \Turahe\SEOTools\Contracts\PWA
+     */
+    public function pwa();
+
+    /**
      * Setup title for all seo providers.
      *
      * @param string $title
-     * @param bool   $appendDefault
+     * @param bool $appendDefault
      *
      * @return static
      */
-    public function setTitle($title, $appendDefault = true);
+    public function setTitle(string $title, bool $appendDefault = true): self;
 
     /**
      * Setup description for all seo providers.
@@ -114,7 +119,7 @@ interface Tools
      *
      * @return static
      */
-    public function setDescription($description);
+    public function setDescription(string $description): self;
 
     /**
      * Sets the canonical URL.
@@ -123,7 +128,7 @@ interface Tools
      *
      * @return static
      */
-    public function setCanonical($url);
+    public function setCanonical(string $url): self;
 
     /**
      * Add one or more images urls.
@@ -132,7 +137,7 @@ interface Tools
      *
      * @return static
      */
-    public function addImages($urls);
+    public function addImages($urls): self;
 
     /**
      * Get current title from metatags.
@@ -141,7 +146,7 @@ interface Tools
      *
      * @return string
      */
-    public function getTitle($session = false);
+    public function getTitle(bool $session = false): string;
 
     /**
      * Generate from all seo providers.
@@ -150,5 +155,5 @@ interface Tools
      *
      * @return string
      */
-    public function generate($minify = false);
+    public function generate(bool $minify = false): string;
 }
