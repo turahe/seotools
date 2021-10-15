@@ -2,40 +2,45 @@
 
 namespace Turahe\SEOTools;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Turahe\SEOTools\Contracts\Pwa as PWAContract;
 
 class PWA implements PWAContract
 {
     /**
+     * The pwa title name.
+     *
+     * @var string
+     */
+    protected string $title;
+    /**
      * @var array
      */
     protected array $config = [];
 
-    public function __construct(array $defaults = [])
+    public function __construct(array $defaults  = [])
     {
         $this->config = $defaults;
 
     }
     /**
-     * @return Collection
+     * @return array
      */
-    public function manifestJson(): Collection
+    public function manifestJson(): array
     {
         $basicManifest = [
-            'name' => config('seotools.site_name'),
-            'short_name' => config('seotools.site_title'),
+            'name' => $this->config['site_name'],
+            'short_name' => $this->config['site_title'],
             'start_url' => url('/'),
-            'display' => config('seotools.display'),
-            'theme_color' => config('seotools.theme_color'),
-            'background_color' => config('seotools.background_color'),
-            'orientation' => config('seotools.orientation'),
-            'status_bar' => config('seotools.status_bar'),
+            'display' => $this->config['display'],
+            'theme_color' => $this->config['theme_color'],
+            'background_color' => $this->config['background_color'],
+            'orientation' => $this->config['orientation'],
+            'status_bar' => $this->config['status_bar'],
             'prefer_related_applications' => true,
         ];
 
-        foreach (config('site.manifest.icons') as $size => $file) {
+        foreach ($this->config['icons'] as $size => $file) {
             $fileInfo = pathinfo($file['path']);
             $basicManifest['icons'][] = [
                 'src' => Storage::url($file['path']),
@@ -45,8 +50,8 @@ class PWA implements PWAContract
             ];
         }
 
-        if (config('site.manifest.shortcuts')) {
-            foreach (config('site.manifest.shortcuts') as $shortcut) {
+        if ($this->config['shortcuts']) {
+            foreach ($this->config['shortcuts'] as $shortcut) {
                 if (array_key_exists('icons', $shortcut)) {
                     $fileInfo = pathinfo($shortcut['icons']['src']);
                     $icon = [
@@ -72,30 +77,36 @@ class PWA implements PWAContract
             }
         }
 
-//        foreach (config('site.manifest.custom') as $tag => $value) {
+//        foreach (config('custom') as $tag => $value) {
 //            $basicManifest[$tag] = $value;
 //        }
 
-        return new Collection($basicManifest);
+        return $basicManifest;
     }
 
 
-    public function generate($minify = false)
+    public function generate($minify = false): string
     {
 
         $title = $this->getTitle();
 
 
+
         $html = [];
 
-        $html[] = '<link rel="manifest" href="' . route('manifest') . '"/>';
-        $html[] = '<link rel="alternate" type="application/atom+xml" title="Products" href="'. route('feed'). '"/>';
+        if ($this->config) {
+            $html[] = '<link rel="manifest" href="' . url('manifest.json') . '"/>';
+        }
 
 
-        if (config('seotools.theme_color')) {
-            $html[] = '<meta name="theme-color" content=" '. config('seotools.theme_color') . '" />';
-            $html[] = '<meta name="apple-mobile-web-app-status-bar-style" content="'. config('seotools.theme_color') . '" />';
-            $html[] = '<meta name="msapplication-TileColor" content="'. config('seotools.theme_color') . '" />';
+        if ($this->config) {
+            $html[] = '<link rel="alternate" type="application/atom+xml" title="Products" href="' . url('feed') . '"/>';
+        }
+
+        if ($this->config['theme_color']) {
+            $html[] = '<meta name="theme-color" content=" '. $this->config['theme_color'] . '" />';
+            $html[] = '<meta name="apple-mobile-web-app-status-bar-style" content="'. $this->config['theme_color'] . '" />';
+            $html[] = '<meta name="msapplication-TileColor" content="'. $this->config['theme_color'] . '" />';
         }
 
         if ($title) {
@@ -104,24 +115,20 @@ class PWA implements PWAContract
 
         $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
         $html[] = "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">";
-        foreach (config('seotools.manifest.icons') as $index => $icon) {
-            $path = Storage::url(config('app.unique_id') . $icon['path']);
-            $html[] = '<link rel="icon" sizes="'.$index.'" href="'.$path.'"/>';
+        foreach ($this->config['icons'] as $index => $icon) {
+            $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
         }
 
-        foreach (config('seotools.manifest.icons') as $index => $icon) {
-            $path = Storage::url(config('app.unique_id') . $icon['path']);
-            $html[] = '<link rel="apple-touch-icon" sizes="'.$index.'" href="'.$path.'"/>';
+        foreach ($this->config['icons'] as $index => $icon) {
+            $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
         }
 
-        foreach (config('seotools.manifest.icons') as $index => $icon) {
-            $path = Storage::url(config('app.unique_id') . $icon['path']);
-            $html[] = '<link rel="msapplication-TileImage" sizes="'.$index.'" href="'.$path.'"/>';
+        foreach ($this->config['icons'] as $index => $icon) {
+            $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
         }
 
-        foreach (config('seotools.manifest.splash') as $splash) {
-            $path = Storage::url(config('app.unique_id') .$splash['path']);
-            $html[] = ' <link href="'.$path.'" media="(device-width: '.$splash['width'].'px) and (device-height: '.$splash['height'].'px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> ';
+        foreach ($this->config['splash'] as $splash) {
+            $html[] = "<link href=\"{$splash['path']}\" media=\"(device-width: {$splash['width']}px) and (device-height: {$splash['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
         }
 
 
@@ -151,7 +158,7 @@ class PWA implements PWAContract
     public function getDefaultTitle()
     {
         if (empty($this->title_default)) {
-            return $this->config->get('defaults.title', null);
+            return $this->config['defaults']['title'];
         }
 
         return $this->title_default;
