@@ -87,9 +87,7 @@ class PWA implements PWAContract
         }
 
 
-        if ($this->config) {
-            $html[] = '<link rel="alternate" type="application/atom+xml" title="Products" href="' . url('feed') . '"/>';
-        }
+
 
         if ($this->config['theme_color']) {
             $html[] = '<meta name="theme-color" content=" '. $this->config['theme_color'] . '" />';
@@ -98,7 +96,7 @@ class PWA implements PWAContract
         }
 
         if ($this->config['name']) {
-            $html[] = "<meta name=\"application-name\" content=\"{$title}\">";
+            $html[] = "<meta name=\"application-name\" content=\"{$this->config['name']}\">";
         }
 
         $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
