@@ -1,3 +1,4 @@
+[![Latest Stable Version](http://poser.pugx.org/turahe/seotools/v)](https://packagist.org/packages/turahe/seotools) [![Total Downloads](http://poser.pugx.org/turahe/seotools/downloads)](https://packagist.org/packages/turahe/seotools) [![Latest Unstable Version](http://poser.pugx.org/turahe/seotools/v/unstable)](https://packagist.org/packages/turahe/seotools) [![License](http://poser.pugx.org/turahe/seotools/license)](https://packagist.org/packages/turahe/seotools) [![PHP Version Require](http://poser.pugx.org/turahe/seotools/require/php)](https://packagist.org/packages/turahe/seotools)
 
 For license information check the [LICENSE](LICENSE.md)-file.
 
