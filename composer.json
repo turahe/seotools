@@ -60,7 +60,8 @@
         "OpenGraph": "Turahe\\SEOTools\\Facades\\OpenGraph",
         "Twitter": "Turahe\\SEOTools\\Facades\\TwitterCard",
         "JsonLd": "Turahe\\SEOTools\\Facades\\JsonLd",
-        "SEO": "Turahe\\SEOTools\\Facades\\Tools"
+        "SEO": "Turahe\\SEOTools\\Facades\\Tools",
+        "PWA": "Turahe\\SEOTools\\Facades\\PWA"
       }
     }
   },
