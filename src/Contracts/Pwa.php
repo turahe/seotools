@@ -2,7 +2,6 @@
 
 namespace Turahe\SEOTools\Contracts;
 
-
 interface Pwa
 {
     /**
@@ -19,5 +18,4 @@ interface Pwa
      * @return void
      */
     public function manifestJson(): array;
-
 }

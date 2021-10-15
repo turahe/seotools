@@ -12,10 +12,8 @@ return $config
         'no_unused_imports' => true,
     ])
     ->setFinder(PhpCsFixer\Finder::create()
-        ->in(__DIR__)
-        ->exclude(['bootstrap', 'storage', 'vendor'])
+        ->in(__DIR__.'./src')
         ->name('*.php')
-        ->notName('*.blade.php')
         ->ignoreDotFiles(true)
         ->ignoreVCS(true)
     );

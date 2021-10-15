@@ -8,12 +8,6 @@ use Turahe\SEOTools\Contracts\Pwa as PWAContract;
 class PWA implements PWAContract
 {
     /**
-     * The pwa title name.
-     *
-     * @var string
-     */
-    protected string $title;
-    /**
      * @var array
      */
     protected array $config = [];
@@ -21,7 +15,6 @@ class PWA implements PWAContract
     public function __construct(array $defaults  = [])
     {
         $this->config = $defaults;
-
     }
     /**
      * @return array
@@ -87,11 +80,6 @@ class PWA implements PWAContract
 
     public function generate($minify = false): string
     {
-
-        $title = $this->getTitle();
-
-
-
         $html = [];
 
         if ($this->config) {
@@ -109,7 +97,7 @@ class PWA implements PWAContract
             $html[] = '<meta name="msapplication-TileColor" content="'. $this->config['theme_color'] . '" />';
         }
 
-        if ($title) {
+        if ($this->config['name']) {
             $html[] = "<meta name=\"application-name\" content=\"{$title}\">";
         }
 
@@ -134,34 +122,4 @@ class PWA implements PWAContract
 
         return ($minify) ? implode('', $html) : implode(PHP_EOL, $html);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-    /**
-     * {@inheritdoc}
-     */
-    public function getTitle()
-    {
-        return $this->title ?: $this->getDefaultTitle();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultTitle()
-    {
-        if (empty($this->title_default)) {
-            return $this->config['defaults']['title'];
-        }
-
-        return $this->title_default;
-    }
-
 }

@@ -160,8 +160,7 @@ class Meta implements MetaTagsContract
         }
 
         if (!empty($keywords)) {
-
-            if($keywords instanceof \Illuminate\Support\Collection){
+            if ($keywords instanceof \Illuminate\Support\Collection) {
                 $keywords = $keywords->toArray();
             }
 

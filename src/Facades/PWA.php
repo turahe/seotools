@@ -13,5 +13,4 @@ class PWA extends Facade
     {
         return 'pwa';
     }
-
 }
