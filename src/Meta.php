@@ -2,8 +2,8 @@
 
 namespace Turahe\SEOTools;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\Arr;
-use Illuminate\Config\Repository as Config;
 use Turahe\SEOTools\Contracts\Meta as MetaTagsContract;
 
 /**
@@ -18,21 +18,21 @@ class Meta implements MetaTagsContract
      *
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected $title_session;
+    protected string $title_session;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected $title_default;
+    protected string $title_default;
 
     /**
      * The title tag separator.
@@ -46,66 +46,66 @@ class Meta implements MetaTagsContract
      *
      * @var string
      */
-    protected $description;
+    protected string $description;
 
     /**
      * The meta keywords.
      *
      * @var array
      */
-    protected $keywords = [];
+    protected array $keywords = [];
 
     /**
      * extra metatags.
      *
      * @var array
      */
-    protected $metatags = [];
+    protected array $metatags = [];
 
     /**
      * The canonical URL.
      *
      * @var string
      */
-    protected $canonical;
+    protected string $canonical;
 
     /**
      * The AMP URL.
      *
      * @var string
      */
-    protected $amphtml;
+    protected string $amphtml;
 
     /**
      * The prev URL in pagination.
      *
      * @var string
      */
-    protected $prev;
+    protected string $prev;
 
     /**
      * The next URL in pagination.
      *
      * @var string
      */
-    protected $next;
+    protected string $next;
 
     /**
      * The alternate languages.
      *
      * @var array
      */
-    protected $alternateLanguages = [];
+    protected array $alternateLanguages = [];
 
     /**
      * The meta robots.
      *
      * @var string
      */
-    protected $robots;
+    protected string $robots;
 
     /**
-     * @var Config
+     * @var array
      */
     protected $config;
 
@@ -124,11 +124,11 @@ class Meta implements MetaTagsContract
     ];
 
     /**
-     * @param \Illuminate\Config\Repository $config
+     * @param array $config
      */
-    public function __construct(Config $config)
+    public function __construct(array $config)
     {
-        $this->config = $config;
+        $this->config = new Repository($config);
     }
 
     /**
@@ -393,7 +393,7 @@ class Meta implements MetaTagsContract
      *
      * @return MetaTagsContract
      */
-    public function setRobots($robots)
+    public function setRobots(string $robots)
     {
         $this->robots = $robots;
 

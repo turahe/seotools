@@ -72,7 +72,7 @@ interface OpenGraph
      *
      * @return string
      */
-    public function generate($minify = false);
+    public function generate(bool $minify = false): string;
 
     /**
      * Add or update property.
@@ -82,7 +82,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function addProperty($key, $value);
+    public function addProperty(string $key, $value) :self;
 
     /**
      * Remove property.
@@ -91,7 +91,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function removeProperty($key);
+    public function removeProperty(string $key): self;
 
     /**
      * Add image to properties.
@@ -101,7 +101,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function addImage($url, $attributes = []);
+    public function addImage(string $url, array $attributes = []): self;
 
     /**
      * Add images to properties.
@@ -110,7 +110,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function addImages(array $urls);
+    public function addImages(array $urls): self;
 
     /**
      * Define title property.
@@ -119,7 +119,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setTitle($title);
+    public function setTitle(string $title): self;
 
     /**
      * Define description property.
@@ -128,7 +128,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setDescription($description);
+    public function setDescription(string $description):self;
 
     /**
      * Define url property.
@@ -137,7 +137,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setUrl($url);
+    public function setUrl(string $url): self;
 
     /**
      * Define site_name property.
@@ -146,7 +146,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setSiteName($name);
+    public function setSiteName(string $name): self;
 
     /**
      * Define type property.
@@ -155,7 +155,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setType($type = null);
+    public function setType(string $type = null): self;
 
     /**
      * Set Article properties.
@@ -164,7 +164,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setArticle($attributes = []);
+    public function setArticle(array $attributes = []): self;
 
     /**
      * Set Profile properties.
@@ -173,7 +173,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setProfile($attributes = []);
+    public function setProfile(array $attributes = []): self;
 
     /**
      * Set Music Song properties.
@@ -182,7 +182,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setMusicSong($attributes = []);
+    public function setMusicSong(array $attributes = []): self;
 
     /**
      * Set Music Album properties.
@@ -191,7 +191,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setMusicAlbum($attributes = []);
+    public function setMusicAlbum(array $attributes = []): self;
 
     /**
      * Set Music Playlist properties.
@@ -200,7 +200,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setMusicPlaylist($attributes = []);
+    public function setMusicPlaylist(array $attributes = []): self;
 
     /**
      * Set Music  RadioStation properties.
@@ -209,7 +209,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setMusicRadioStation($attributes = []);
+    public function setMusicRadioStation(array $attributes = []): self;
 
     /**
      * Set Video Movie properties.
@@ -218,7 +218,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setVideoMovie($attributes = []);
+    public function setVideoMovie(array $attributes = []): self;
 
     /**
      * Set Video Episode properties.
@@ -227,7 +227,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setVideoEpisode($attributes = []);
+    public function setVideoEpisode(array $attributes = []): self;
 
     /**
      * Set Video Episode properties.
@@ -236,7 +236,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setVideoOther($attributes = []);
+    public function setVideoOther(array $attributes = []): self;
 
     /**
      * Set Video Episode properties.
@@ -245,7 +245,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setVideoTVShow($attributes = []);
+    public function setVideoTVShow(array $attributes = []): self;
 
     /**
      * Set Book properties.
@@ -254,25 +254,25 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setBook($attributes = []);
+    public function setBook(array $attributes = []): self;
 
     /**
      * Add Video properties.
      *
-     * @param string $source
-     * @param array  $attributes
+     * @param string|null $source
+     * @param array $attributes
      *
      * @return static
      */
-    public function addVideo($source = null, $attributes = []);
+    public function addVideo(string $source = null, array $attributes = []): self;
 
     /**
      * Add audio properties.
      *
-     * @param string $source
-     * @param array  $attributes
+     * @param string|null $source
+     * @param array $attributes
      *
      * @return static
      */
-    public function addAudio($source = null, $attributes = []);
+    public function addAudio(string $source = null, array $attributes = []): self;
 }

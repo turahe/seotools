@@ -61,7 +61,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     public function register()
     {
         $this->app->singleton('seotools.metatags', function ($app) {
-            return new \Turahe\SEOTools\Meta(new Config($app['config']->get('seotools.meta', [])));
+            return new \Turahe\SEOTools\Meta($app['config']->get('seotools.meta', []));
         });
 
         $this->app->singleton('seotools.opengraph', function ($app) {

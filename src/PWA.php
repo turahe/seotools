@@ -82,12 +82,9 @@ class PWA implements PWAContract
     {
         $html = [];
 
-        if ($this->config) {
+        if ($this->config['manifest']) {
             $html[] = '<link rel="manifest" href="' . url('manifest.json') . '"/>';
         }
-
-
-
 
         if ($this->config['theme_color']) {
             $html[] = '<meta name="theme-color" content=" '. $this->config['theme_color'] . '" />';
@@ -101,20 +98,26 @@ class PWA implements PWAContract
 
         $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
         $html[] = "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">";
-        foreach ($this->config['icons'] as $index => $icon) {
-            $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+        if ($this->config['icons']) {
+
+            foreach ($this->config['icons'] as $index => $icon) {
+                $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+            }
+
+
+            foreach ($this->config['icons'] as $index => $icon) {
+                $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+            }
+
+            foreach ($this->config['icons'] as $index => $icon) {
+                $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+            }
         }
 
-        foreach ($this->config['icons'] as $index => $icon) {
-            $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
-        }
-
-        foreach ($this->config['icons'] as $index => $icon) {
-            $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
-        }
-
-        foreach ($this->config['splash'] as $splash) {
-            $html[] = "<link href=\"{$splash['path']}\" media=\"(device-width: {$splash['width']}px) and (device-height: {$splash['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
+        if ($this->config['splash']) {
+            foreach ($this->config['splash'] as $splash) {
+                $html[] = "<link href=\"{$splash['path']}\" media=\"(device-width: {$splash['width']}px) and (device-height: {$splash['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
+            }
         }
 
 

@@ -111,62 +111,62 @@ return [
         ],
         'splash' => [
             'ldpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-640x1136.png',
+                'path' => '/images/splash/splash-640x1136.png',
                 'height' => 200,
                 'width' => 320
             ],
             'ldpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-750x1334.png',
+                'path' => '/images/splash/splash-750x1334.png',
                 'height' => 320,
                 'width' => 200
             ],
             'mdpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-828x1792.png',
+                'path' => '/images/splash/splash-828x1792.png',
                 'height' => 320,
                 'width' => 480
             ],
             'mdpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1125x2436.png',
+                'path' => '/images/splash/splash-1125x2436.png',
                 'height' => 480,
                 'width' => 320
             ],
             'hdpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1242x2208.png',
+                'path' => '/images/splash/splash-1242x2208.png',
                 'height' => 480,
                 'width' => 720
             ],
             'hdpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1242x2688.png',
+                'path' => '/images/splash/splash-1242x2688.png',
                 'height' => 720,
                 'width' => 480
             ],
             'xhdpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1536x2048.png',
+                'path' => '/images/splash/splash-1536x2048.png',
                 'height' => 640,
                 'width' => 960
             ],
             'xhdpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1668x2224.png',
+                'path' => '/images/splash/splash-1668x2224.png',
                 'height' => 960,
                 'width' => 640
             ],
             'xxhdpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1668x2388.png',
+                'path' => '/images/splash/splash-1668x2388.png',
                 'height' => 960,
                 'width' => 1440
             ],
             'xxhdpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-2048x2732.png',
+                'path' => '/images/splash/splash-2048x2732.png',
                 'height' => 1440,
                 'width' => 960
             ],
             'xxxhdpi_portrait' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-1668x2388.png',
+                'path' => '/images/splash/splash-1668x2388.png',
                 'height' => 1280,
                 'width' => 1920
             ],
             'xxxhdpi_landscape' => [
-                'path' => config('app.unique_id') . '/images/splash/splash-2048x2732.png',
+                'path' => '/images/splash/splash-2048x2732.png',
                 'height' => 1920,
                 'width' => 1280
             ],

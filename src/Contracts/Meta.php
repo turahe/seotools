@@ -54,7 +54,7 @@ interface Meta
      * @param \Illuminate\Config\Repository $config
      * @return void
      */
-    public function __construct(Config $config);
+    public function __construct(array $config);
 
     /**
      * Generates meta tags HTML.
