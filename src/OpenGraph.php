@@ -3,6 +3,7 @@
 namespace Turahe\SEOTools;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Turahe\SEOTools\Contracts\OpenGraph as OpenGraphContract;
 
 /**
@@ -764,7 +765,8 @@ class OpenGraph implements OpenGraphContract
      */
     public function setDescription($description = null): self
     {
-        return $this->addProperty('description', htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false));
+        $data = htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false);
+        return $this->addProperty('description', Str::limit(strip_tags($data), 200), '.');
     }
 
     /**
