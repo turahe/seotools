@@ -18,21 +18,21 @@ class Meta implements MetaTagsContract
      *
      * @var string
      */
-    protected string $title;
+    protected $title;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected string $title_session;
+    protected $title_session;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected string $title_default;
+    protected $title_default;
 
     /**
      * The title tag separator.
@@ -46,63 +46,63 @@ class Meta implements MetaTagsContract
      *
      * @var string
      */
-    protected string $description;
+    protected $description;
 
     /**
      * The meta keywords.
      *
      * @var array
      */
-    protected array $keywords = [];
+    protected $keywords = [];
 
     /**
      * extra metatags.
      *
      * @var array
      */
-    protected array $metatags = [];
+    protected $metatags = [];
 
     /**
      * The canonical URL.
      *
      * @var string
      */
-    protected string $canonical;
+    protected $canonical;
 
     /**
      * The AMP URL.
      *
      * @var string
      */
-    protected string $amphtml;
+    protected $amphtml;
 
     /**
      * The prev URL in pagination.
      *
      * @var string
      */
-    protected string $prev;
+    protected $prev;
 
     /**
      * The next URL in pagination.
      *
      * @var string
      */
-    protected string $next;
+    protected $next;
 
     /**
      * The alternate languages.
      *
      * @var array
      */
-    protected array $alternateLanguages = [];
+    protected $alternateLanguages = [];
 
     /**
      * The meta robots.
      *
      * @var string
      */
-    protected string $robots;
+    protected $robots;
 
     /**
      * @var array
