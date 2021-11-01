@@ -46,6 +46,10 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
             ]);
         }
 
+        $this->registerViews();
+        $this->registerIcons();
+        $this->registerRoutes();
+
         if (config('seotools.manifest.enabled')) {
             $this->registerRoutes();
         }
@@ -123,7 +127,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     protected function registerRoutes()
     {
         $router = $this->app['router'];
-        require __DIR__.'/../routes/web.php';
+        require __DIR__.'./../../routers/web.php';
     }
 
     /**
@@ -134,6 +138,58 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     protected function isLaravel()
     {
         return app() instanceof \Illuminate\Foundation\Application;
+    }
+
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews()
+    {
+        $viewPath = base_path('resources/views/vendor/seo');
+
+        $sourcePath = __DIR__ . '/resources/views';
+
+        $this->publishes([
+            $sourcePath => $viewPath
+        ], 'views');
+
+        $this->loadViewsFrom(array_merge(array_map(function ($path) {
+            return $path . '/vendor/seo';
+        }, $this->app['config']->get('view.paths')), [$sourcePath]), 'seo');
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerIcons()
+    {
+        $iconsPath = public_path('images/icons');
+
+        $sourcePath = __DIR__.'/resources/assets/images/icons';
+
+        $this->publishes([
+            $sourcePath => $iconsPath
+        ], 'icons');
+    }
+
+    /**
+     * Register serviceworker.js.
+     *
+     * @return void
+     */
+    protected function registerServiceworker()
+    {
+        $publicPath = public_path();
+
+        $sourcePath = __DIR__.'./resources/assets/js';
+
+        $this->publishes([
+            $sourcePath => $publicPath
+        ], 'serviceworker');
     }
 
     /**

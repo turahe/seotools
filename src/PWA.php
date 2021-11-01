@@ -12,6 +12,9 @@ class PWA implements PWAContract
      */
     protected array $config = [];
 
+    /**
+     * @param array $defaults
+     */
     public function __construct(array $defaults  = [])
     {
         $this->config = $defaults;
@@ -78,6 +81,10 @@ class PWA implements PWAContract
     }
 
 
+    /**
+     * @param false $minify
+     * @return string
+     */
     public function generate($minify = false): string
     {
         $html = [];
@@ -99,7 +106,6 @@ class PWA implements PWAContract
         $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
         $html[] = "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">";
         if ($this->config['icons']) {
-
             foreach ($this->config['icons'] as $index => $icon) {
                 $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
             }

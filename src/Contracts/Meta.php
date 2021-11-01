@@ -2,8 +2,6 @@
 
 namespace Turahe\SEOTools\Contracts;
 
-use Illuminate\Config\Repository as Config;
-
 /**
  * Meta defines contract for the HTML meta tags container.
  *
