@@ -122,7 +122,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     }
 
     /**
-     * Register new routes to projects.
+     * Register new routers to projects.
      */
     protected function registerRoutes()
     {
