@@ -49,10 +49,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         $this->registerViews();
         $this->registerIcons();
         $this->registerRoutes();
-
-        if (config('seotools.manifest.enabled')) {
-            $this->registerRoutes();
-        }
+        $this->registerServiceworker();
 
         $this->mergeConfigFrom($configFile, 'seotools');
     }
@@ -97,6 +94,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         $this->app->bind(\Turahe\SEOTools\Contracts\TwitterCards::class, 'seotools.twitter');
         $this->app->bind(\Turahe\SEOTools\Contracts\JsonLd::class, 'seotools.json-ld');
         $this->app->bind(\Turahe\SEOTools\Contracts\JsonLdMulti::class, 'seotools.json-ld-multi');
+        $this->app->bind(\Turahe\SEOTools\Contracts\Pwa::class, 'seotools.pwa');
         $this->app->bind(\Turahe\SEOTools\Contracts\Tools::class, 'seotools');
     }
 
@@ -112,11 +110,13 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
             \Turahe\SEOTools\Contracts\OpenGraph::class,
             \Turahe\SEOTools\Contracts\JsonLd::class,
             \Turahe\SEOTools\Contracts\JsonLdMulti::class,
+            \Turahe\SEOTools\Contracts\Pwa::class,
             'seotools',
             'seotools.metatags',
             'seotools.opengraph',
             'seotools.twitter',
             'seotools.json-ld',
+            'seotools.pwa',
             'seotools.json-ld-multi',
         ];
     }
