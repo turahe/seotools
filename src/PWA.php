@@ -2,22 +2,40 @@
 
 namespace Turahe\SEOTools;
 
+use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\Storage;
 use Turahe\SEOTools\Contracts\Pwa as PWAContract;
 
 class PWA implements PWAContract
 {
     /**
+     * The image icons.
+     *
      * @var array
      */
-    protected array $config = [];
+    protected $icons;
 
     /**
-     * @param array $defaults
+     * The image splash.
+     *
+     * @var array
      */
+    protected $splash;
+
+    /**
+     * The icons shorcut.
+     *
+     * @var array
+     */
+    protected $shortcut;
+    /**
+     * @var array
+     */
+    protected $config;
+
     public function __construct(array $defaults  = [])
     {
-        $this->config = $defaults;
+        $this->config = new Repository($defaults);
     }
     /**
      * @return array
@@ -25,18 +43,18 @@ class PWA implements PWAContract
     public function manifestJson(): array
     {
         $basicManifest = [
-            'name' => $this->config['site_name'],
-            'short_name' => $this->config['site_title'],
+            'name' => $this->config->get('site_name'),
+            'short_name' => $this->config->get('site_title'),
             'start_url' => url('/'),
-            'display' => $this->config['display'],
-            'theme_color' => $this->config['theme_color'],
-            'background_color' => $this->config['background_color'],
-            'orientation' => $this->config['orientation'],
-            'status_bar' => $this->config['status_bar'],
+            'display' => $this->config->get('display'),
+            'theme_color' => $this->config->get('theme_color'),
+            'background_color' => $this->config->get('background_color'),
+            'orientation' => $this->config->get('orientation'),
+            'status_bar' => $this->config->get('status_bar'),
             'prefer_related_applications' => true,
         ];
 
-        foreach ($this->config['icons'] as $size => $file) {
+        foreach ($icons as $size => $file) {
             $fileInfo = pathinfo($file['path']);
             $basicManifest['icons'][] = [
                 'src' => Storage::url($file['path']),
@@ -46,8 +64,8 @@ class PWA implements PWAContract
             ];
         }
 
-        if ($this->config['shortcuts']) {
-            foreach ($this->config['shortcuts'] as $shortcut) {
+        if ($this->config->get('shortcuts')) {
+            foreach ($this->config->get('shortcuts') as $shortcut) {
                 if (array_key_exists('icons', $shortcut)) {
                     $fileInfo = pathinfo($shortcut['icons']['src']);
                     $icon = [
@@ -81,52 +99,125 @@ class PWA implements PWAContract
     }
 
 
-    /**
-     * @param false $minify
-     * @return string
-     */
     public function generate($minify = false): string
     {
+        $icons = $this->getIcons();
+        $splash = $this->getSplash();
+        $shortcut = $this->getShortcut();
+
         $html = [];
 
         if ($this->config) {
             $html[] = '<link rel="manifest" href="' . url('manifest.json') . '"/>';
         }
 
-        if ($this->config['theme_color']) {
-            $html[] = '<meta name="theme-color" content=" '. $this->config['theme_color'] . '" />';
-            $html[] = '<meta name="apple-mobile-web-app-status-bar-style" content="'. $this->config['theme_color'] . '" />';
-            $html[] = '<meta name="msapplication-TileColor" content="'. $this->config['theme_color'] . '" />';
+
+
+
+        if ($this->config->get('theme_color', false)) {
+            $html[] = '<meta name="theme-color" content=" '. $this->config->get('theme_color', 'ffffff') . '" />';
+            $html[] = '<meta name="apple-mobile-web-app-status-bar-style" content="'. $this->config->get('theme_color', 'ffffff') . '" />';
+            $html[] = '<meta name="msapplication-TileColor" content="'. $this->config->get('theme_color', 'ffffff') . '" />';
         }
 
-        if ($this->config['name']) {
-            $html[] = "<meta name=\"application-name\" content=\"{$this->config['name']}\">";
+        if ($this->config->get('name', false)) {
+            $html[] = "<meta name=\"application-name\" content=\"{$this->config->get('name', 'Turahe')}\">";
         }
 
         $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
         $html[] = "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">";
-        if ($this->config['icons']) {
-            foreach ($this->config['icons'] as $index => $icon) {
-                $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+
+
+
+        if ($icons) {
+
+
+            foreach ($icons as $index => $icon) {
+                $path = url($icon['path']);
+                $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
 
-            foreach ($this->config['icons'] as $index => $icon) {
-                $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+            foreach ($icons as $index => $icon) {
+                $path = url($icon['path']);
+                $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
-            foreach ($this->config['icons'] as $index => $icon) {
-                $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$icon['path']}\"/>";
+            foreach ($icons as $index => $icon) {
+                $path = url($icon['path']);
+                $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
         }
 
-        if ($this->config['splash']) {
-            foreach ($this->config['splash'] as $splash) {
-                $html[] = "<link href=\"{$splash['path']}\" media=\"(device-width: {$splash['width']}px) and (device-height: {$splash['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
+        if ($splash) {
+            foreach ($splash as $image) {
+                $path = url($image['path']);
+                $html[] = "<link href=\"{$path}\" media=\"(device-width: {$image['width']}px) and (device-height: {$image['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
             }
         }
+
 
 
         return ($minify) ? implode('', $html) : implode(PHP_EOL, $html);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIcons()
+    {
+        return $this->icons ?: $this->getDefaultIcons();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultIcons()
+    {
+        if (empty($this->icons_default)) {
+            return $this->config->get('icons', null);
+        }
+
+        return $this->icons_default;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSplash()
+    {
+        return $this->splash ?: $this->getDefaultSplash();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultSplash()
+    {
+        if (empty($this->splash_default)) {
+            return $this->config->get('splash', null);
+        }
+
+        return $this->splash_default;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getShortcut()
+    {
+        return $this->shortcut ?: $this->getDefaultShortcut();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultShortcut()
+    {
+        if (empty($this->shortcut_default)) {
+            return $this->config->get('shortcut', null);
+        }
+
+        return $this->shortcut_default;
     }
 }
