@@ -27,15 +27,15 @@
     }
   ],
   "require": {
-    "php": ">=7.4|^8.0",
+    "php": "^8.0",
     "ext-json": "*",
-    "illuminate/database": "^7.0|^8.0|^9.0",
-    "illuminate/support": "^7.0|^8.0|^9.0"
+    "illuminate/database": "^8.0|^9.0",
+    "illuminate/support": "^8.0|^9.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.1",
-    "orchestra/testbench": "3.*| ^4.0| ^5.0 | ^6.0",
-    "phpspec/phpspec": "~5.1.1 || ^6.0 || ^7.0",
+    "orchestra/testbench": "^6.0",
+    "phpspec/phpspec": "^7.0",
     "ext-dom": "*"
   },
   "autoload": {
