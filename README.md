@@ -37,7 +37,7 @@ You need to update your application configuration in order to register the packa
 return [
     // ...
     'providers' => [
-        Turahe\Metatags\Providers\MetaTagsServiceProvider::class,
+        Turahe\SEOTools\Providers\SEOToolsServiceProvider::class,
         // ...
     ],
     // ...
@@ -58,7 +58,7 @@ $app = new Laravel\Lumen\Application(
 
 // ...
 
-$app->register(Turahe\Metatags\Providers\MetaTagsServiceProvider::class);
+$app->register(Turahe\SEOTools\Providers\SEOToolsServiceProvider::class);
 
 // ...
 
@@ -71,13 +71,12 @@ return $app;
 
 You may get access to the SEO tool services using following facades:
 
- - `Turahe\Metatags\Facades\SEOMeta`
- - `Turahe\Metatags\Facades\OpenGraph`
- - `Turahe\Metatags\Facades\TwitterCard`
- - `Turahe\Metatags\Facades\JsonLd`
- - `Turahe\Metatags\Facades\JsonLdMulti`
- - `Turahe\Metatags\Facades\SEOTools`
- - `Turahe\Metatags\Facades\Manifest`
+ - `Turahe\SEOTools\Facades\Tools`
+ - `Turahe\SEOTools\Facades\OpenGraph`
+ - `Turahe\SEOTools\Facades\TwitterCard`
+ - `Turahe\SEOTools\Facades\JsonLd`
+ - `Turahe\SEOTools\Facades\JsonLdMulti`
+ - `Turahe\SEOTools\Facades\SEOTools`
 
 You can setup a short-version aliases for these facades in your `config/app.php` file. For example:
 
@@ -87,14 +86,14 @@ You can setup a short-version aliases for these facades in your `config/app.php`
 return [
     // ...
     'aliases' => [
-        'Meta'       => Turahe\Metatags\Facades\SEOMeta::class,
-        'OpenGraph'     => Turahe\Metatags\Facades\OpenGraph::class,
-        'Twitter'       => Turahe\Metatags\Facades\TwitterCard::class,
-        'JsonLd'        => Turahe\Metatags\Facades\JsonLd::class,
-        'JsonLdMulti'   => Turahe\Metatags\Facades\JsonLdMulti::class,
-        'Manifest'   => Turahe\Metatags\Facades\Manifest::class,
+        'Meta'       => Turahe\SEOTools\Facades\Tools::class,
+        'OpenGraph'     => Turahe\SEOTools\Facades\OpenGraph::class,
+        'Twitter'       => Turahe\SEOTools\Facades\TwitterCard::class,
+        'JsonLd'        => Turahe\SEOTools\Facades\JsonLd::class,
+        'JsonLdMulti'   => Turahe\SEOTools\Facades\JsonLdMulti::class,
+        'Manifest'   => Turahe\SEOTools\Facades\PWA::class,
         // or
-        'SEO' => Turahe\Metatags\Facades\SEOTools::class,
+        'SEO' => Turahe\SEOTools\Facades\SEOTools::class,
         // ...
     ],
     // ...
@@ -114,7 +113,8 @@ php artisan vendor:publish
 or
 
 ```shell
-php artisan vendor:publish --provider="Turahe\Metatags\Providers\MetaTagsServiceProvider"
+php artisan vendor:publish --provider="Turahe\SEOTools\Providers\SEOToolsServiceProvider"
+```
 ```
 
 > Lumen does not support this command, for it you should copy the file `config/seotools.php` to `config/seotools.php` of your project
@@ -151,7 +151,7 @@ $twitter = app('seotools.twitter');
 $opengraph = app('seotools.opengraph');
 $jsonld = app('seotools.json-ld');
 $jsonldMulti = app('seotools.json-ld-multi');
-$jsonldMulti = app('seotools.manifest');
+$jsonldMulti = app('seotools.pwa');
 // The behavior is the same as the facade
 
 echo app('seotools')->generate();
@@ -176,15 +176,15 @@ With **Twitter** you can create OpenGraph tags to the `head`
 
 namespace App\Http\Controllers;
 
-use Turahe\Metatags\Facades\SEOMeta;
-use Turahe\Metatags\Facades\OpenGraph;
-use Turahe\Metatags\Facades\TwitterCard;
-use Turahe\Metatags\Facades\JsonLd;
+use Turahe\SEOTools\Facades\Tools;
+use Turahe\SEOTools\Facades\OpenGraph;
+use Turahe\SEOTools\Facades\TwitterCard;
+use Turahe\SEOTools\Facades\JsonLd;
 // OR with multi
-use Turahe\Metatags\Facades\JsonLdMulti;
+use Turahe\SEOTools\Facades\JsonLdMulti;
 
 // OR
-use Turahe\Metatags\Facades\SEOTools;
+use Turahe\SEOTools\Facades\SEOFriendly;
 
 class CommomController extends Controller
 {
@@ -419,7 +419,7 @@ class CommomController extends Controller
 
 namespace App\Http\Controllers;
 
-use Turahe\Metatags\Traits\SEOTools as SEOToolsTrait;
+use Turahe\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class CommomController extends Controller
 {
@@ -514,7 +514,7 @@ class CommomController extends Controller
 ```php
 <?php
 
-use Turahe\Metatags\Facades\SEOMeta;
+use Turahe\SEOTools\Facades\SEOMeta;
 
 SEOMeta::addKeyword($keyword);
 SEOMeta::addMeta($meta, $value = null, $name = 'name');
@@ -558,7 +558,7 @@ SEOMeta::generate();
 ```php
 <?php
 
-use Turahe\Metatags\Facades\OpenGraph;
+use Turahe\SEOTools\Facades\OpenGraph;
 
 OpenGraph::addProperty($key, $value); // value can be string or array
 OpenGraph::addImage($url); // add image url
@@ -586,7 +586,7 @@ OpenGraph::generate();
 ```php
 <?php
 
-use Turahe\Metatags\Facades\TwitterCard;
+use Turahe\SEOTools\Facades\TwitterCard;
 
 TwitterCard::addValue($key, $value); // value can be string or array
 TwitterCard::setType($type); // type of twitter card tag
@@ -614,7 +614,7 @@ TwitterCard::generate();
 ```php
 <?php
 
-use Turahe\Metatags\Facades\JsonLd;
+use Turahe\SEOTools\Facades\JsonLd;
 
 JsonLd::addValue($key, $value); // value can be string or array
 JsonLd::setType($type); // type of twitter card tag
@@ -642,7 +642,7 @@ JsonLd::generate();
 ```php
 <?php
 
-use Turahe\Metatags\Facades\JsonLdMulti;
+use Turahe\SEOTools\Facades\JsonLdMulti;
 
 JsonLdMulti::newJsonLd(); // create a new JsonLd group
 JsonLdMulti::isEmpty(); // check if the current JsonLd group is empty
@@ -685,7 +685,7 @@ JsonLdMulti::generate();
 ```php
 <?php
 
-use Turahe\Metatags\Facades\SEOTools;
+use Turahe\SEOTools\Facades\SEOTools;
 
 SEOTools::seotools();
 SEOTools::twitter();

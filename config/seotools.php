@@ -67,6 +67,7 @@ return [
     ],
 
     'manifest' => [
+        'manifest_url' => '/manifest.json',
         'name' => env('APP_NAME', 'My PWA App'),
         'short_name' => 'PWA',
         'start_url' => '/',

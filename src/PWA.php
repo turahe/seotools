@@ -108,7 +108,7 @@ class PWA implements PWAContract
         $html = [];
 
         if ($this->config) {
-            $html[] = '<link rel="manifest" href="' . url('manifest.json') . '"/>';
+            $html[] = '<link rel="manifest" href="' . $this->config->get('manifest_url', url('manifest.json')) . '"/>';
         }
 
 
