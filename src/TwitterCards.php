@@ -41,7 +41,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function generate(bool $minify = false)
+    public function generate(bool $minify = false): string
     {
         $this->eachValue($this->values);
         $this->eachValue($this->images, 'images');
@@ -53,11 +53,11 @@ class TwitterCards implements TwitterCardsContract
      * Make tags.
      *
      * @param array       $values
-     * @param null|string $prefix
+     * @param string|null $prefix
      *
      * @internal param array $properties
      */
-    protected function eachValue(array $values, $prefix = null)
+    protected function eachValue(array $values, string $prefix = null)
     {
         foreach ($values as $key => $value):
             if (is_array($value)):
@@ -80,7 +80,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @internal param string $values
      */
-    private function makeTag($key, $value)
+    private function makeTag(string $key, $value): string
     {
         $value = str_replace(['http-equiv=', 'url='], '', $value);
 
