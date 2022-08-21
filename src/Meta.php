@@ -456,10 +456,6 @@ class Meta implements MetaTagsContract
      */
     public function getDescription()
     {
-        if (false === $this->description) {
-            return;
-        }
-
         return $this->description ?: $this->config->get('defaults.description', null);
     }
 

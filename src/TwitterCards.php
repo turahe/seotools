@@ -57,7 +57,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @internal param array $properties
      */
-    protected function eachValue(array $values, string $prefix = null)
+    protected function eachValue(array $values, ?string $prefix = null)
     {
         foreach ($values as $key => $value):
             if (is_array($value)):
