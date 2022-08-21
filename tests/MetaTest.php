@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\Meta;
@@ -27,7 +26,7 @@ class MetaTest extends BaseTest
     public function test_generate()
     {
         $expected = "<title>It's Over 9000!</title>";
-        $expected .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->setRightAssertion($expected);
     }
@@ -36,7 +35,7 @@ class MetaTest extends BaseTest
     {
         $fullTitle = "Turahe - It's Over 9000!";
         $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->seoMeta->setTitle('Turahe');
 
@@ -48,7 +47,7 @@ class MetaTest extends BaseTest
     {
         $fullTitle = 'Turahe';
         $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->seoMeta->setTitle($fullTitle, false);
 
@@ -60,7 +59,7 @@ class MetaTest extends BaseTest
     {
         $fullTitle = 'Turahe';
         $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->seoMeta->setTitleDefault($fullTitle);
 
@@ -71,7 +70,7 @@ class MetaTest extends BaseTest
     public function test_set_title_sepatator()
     {
         $fullHeader = "<title>Turahe | It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
         $separator = ' | ';
         $fullTitle = 'Turahe';
 
@@ -86,7 +85,7 @@ class MetaTest extends BaseTest
     {
         $description = 'Turahe';
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"" . $description . '">';
+        $fullHeader .= '<meta name="description" content="' . $description . '">';
 
         $this->seoMeta->setDescription($description);
 
@@ -103,14 +102,14 @@ class MetaTest extends BaseTest
 
         $this->seoMeta->setDescription($description);
 
-        $this->assertEquals("&quot;Foo bar&quot; -&gt; abc", $this->seoMeta->getDescription());
+        $this->assertEquals('&quot;Foo bar&quot; -&gt; abc', $this->seoMeta->getDescription());
     }
 
     public function test_set_keywords()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<meta name=\"keywords\" content=\"masenko,makankosappo\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<meta name="keywords" content="masenko,makankosappo">';
         $keywords = 'masenko,makankosappo';
 
         $this->seoMeta->setKeywords($keywords);
@@ -122,8 +121,8 @@ class MetaTest extends BaseTest
     public function test_add_keywords()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<meta name=\"keywords\" content=\"masenko, makankosappo\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<meta name="keywords" content="masenko, makankosappo">';
 
         $this->seoMeta->addKeyword('masenko');
         $this->seoMeta->addKeyword('makankosappo');
@@ -139,13 +138,13 @@ class MetaTest extends BaseTest
     public function test_remove_metatag()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->seoMeta->addMeta('no-content');
         $this->seoMeta->addMeta(['custom-meta' => 'value']);
         $this->seoMeta->addMeta('custom-meta', 'value', 'test');
 
-        $fullHeaderWithTags = $fullHeader . "<meta test=\"custom-meta\" content=\"value\">";
+        $fullHeaderWithTags = $fullHeader . '<meta test="custom-meta" content="value">';
         $this->setRightAssertion($fullHeaderWithTags);
 
         $this->seoMeta->removeMeta('custom-meta');
@@ -158,8 +157,8 @@ class MetaTest extends BaseTest
     public function test_set_canonical()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<link rel=\"canonical\" href=\"http://domain.com\"/>";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<link rel="canonical" href="http://domain.com"/>';
         $canonical = 'http://domain.com';
 
         $this->seoMeta->setCanonical($canonical);
@@ -215,8 +214,8 @@ class MetaTest extends BaseTest
     public function test_set_amp()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<link rel=\"amphtml\" href=\"http://domain.com/amp\"/>";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<link rel="amphtml" href="http://domain.com/amp"/>';
         $amphtml = 'http://domain.com/amp';
 
         $this->seoMeta->setAmpHtml($amphtml);
@@ -228,8 +227,8 @@ class MetaTest extends BaseTest
     public function test_set_next()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<link rel=\"next\" href=\"http://domain.com\"/>";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<link rel="next" href="http://domain.com"/>';
         $next = 'http://domain.com';
 
         $this->seoMeta->setNext($next);
@@ -241,8 +240,8 @@ class MetaTest extends BaseTest
     public function test_set_prev()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<link rel=\"prev\" href=\"http://domain.com\"/>";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<link rel="prev" href="http://domain.com"/>';
         $prev = 'http://domain.com';
 
         $this->seoMeta->setPrev($prev);
@@ -254,8 +253,8 @@ class MetaTest extends BaseTest
     public function test_set_alternate_languages()
     {
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $fullHeader .= "<link rel=\"alternate\" hreflang=\"en\" href=\"http://domain.com\"/>";
+        $fullHeader .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $fullHeader .= '<link rel="alternate" hreflang="en" href="http://domain.com"/>';
         $lang = 'en';
         $langUrl = 'http://domain.com';
 
@@ -273,7 +272,7 @@ class MetaTest extends BaseTest
     public function test_set_reset()
     {
         $expected = "<title>It's Over 9000!</title>";
-        $expected .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->seoMeta->setDescription('test');
         $this->seoMeta->addKeyword('test');
@@ -310,8 +309,8 @@ class MetaTest extends BaseTest
         $this->assertEquals('all', $this->seoMeta->getRobots());
 
         $expected = "<title>It's Over 9000!</title>";
-        $expected .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
-        $expected .= "<meta name=\"robots\" content=\"all\">";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
+        $expected .= '<meta name="robots" content="all">';
 
         $this->setRightAssertion($expected);
     }
@@ -324,7 +323,7 @@ class MetaTest extends BaseTest
     {
         $description = 'de fidélisation des salariés';
         $fullHeader = "<title>It's Over 9000!</title>";
-        $fullHeader .= "<meta name=\"description\" content=\"" . $description . '">';
+        $fullHeader .= '<meta name="description" content="' . $description . '">';
 
         $this->seoMeta->setDescription($description);
 
@@ -343,7 +342,7 @@ class MetaTest extends BaseTest
         ]));
 
         $expected = "<title class=\"notranslate\">It's Over 9000!</title>";
-        $expected .= "<meta name=\"description\" content=\"For those who helped create the Genki Dama\">";
+        $expected .= '<meta name="description" content="For those who helped create the Genki Dama">';
 
         $this->setRightAssertion($expected);
     }

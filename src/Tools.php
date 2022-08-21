@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\Tools as SEOContract;

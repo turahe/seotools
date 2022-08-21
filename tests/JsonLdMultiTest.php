@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\JsonLdMulti;
@@ -179,7 +178,7 @@ class JsonLdMultiTest extends BaseTest
     public function test_is_empty()
     {
         // make default json-ld data as empty on create
-        config()->set('seotools.json-ld.defaults',[]);
+        config()->set('seotools.json-ld.defaults', []);
         $this->jsonLdMulti = new JsonLdMulti();
         $this->jsonLdMulti->newJsonLd();
 

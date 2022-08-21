@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Mockery;

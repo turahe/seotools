@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Traits;
 
 use Turahe\SEOTools\Contracts\SEOFriendly;

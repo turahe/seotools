@@ -1,9 +1,8 @@
 <?php
-
 namespace Turahe\SEOTools;
 
-use Illuminate\Config\Repository;
 use Illuminate\Support\Arr;
+use Illuminate\Config\Repository;
 use Turahe\SEOTools\Contracts\Meta as MetaTagsContract;
 
 /**
@@ -18,94 +17,94 @@ class Meta implements MetaTagsContract
      *
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected $title_session;
+    protected string $title_session;
 
     /**
      * The meta title session.
      *
      * @var string
      */
-    protected $title_default;
+    protected string $title_default;
 
     /**
      * The title tag separator.
      *
      * @var array
      */
-    protected $title_separator;
+    protected array $title_separator;
 
     /**
      * The meta description.
      *
      * @var string
      */
-    protected $description;
+    protected string $description;
 
     /**
      * The meta keywords.
      *
      * @var array
      */
-    protected $keywords = [];
+    protected array $keywords = [];
 
     /**
      * extra metatags.
      *
      * @var array
      */
-    protected $metatags = [];
+    protected array $metatags = [];
 
     /**
      * The canonical URL.
      *
      * @var string
      */
-    protected $canonical;
+    protected string $canonical;
 
     /**
      * The AMP URL.
      *
      * @var string
      */
-    protected $amphtml;
+    protected string $amphtml;
 
     /**
      * The prev URL in pagination.
      *
      * @var string
      */
-    protected $prev;
+    protected string $prev;
 
     /**
      * The next URL in pagination.
      *
      * @var string
      */
-    protected $next;
+    protected string $next;
 
     /**
      * The alternate languages.
      *
      * @var array
      */
-    protected $alternateLanguages = [];
+    protected array $alternateLanguages = [];
 
     /**
      * The meta robots.
      *
      * @var string
      */
-    protected $robots;
+    protected string $robots;
 
     /**
-     * @var array
+     * @var \Illuminate\Config\Repository
      */
     protected $config;
 
@@ -114,13 +113,13 @@ class Meta implements MetaTagsContract
      *
      * @var array
      */
-    protected $webmasterTags = [
-        'google'   => 'google-site-verification',
-        'bing'     => 'msvalidate.01',
-        'alexa'    => 'alexaVerifyID',
+    protected array $webmasterTags = [
+        'google'    => 'google-site-verification',
+        'bing'      => 'msvalidate.01',
+        'alexa'     => 'alexaVerifyID',
         'pinterest' => 'p:domain_verify',
-        'yandex'   => 'yandex-verification',
-        'norton'   => 'norton-safeweb-site-verification',
+        'yandex'    => 'yandex-verification',
+        'norton'    => 'norton-safeweb-site-verification',
     ];
 
     /**
@@ -159,7 +158,7 @@ class Meta implements MetaTagsContract
             $html[] = "<meta name=\"description\" content=\"{$description}\">";
         }
 
-        if (!empty($keywords)) {
+        if (! empty($keywords)) {
             if ($keywords instanceof \Illuminate\Support\Collection) {
                 $keywords = $keywords->toArray();
             }
@@ -268,7 +267,7 @@ class Meta implements MetaTagsContract
      */
     public function setKeywords($keywords)
     {
-        if (!is_array($keywords)) {
+        if (! is_array($keywords)) {
             $keywords = explode(', ', $keywords);
         }
 
@@ -570,7 +569,7 @@ class Meta implements MetaTagsContract
     protected function loadWebMasterTags()
     {
         foreach ($this->config->get('webmaster_tags', []) as $name => $value) {
-            if (!empty($value)) {
+            if (! empty($value)) {
                 $meta = Arr::get($this->webmasterTags, $name, $name);
                 $this->addMeta($meta, $value);
             }

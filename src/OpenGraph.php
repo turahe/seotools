@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools;
 
 use Illuminate\Support\Arr;
@@ -213,7 +212,7 @@ class OpenGraph implements OpenGraphContract
      *
      * @return string
      */
-    protected function eachProperties(array $properties, string $prefix = null, bool $ogPrefix = true) : string
+    protected function eachProperties(array $properties, ?string $prefix = null, bool $ogPrefix = true) : string
     {
         $html = [];
 
@@ -221,7 +220,7 @@ class OpenGraph implements OpenGraphContract
             // multiple properties
             if (is_array($value)) {
                 if (is_string($property)) {
-                    $subListPrefix = $prefix.":".$property;
+                    $subListPrefix = $prefix.':'.$property;
                     $subList = $this->eachProperties($value, $subListPrefix, false);
                 } else {
                     $subListPrefix = (is_string($property)) ? $property : $prefix;
@@ -259,9 +258,10 @@ class OpenGraph implements OpenGraphContract
      *
      * @return string
      */
-    protected function makeTag(string $key = null, string $value = null, bool $ogPrefix = false): string
+    protected function makeTag(?string $key = null, ?string $value = null, bool $ogPrefix = false): string
     {
         $value = str_replace(['http-equiv=', 'url='], '', $value);
+
         return sprintf(
             '<meta property="%s%s" content="%s" />%s',
             $ogPrefix ? $this->og_prefix : '',
@@ -612,7 +612,6 @@ class OpenGraph implements OpenGraphContract
         $validkeys = [
             'location:latitude',
             'location:longitude',
-
         ];
 
         $this->setProperties('place', 'placeProperties', $attributes, $validkeys);
@@ -645,10 +644,11 @@ class OpenGraph implements OpenGraphContract
             'sale_price:amount',
             'sale_price:currency',
             'sale_price_dates:start',
-            'sale_price_dates:end'
+            'sale_price_dates:end',
         ];
 
         $this->setProperties('product', 'productProperties', $attributes, $validkeys);
+
         return $this;
     }
 
@@ -684,8 +684,8 @@ class OpenGraph implements OpenGraphContract
      * @return void
      */
     protected function setProperties(
-        string $type = null,
-        string $key = null,
+        ?string $type = null,
+        ?string $key = null,
         array $attributes = [],
         array $validKeys = []
     ) {
@@ -766,6 +766,7 @@ class OpenGraph implements OpenGraphContract
     public function setDescription($description = null): self
     {
         $data = htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false);
+
         return $this->addProperty('description', Str::limit(strip_tags($data), 200), '.');
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Facades;
 
 use Illuminate\Support\Facades\Facade;

@@ -1,11 +1,10 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
+use Turahe\SEOTools\Tools;
 use Turahe\SEOTools\Contracts\Meta;
 use Turahe\SEOTools\Contracts\OpenGraph;
 use Turahe\SEOTools\Contracts\TwitterCards;
-use Turahe\SEOTools\Tools;
 
 /**
  * Class ToolsTest.
@@ -67,7 +66,6 @@ class ToolsTest extends BaseTest
         $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
         $expected .= '<meta name="twitter:description" content="Kamehamehaaaaaaa" />';
         $expected .= '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"Kamehamehaaaaaaa"}</script>';
-
 
         $this->setRightAssertion($expected);
     }

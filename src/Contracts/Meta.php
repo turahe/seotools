@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -49,8 +48,7 @@ interface Meta
     /**
      * Configuration.
      *
-     * @param \Illuminate\Config\Repository $config
-     * @return void
+     * @param array $config
      */
     public function __construct(array $config);
 
@@ -61,7 +59,7 @@ interface Meta
      *
      * @return string
      */
-    public function generate($minify = false);
+    public function generate(bool $minify = false);
 
     /**
      * Set the title.

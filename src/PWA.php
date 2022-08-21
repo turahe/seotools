@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools;
 
 use Illuminate\Config\Repository;
@@ -33,7 +32,7 @@ class PWA implements PWAContract
      */
     protected $config;
 
-    public function __construct(array $defaults  = [])
+    public function __construct(array $defaults = [])
     {
         $this->config = new Repository($defaults);
     }
@@ -43,23 +42,23 @@ class PWA implements PWAContract
     public function manifestJson(): array
     {
         $basicManifest = [
-            'name' => $this->config->get('site_name'),
-            'short_name' => $this->config->get('site_title'),
-            'start_url' => url('/'),
-            'display' => $this->config->get('display'),
-            'theme_color' => $this->config->get('theme_color'),
-            'background_color' => $this->config->get('background_color'),
-            'orientation' => $this->config->get('orientation'),
-            'status_bar' => $this->config->get('status_bar'),
+            'name'                        => $this->config->get('site_name'),
+            'short_name'                  => $this->config->get('site_title'),
+            'start_url'                   => url('/'),
+            'display'                     => $this->config->get('display'),
+            'theme_color'                 => $this->config->get('theme_color'),
+            'background_color'            => $this->config->get('background_color'),
+            'orientation'                 => $this->config->get('orientation'),
+            'status_bar'                  => $this->config->get('status_bar'),
             'prefer_related_applications' => true,
         ];
 
         foreach ($icons as $size => $file) {
             $fileInfo = pathinfo($file['path']);
             $basicManifest['icons'][] = [
-                'src' => Storage::url($file['path']),
-                'type' => 'image/' . $fileInfo['extension'],
-                'sizes' => $size,
+                'src'     => Storage::url($file['path']),
+                'type'    => 'image/' . $fileInfo['extension'],
+                'sizes'   => $size,
                 'purpose' => $file['purpose'],
             ];
         }
@@ -69,10 +68,11 @@ class PWA implements PWAContract
                 if (array_key_exists('icons', $shortcut)) {
                     $fileInfo = pathinfo($shortcut['icons']['src']);
                     $icon = [
-                        'src' => $shortcut['icons']['src'],
-                        'type' => 'image/' . $fileInfo['extension'],
+                        'src'     => $shortcut['icons']['src'],
+                        'type'    => 'image/' . $fileInfo['extension'],
                         'purpose' => $shortcut['icons']['purpose'],
                     ];
+
                     if (isset($shortcut['icons']['sizes'])) {
                         $icon['sizes'] = $shortcut['icons']['sizes'];
                     }
@@ -98,7 +98,6 @@ class PWA implements PWAContract
         return $basicManifest;
     }
 
-
     public function generate($minify = false): string
     {
         $icons = $this->getIcons();
@@ -111,9 +110,6 @@ class PWA implements PWAContract
             $html[] = '<link rel="manifest" href="' . url($this->config->get('manifest_url', 'manifest.json')) . '"/>';
         }
 
-
-
-
         if ($this->config->get('theme_color', false)) {
             $html[] = '<meta name="theme-color" content=" '. $this->config->get('theme_color', 'ffffff') . '" />';
             $html[] = '<meta name="apple-mobile-web-app-status-bar-style" content="'. $this->config->get('theme_color', 'ffffff') . '" />';
@@ -124,19 +120,14 @@ class PWA implements PWAContract
             $html[] = "<meta name=\"application-name\" content=\"{$this->config->get('name', 'Turahe')}\">";
         }
 
-        $html[] = "<meta name=\"mobile-web-app-capable\" content=\"yes\">";
-        $html[] = "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">";
-
-
+        $html[] = '<meta name="mobile-web-app-capable" content="yes">';
+        $html[] = '<meta name="apple-mobile-web-app-capable" content="yes">';
 
         if ($icons) {
-
-
             foreach ($icons as $index => $icon) {
                 $path = url($icon['path']);
                 $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
-
 
             foreach ($icons as $index => $icon) {
                 $path = url($icon['path']);
@@ -155,8 +146,6 @@ class PWA implements PWAContract
                 $html[] = "<link href=\"{$path}\" media=\"(device-width: {$image['width']}px) and (device-height: {$image['height']}px) and (-webkit-device-pixel-ratio: 2)\" rel=\"apple-touch-startup-image\" />";
             }
         }
-
-
 
         return ($minify) ? implode('', $html) : implode(PHP_EOL, $html);
     }

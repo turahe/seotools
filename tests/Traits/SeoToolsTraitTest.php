@@ -1,11 +1,11 @@
 <?php
-
 namespace Turahe\SEOTools\Tests\Traits;
 
-use Turahe\SEOTools\Contracts\Tools;
-use Turahe\SEOTools\Tests\BaseTest;
-use Turahe\SEOTools\Tests\stubs\SeoToolsTraitStub;
 use Mockery as m;
+use Turahe\SEOTools\Tests\BaseTest;
+use Turahe\SEOTools\Contracts\Tools;
+use Turahe\SEOTools\Tests\stubs\SeoToolsTraitStub;
+
 /**
  * Class SeoToolsTraitTest.
  */

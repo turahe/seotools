@@ -1,10 +1,9 @@
 <?php
-
 namespace Turahe\SEOTools\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
 
 /**
  * SEOToolsServiceProvider bootstraps SEO tools services to the application.
@@ -127,6 +126,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     protected function registerRoutes()
     {
         $router = $this->app['router'];
+
         require __DIR__.'./../../routers/web.php';
     }
 
@@ -152,7 +152,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         $sourcePath = __DIR__ . '/resources/views';
 
         $this->publishes([
-            $sourcePath => $viewPath
+            $sourcePath => $viewPath,
         ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
@@ -172,7 +172,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         $sourcePath = __DIR__.'/resources/assets/images/icons';
 
         $this->publishes([
-            $sourcePath => $iconsPath
+            $sourcePath => $iconsPath,
         ], 'icons');
     }
 
@@ -188,7 +188,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         $sourcePath = __DIR__.'./resources/assets/js';
 
         $this->publishes([
-            $sourcePath => $publicPath
+            $sourcePath => $publicPath,
         ], 'serviceworker');
     }
 
@@ -199,6 +199,6 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
      */
     protected function isLumen()
     {
-        return !$this->isLaravel();
+        return ! $this->isLaravel();
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -54,69 +53,69 @@ interface TwitterCards
      *
      * @return string
      */
-    public function generate($minify = false);
+    public function generate(bool $minify = false): string;
 
     /**
-     * @param string       $key
-     * @param string|array $value
+     * @param string $key
+     * @param array|string $value
      *
      * @return static
      */
-    public function addValue($key, $value);
+    public function addValue(string $key, array|string $value);
 
     /**
      * @param string $type
      *
      * @return static
      */
-    public function setType($type);
+    public function setType(string $type);
 
     /**
      * @param string $title
      *
      * @return static
      */
-    public function setTitle($title);
+    public function setTitle(string $title);
 
     /**
      * @param string $site
      *
      * @return static
      */
-    public function setSite($site);
+    public function setSite(string $site);
 
     /**
      * @param string $description
      *
      * @return static
      */
-    public function setDescription($description);
+    public function setDescription(string $description);
 
     /**
      * @param string $url
      *
      * @return static
      */
-    public function setUrl($url);
+    public function setUrl(string $url);
 
     /**
-     * @param string|array $image
+     * @param array|string $image
      *
      * @return static
      */
-    public function addImage($image);
+    public function addImage(array|string $image);
 
     /**
-     * @param string|array $images
+     * @param array|string $images
      *
      * @return static
      */
-    public function setImages($images);
+    public function setImages(array|string $images);
 
     /**
-     * @param string|array $image
+     * @param array|string $image
      *
      * @return static
      */
-    public function setImage($image);
+    public function setImage(array|string $image);
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -11,16 +10,10 @@ use Turahe\SEOTools\Contracts\Pwa as ManifestServices;
 class PwaController
 {
     /**
-     * @var ManifestServices
-     */
-    private $manifest;
-
-    /**
      * @param ManifestServices $manifest
      */
-    public function __construct(ManifestServices $manifest)
+    public function __construct(private ManifestServices $manifest)
     {
-        $this->manifest = $manifest;
     }
 
     /**
@@ -29,6 +22,7 @@ class PwaController
     public function manifestJson(): JsonResponse
     {
         $output = $this->manifest->generate();
+
         return response()->json($output);
     }
 

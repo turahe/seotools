@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\TwitterCards;
@@ -84,8 +83,8 @@ class TwitterCardsTest extends BaseTest
     {
         $this->twitterCards->setImages(['sayajin.png', 'namekusei.png']);
 
-        $expected = "<meta name=\"twitter:images0\" content=\"sayajin.png\" />";
-        $expected .= "<meta name=\"twitter:images1\" content=\"namekusei.png\" />";
+        $expected = '<meta name="twitter:images0" content="sayajin.png" />';
+        $expected .= '<meta name="twitter:images1" content="namekusei.png" />';
 
         $this->setRightAssertion($expected);
     }
@@ -94,7 +93,7 @@ class TwitterCardsTest extends BaseTest
     {
         $this->twitterCards->setImage('sayajin.png');
 
-        $expected = "<meta name=\"twitter:image\" content=\"sayajin.png\" />";
+        $expected = '<meta name="twitter:image" content="sayajin.png" />';
 
         $this->setRightAssertion($expected);
     }

@@ -1,9 +1,7 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\JsonLd;
-use Turahe\SEOTools\JsonLdMulti;
 
 /**
  * Class TwitterCardsTest.
@@ -125,8 +123,8 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->addValue('author', [
             '@type' => 'Organization',
-            'name' => 'SeoTools',
-            'url' => 'https://github.com/Turahe/seotools',
+            'name'  => 'SeoTools',
+            'url'   => 'https://github.com/Turahe/seotools',
         ]);
 
         $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
@@ -139,7 +137,7 @@ class JsonLdTest extends BaseTest
         $this->jsonLd->addValue('author', new JsonLd([
             'type' => 'Organization',
             'name' => 'SeoTools',
-            'url' => 'https://github.com/Turahe/seotools',
+            'url'  => 'https://github.com/Turahe/seotools',
         ]));
 
         $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}}</script></head></html>';
@@ -152,7 +150,7 @@ class JsonLdTest extends BaseTest
         $this->jsonLd->addValue('author', [new JsonLd([
             'type' => 'Organization',
             'name' => 'SeoTools',
-            'url' => 'https://github.com/Turahe/seotools',
+            'url'  => 'https://github.com/Turahe/seotools',
         ])]);
 
         $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":[{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}]}</script></head></html>';
@@ -163,10 +161,10 @@ class JsonLdTest extends BaseTest
     public function test_add_values()
     {
         $this->jsonLd->addValues([
-            'test' => '1-2-3',
+            'test'   => '1-2-3',
             'author' => [
                 '@type' => 'Organization',
-                'name' => 'SeoTools',
+                'name'  => 'SeoTools',
             ],
         ]);
 
@@ -178,7 +176,7 @@ class JsonLdTest extends BaseTest
     public function test_is_empty()
     {
         // make default json-ld data as empty on create
-        config()->set('seotools.json-ld.defaults',[]);
+        config()->set('seotools.json-ld.defaults', []);
         $this->jsonLd = new JsonLd();
 
         $this->assertTrue($this->jsonLd->isEmpty());

@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\TwitterCards as TwitterCardsContract;
@@ -42,7 +41,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function generate($minify = false)
+    public function generate(bool $minify = false)
     {
         $this->eachValue($this->values);
         $this->eachValue($this->images, 'images');
@@ -63,13 +62,13 @@ class TwitterCards implements TwitterCardsContract
         foreach ($values as $key => $value):
             if (is_array($value)):
                 $this->eachValue($value, $key); else:
-                if (is_numeric($key)):
-                    $key = $prefix.$key; elseif (is_string($prefix)):
-                    $key = $prefix.':'.$key;
-        endif;
+                    if (is_numeric($key)):
+                        $key = $prefix.$key; elseif (is_string($prefix)):
+                            $key = $prefix.':'.$key;
+                        endif;
 
-        $this->html[] = $this->makeTag($key, $value);
-        endif;
+            $this->html[] = $this->makeTag($key, $value);
+            endif;
         endforeach;
     }
 
@@ -84,13 +83,14 @@ class TwitterCards implements TwitterCardsContract
     private function makeTag($key, $value)
     {
         $value = str_replace(['http-equiv=', 'url='], '', $value);
+
         return '<meta name="'.$this->prefix.strip_tags($key).'" content="'.strip_tags($value).'" />';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addValue($key, $value)
+    public function addValue(string $key, array|string $value)
     {
         $this->values[$key] = $value;
 
@@ -100,7 +100,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         return $this->addValue('title', $title);
     }
@@ -108,7 +108,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         return $this->addValue('card', $type);
     }
@@ -116,7 +116,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setSite($site)
+    public function setSite(string $site)
     {
         return $this->addValue('site', $site);
     }
@@ -124,7 +124,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         return $this->addValue('description', htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false));
     }
@@ -132,7 +132,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setUrl($url)
+    public function setUrl(string $url)
     {
         return $this->addValue('url', $url);
     }
@@ -142,7 +142,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @deprecated use setImage($image) instead
      */
-    public function addImage($image)
+    public function addImage(array|string $image)
     {
         foreach ((array) $image as $url) {
             $this->images[] = $url;
@@ -156,7 +156,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @deprecated use setImage($image) instead
      */
-    public function setImages($images)
+    public function setImages(array|string $images)
     {
         $this->images = [];
 
@@ -164,10 +164,10 @@ class TwitterCards implements TwitterCardsContract
     }
 
     /**
-     * @param $image
+     * @param array|string $image
      * @return TwitterCardsContract
      */
-    public function setImage($image)
+    public function setImage(array|string $image)
     {
         return $this->addValue('image', $image);
     }

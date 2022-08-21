@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\JsonLd as JsonLdContract;
@@ -14,27 +13,27 @@ class JsonLd implements JsonLdContract
     /**
      * @var array
      */
-    protected $values = [];
+    protected array $values = [];
     /**
      * @var string
      */
-    protected $type = '';
+    protected string $type = '';
     /**
      * @var string
      */
-    protected $title = '';
+    protected string $title = '';
     /**
      * @var string
      */
-    protected $description = '';
+    protected string $description = '';
     /**
      * @var string|null|bool
      */
-    protected $url = false;
+    protected bool $url = false;
     /**
      * @var array
      */
-    protected $images = [];
+    protected array $images = [];
 
     /**
      * @param array $defaults
@@ -104,15 +103,15 @@ class JsonLd implements JsonLdContract
     {
         $generated = [];
 
-        if (!empty($this->type)) {
+        if (! empty($this->type)) {
             $generated['@type'] = $this->type;
         }
 
-        if (!empty($this->title)) {
+        if (! empty($this->title)) {
             $generated['name'] = $this->title;
         }
 
-        if (!empty($this->description)) {
+        if (! empty($this->description)) {
             $generated['description'] = $this->description;
         }
 
@@ -120,7 +119,7 @@ class JsonLd implements JsonLdContract
             $generated['url'] = $this->url ?? app('url')->full();
         }
 
-        if (!empty($this->images)) {
+        if (! empty($this->images)) {
             $generated['image'] = count($this->images) === 1 ? reset($this->images) : $this->images;
         }
 
@@ -246,11 +245,11 @@ class JsonLd implements JsonLdContract
     }
 
     /**
-     * @param string|array $image
+     * @param array|string $image
      *
      * @return static
      */
-    public function setImage($image)
+    public function setImage(array|string $image)
     {
         $this->images = [$image];
 

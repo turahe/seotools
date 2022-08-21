@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\OpenGraph;
@@ -10,7 +9,7 @@ use Turahe\SEOTools\OpenGraph;
 class OpenGraphTest extends BaseTest
 {
     /**
-     * @var $openGraphs
+     * @var
      */
     protected $openGraphs;
 
@@ -32,7 +31,6 @@ class OpenGraphTest extends BaseTest
         $expected = '<meta property="og:title" content="Hello, Ali" /><meta property="og:description" content="This is a test by Ali." />';
 
         $this->setRightAssertion($expected);
-
     }
 
     public function test_set_url()
@@ -42,7 +40,6 @@ class OpenGraphTest extends BaseTest
         $expected = '<meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content="For those who helped create the Genki Dama" /><meta content="https://www.domain.com" property="og:url">';
 
         $this->setRightAssertion($expected);
-
     }
 
     public function test_can_generate_tags_from_array()
@@ -51,7 +48,7 @@ class OpenGraphTest extends BaseTest
 
         $this->openGraphs->setType('article');
         $this->openGraphs->setArticle([
-            "tag" => $tags,
+            'tag' => $tags,
         ]);
 
         $expected = '<meta content="article" property="og:type"><meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content="For those who helped create the Genki Dama" /><meta property="article:tag" content="Example" /><meta property="article:tag" content="tags" /><meta property="article:tag" content="test" />';
@@ -65,9 +62,8 @@ class OpenGraphTest extends BaseTest
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);
-        $actualDom   = $this->makeDomDocument($this->openGraphs->generate(true));
+        $actualDom = $this->makeDomDocument($this->openGraphs->generate(true));
 
         $this->assertEquals($expectedDom->C14N(), str_replace(["\n", "\r"], '', $actualDom->C14N()));
     }
-
 }

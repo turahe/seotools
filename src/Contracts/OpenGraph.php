@@ -1,5 +1,4 @@
 <?php
-
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -155,7 +154,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function setType(string $type = null): self;
+    public function setType(?string $type = null): self;
 
     /**
      * Set Article properties.
@@ -264,7 +263,7 @@ interface OpenGraph
      *
      * @return static
      */
-    public function addVideo(string $source = null, array $attributes = []): self;
+    public function addVideo(?string $source = null, array $attributes = []): self;
 
     /**
      * Add audio properties.
@@ -274,5 +273,5 @@ interface OpenGraph
      *
      * @return static
      */
-    public function addAudio(string $source = null, array $attributes = []): self;
+    public function addAudio(?string $source = null, array $attributes = []): self;
 }
