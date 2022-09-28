@@ -10,6 +10,6 @@ class PWA extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'pwa';
+        return 'seotools.pwa';
     }
 }

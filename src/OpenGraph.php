@@ -302,7 +302,7 @@ class OpenGraph implements OpenGraphContract
     /**
      * {@inheritdoc}
      */
-    public function addProperty($key, $value): self
+    public function addProperty($key, array|string $value): self
     {
         $this->properties[$key] = $value;
 

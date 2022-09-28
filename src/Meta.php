@@ -209,7 +209,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title, $appendDefault = true)
+    public function setTitle(string $title, bool $appendDefault = true)
     {
         // open redirect vulnerability fix
         $title = str_replace(['http-equiv=', 'url='], '', $title);
@@ -233,7 +233,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setTitleDefault($default)
+    public function setTitleDefault(string $default)
     {
         $this->title_default = $default;
 
@@ -243,7 +243,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setTitleSeparator($separator)
+    public function setTitleSeparator(string $separator)
     {
         $this->title_separator = $separator;
 
@@ -253,7 +253,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         // clean and store description
         // if is false, set false
@@ -265,7 +265,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setKeywords($keywords)
+    public function setKeywords(array|string $keywords)
     {
         if (! is_array($keywords)) {
             $keywords = explode(', ', $keywords);
@@ -283,7 +283,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function addKeyword($keyword)
+    public function addKeyword(array|string $keyword)
     {
         if (is_array($keyword)) {
             $this->keywords = array_merge($keyword, $this->keywords);
@@ -297,7 +297,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function removeMeta($key)
+    public function removeMeta(string $key)
     {
         Arr::forget($this->metatags, $key);
 
@@ -307,7 +307,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function addMeta($meta, $value = null, $name = 'name')
+    public function addMeta(array|string $meta, string $value = null, string $name = 'name')
     {
         // multiple metas
         if (is_array($meta)) {
@@ -324,7 +324,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setCanonical($url)
+    public function setCanonical(string $url)
     {
         $this->canonical = $url;
 
@@ -348,7 +348,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setPrev($url)
+    public function setPrev(string $url)
     {
         $this->prev = $url;
 
@@ -358,7 +358,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function setNext($url)
+    public function setNext(string $url)
     {
         $this->next = $url;
 
@@ -368,7 +368,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function addAlternateLanguage($lang, $url)
+    public function addAlternateLanguage(string $lang, string $url)
     {
         $this->alternateLanguages[] = ['lang' => $lang, 'url' => $url];
 

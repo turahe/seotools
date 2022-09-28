@@ -75,7 +75,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function select($index)
+    public function select(int $index)
     {
         // don't change the index if the new one doesn't exists
         if (key_exists($this->index, $this->list)) {
@@ -88,7 +88,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function addValue($key, $value)
+    public function addValue(string $key, array|string $value)
     {
         $this->list[$this->index]->addValue($key, $value);
 
@@ -108,7 +108,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->list[$this->index]->setType($type);
 
@@ -118,7 +118,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->list[$this->index]->setTitle($title);
 
@@ -128,7 +128,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function setSite($site)
+    public function setSite(string $site)
     {
         $this->list[$this->index]->setSite($site);
 
@@ -138,7 +138,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->list[$this->index]->setDescription($description);
 
@@ -148,7 +148,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      *{@inheritdoc}
      */
-    public function setUrl($url)
+    public function setUrl(bool|string|null $url)
     {
         $this->list[$this->index]->setUrl($url);
 
@@ -158,7 +158,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function setImages($images)
+    public function setImages(array|string $images)
     {
         $this->list[$this->index]->setImages($images);
 
@@ -168,7 +168,7 @@ class JsonLdMulti implements JsonLdMultiContract
     /**
      * {@inheritdoc}
      */
-    public function addImage($image)
+    public function addImage(array|string $image)
     {
         $this->list[$this->index]->addImage($image);
 

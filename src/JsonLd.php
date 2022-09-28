@@ -84,7 +84,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function generate($minify = false): string
+    public function generate(bool $minify = false): string
     {
         $generated = array_merge(
             [
@@ -151,7 +151,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function addValue($key, $value)
+    public function addValue(string $key, array|string $value)
     {
         $this->values[$key] = $value;
 
@@ -173,7 +173,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
 
@@ -183,7 +183,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -193,7 +193,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setSite($site)
+    public function setSite(string $site)
     {
         $this->url = $site;
 
@@ -203,7 +203,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
 
@@ -213,7 +213,7 @@ class JsonLd implements JsonLdContract
     /**
      *{@inheritdoc}
      */
-    public function setUrl($url)
+    public function setUrl(bool|string|null $url)
     {
         $this->url = $url;
 
@@ -223,7 +223,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setImages($images)
+    public function setImages(array|string $images)
     {
         $this->images = [];
 
@@ -233,7 +233,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function addImage($image)
+    public function addImage(array|string $image)
     {
         if (is_array($image)) {
             $this->images = array_merge($this->images, $image);

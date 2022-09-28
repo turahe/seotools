@@ -77,11 +77,11 @@ interface OpenGraph
      * Add or update property.
      *
      * @param string       $key
-     * @param string|array $value
+     * @param array|string $value
      *
      * @return static
      */
-    public function addProperty(string $key, $value) :self;
+    public function addProperty(string $key, array|string $value) :self;
 
     /**
      * Remove property.

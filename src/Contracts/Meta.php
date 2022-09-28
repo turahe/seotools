@@ -65,11 +65,11 @@ interface Meta
      * Set the title.
      *
      * @param string $title
-     * @param bool   $appendDefault
+     * @param bool $appendDefault
      *
      * @return static
      */
-    public function setTitle($title, $appendDefault = true);
+    public function setTitle(string $title, bool $appendDefault = true);
 
     /**
      * Sets the default title tag.
@@ -78,7 +78,7 @@ interface Meta
      *
      * @return static
      */
-    public function setTitleDefault($default);
+    public function setTitleDefault(string $default);
 
     /**
      * Set the title separator.
@@ -87,7 +87,7 @@ interface Meta
      *
      * @return static
      */
-    public function setTitleSeparator($separator);
+    public function setTitleSeparator(string $separator);
 
     /**
      * Set the description.
@@ -96,26 +96,26 @@ interface Meta
      *
      * @return static
      */
-    public function setDescription($description);
+    public function setDescription(string $description);
 
     /**
      * Sets the list of keywords, you can send an array or string separated with commas
      * also clears the previously set keywords.
      *
-     * @param string|array $keywords
+     * @param array|string $keywords
      *
      * @return static
      */
-    public function setKeywords($keywords);
+    public function setKeywords(array|string $keywords);
 
     /**
      * Add a keyword.
      *
-     * @param string|array $keyword
+     * @param array|string $keyword
      *
      * @return static
      */
-    public function addKeyword($keyword);
+    public function addKeyword(array|string $keyword);
 
     /**
      * Remove a metatag.
@@ -124,18 +124,18 @@ interface Meta
      *
      * @return static
      */
-    public function removeMeta($key);
+    public function removeMeta(string $key);
 
     /**
      * Add a custom meta tag.
      *
-     * @param string|array $meta
-     * @param string       $value
-     * @param string       $name
+     * @param array|string $meta
+     * @param string|null $value
+     * @param string $name
      *
      * @return static
      */
-    public function addMeta($meta, $value = null, $name = 'name');
+    public function addMeta(array|string $meta, string $value = null, string $name = 'name');
 
     /**
      * Sets the canonical URL.
@@ -144,7 +144,7 @@ interface Meta
      *
      * @return static
      */
-    public function setCanonical($url);
+    public function setCanonical(string $url);
 
     /**
      * Sets the prev URL.
@@ -153,7 +153,7 @@ interface Meta
      *
      * @return static
      */
-    public function setPrev($url);
+    public function setPrev(string $url);
 
     /**
      * Sets the next URL.
@@ -162,7 +162,7 @@ interface Meta
      *
      * @return static
      */
-    public function setNext($url);
+    public function setNext(string $url);
 
     /**
      * Add an alternate language.
@@ -172,7 +172,7 @@ interface Meta
      *
      * @return static
      */
-    public function addAlternateLanguage($lang, $url);
+    public function addAlternateLanguage(string $lang, string $url);
 
     /**
      * Add alternate languages.

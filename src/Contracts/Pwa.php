@@ -14,7 +14,7 @@ interface Pwa
     /**
      * Reset all data.
      *
-     * @return void
+     * @return array
      */
     public function manifestJson(): array;
 }
