@@ -53,7 +53,7 @@ class PWA implements PWAContract
             'prefer_related_applications' => true,
         ];
 
-        foreach ($icons as $size => $file) {
+        foreach ($this->config['icons'] as $size => $file) {
             $fileInfo = pathinfo($file['path']);
             $basicManifest['icons'][] = [
                 'src'     => Storage::url($file['path']),
@@ -125,17 +125,17 @@ class PWA implements PWAContract
 
         if ($icons) {
             foreach ($icons as $index => $icon) {
-                $path = url($icon['path']);
+                $path = Storage::url($icon['path']);
                 $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
             foreach ($icons as $index => $icon) {
-                $path = url($icon['path']);
+                $path = Storage::url($icon['path']);
                 $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
             foreach ($icons as $index => $icon) {
-                $path = url($icon['path']);
+                $path = Storage::url($icon['path']);
                 $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
         }

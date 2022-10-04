@@ -81,7 +81,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
         });
 
         $this->app->singleton('seotools.pwa', function ($app) {
-            return new \Turahe\SEOTools\PWA($app['config']->get('seotools.pwa', []));
+            return new \Turahe\SEOTools\PWA($app['config']->get('seotools.manifest', []));
         });
 
         $this->app->singleton('seotools', function () {

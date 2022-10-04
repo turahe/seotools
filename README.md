@@ -115,7 +115,7 @@ or
 ```shell
 php artisan vendor:publish --provider="Turahe\SEOTools\Providers\SEOToolsServiceProvider"
 ```
-```
+
 
 > Lumen does not support this command, for it you should copy the file `config/seotools.php` to `config/seotools.php` of your project
 
