@@ -237,14 +237,14 @@ interface Meta
      *
      * @return string
      */
-    public function getPrev(): string;
+    public function getPrev(): ?string;
 
     /**
      * Get the next URL.
      *
      * @return string
      */
-    public function getNext(): string;
+    public function getNext(): ?string;
 
     /**
      * Get alternate languages.

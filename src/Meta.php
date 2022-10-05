@@ -492,7 +492,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function getPrev(): string
+    public function getPrev(): ?string
     {
         return $this->prev;
     }
@@ -500,7 +500,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function getNext(): string
+    public function getNext(): ?string
     {
         return $this->next;
     }
