@@ -59,7 +59,7 @@ interface Meta
      *
      * @return string
      */
-    public function generate(bool $minify = false);
+    public function generate(bool $minify = false): string;
 
     /**
      * Set the title.
@@ -69,7 +69,7 @@ interface Meta
      *
      * @return static
      */
-    public function setTitle(string $title, bool $appendDefault = true);
+    public function setTitle(string $title, bool $appendDefault = true): self;
 
     /**
      * Sets the default title tag.
@@ -78,7 +78,7 @@ interface Meta
      *
      * @return static
      */
-    public function setTitleDefault(string $default);
+    public function setTitleDefault(string $default): self;
 
     /**
      * Set the title separator.
@@ -87,7 +87,7 @@ interface Meta
      *
      * @return static
      */
-    public function setTitleSeparator(string $separator);
+    public function setTitleSeparator(string $separator): self;
 
     /**
      * Set the description.
@@ -96,7 +96,7 @@ interface Meta
      *
      * @return static
      */
-    public function setDescription(string $description);
+    public function setDescription(string $description): self;
 
     /**
      * Sets the list of keywords, you can send an array or string separated with commas
@@ -106,7 +106,7 @@ interface Meta
      *
      * @return static
      */
-    public function setKeywords(array|string $keywords);
+    public function setKeywords(array|string $keywords): self;
 
     /**
      * Add a keyword.
@@ -115,7 +115,7 @@ interface Meta
      *
      * @return static
      */
-    public function addKeyword(array|string $keyword);
+    public function addKeyword(array|string $keyword): self;
 
     /**
      * Remove a metatag.
@@ -124,7 +124,7 @@ interface Meta
      *
      * @return static
      */
-    public function removeMeta(string $key);
+    public function removeMeta(string $key): self;
 
     /**
      * Add a custom meta tag.
@@ -135,7 +135,7 @@ interface Meta
      *
      * @return static
      */
-    public function addMeta(array|string $meta, string $value = null, string $name = 'name');
+    public function addMeta(array|string $meta, string $value = null, string $name = 'name'): self;
 
     /**
      * Sets the canonical URL.
@@ -144,7 +144,7 @@ interface Meta
      *
      * @return static
      */
-    public function setCanonical(string $url);
+    public function setCanonical(string $url): self;
 
     /**
      * Sets the prev URL.
@@ -153,7 +153,7 @@ interface Meta
      *
      * @return static
      */
-    public function setPrev(string $url);
+    public function setPrev(string $url): self;
 
     /**
      * Sets the next URL.
@@ -162,7 +162,7 @@ interface Meta
      *
      * @return static
      */
-    public function setNext(string $url);
+    public function setNext(string $url): self;
 
     /**
      * Add an alternate language.
@@ -172,7 +172,7 @@ interface Meta
      *
      * @return static
      */
-    public function addAlternateLanguage(string $lang, string $url);
+    public function addAlternateLanguage(string $lang, string $url): self;
 
     /**
      * Add alternate languages.
@@ -181,84 +181,84 @@ interface Meta
      *
      * @return static
      */
-    public function addAlternateLanguages(array $languages);
+    public function addAlternateLanguages(array $languages): self;
 
     /**
      * Get the title formatted for display.
      *
      * @return string
      */
-    public function getTitle();
+    public function getTitle(): string;
 
     /**
      * Get the title that was set.
      *
      * @return string
      */
-    public function getTitleSession();
+    public function getTitleSession(): string;
 
     /**
      * Get the title separator that was set.
      *
      * @return string
      */
-    public function getTitleSeparator();
+    public function getTitleSeparator(): string;
 
     /**
      * Get all metatags.
      *
      * @return array
      */
-    public function getMetatags();
+    public function getMetatags(): array;
 
     /**
      * Get the Meta keywords.
      *
      * @return array
      */
-    public function getKeywords();
+    public function getKeywords(): array;
 
     /**
      * Get the Meta description.
      *
      * @return string|null
      */
-    public function getDescription();
+    public function getDescription(): null|string;
 
     /**
      * Get the canonical URL.
      *
      * @return string
      */
-    public function getCanonical();
+    public function getCanonical(): string;
 
     /**
      * Get the prev URL.
      *
      * @return string
      */
-    public function getPrev();
+    public function getPrev(): string;
 
     /**
      * Get the next URL.
      *
      * @return string
      */
-    public function getNext();
+    public function getNext(): string;
 
     /**
      * Get alternate languages.
      *
      * @return array
      */
-    public function getAlternateLanguages();
+    public function getAlternateLanguages(): array;
 
     /**
      * Takes the default title.
      *
      * @return string
      */
-    public function getDefaultTitle();
+    public function getDefaultTitle(): string;
 
     /**
      * Reset all data.
