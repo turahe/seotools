@@ -2,7 +2,6 @@
 namespace Turahe\SEOTools;
 
 use Illuminate\Config\Repository;
-use Illuminate\Support\Facades\Storage;
 use Turahe\SEOTools\Contracts\Pwa as PWAContract;
 
 class PWA implements PWAContract
@@ -22,7 +21,7 @@ class PWA implements PWAContract
     protected $splash;
 
     /**
-     * The icons shorcut.
+     * The icons shortcut.
      *
      * @var array
      */
@@ -56,7 +55,7 @@ class PWA implements PWAContract
         foreach ($this->config['icons'] as $size => $file) {
             $fileInfo = pathinfo($file['path']);
             $basicManifest['icons'][] = [
-                'src'     => Storage::url($file['path']),
+                'src'     => asset($file['path']),
                 'type'    => 'image/' . $fileInfo['extension'],
                 'sizes'   => $size,
                 'purpose' => $file['purpose'],
@@ -125,17 +124,17 @@ class PWA implements PWAContract
 
         if ($icons) {
             foreach ($icons as $index => $icon) {
-                $path = Storage::url($icon['path']);
+                $path = asset($icon['path']);
                 $html[] = "<link rel=\"icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
             foreach ($icons as $index => $icon) {
-                $path = Storage::url($icon['path']);
+                $path = asset($icon['path']);
                 $html[] = "<link rel=\"apple-touch-icon\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
 
             foreach ($icons as $index => $icon) {
-                $path = Storage::url($icon['path']);
+                $path = asset($icon['path']);
                 $html[] = "<link rel=\"msapplication-TileImage\" sizes=\"{$index}\" href=\"{$path}\"/>";
             }
         }

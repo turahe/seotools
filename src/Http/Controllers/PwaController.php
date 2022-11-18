@@ -21,7 +21,7 @@ class PwaController
      */
     public function manifestJson(): JsonResponse
     {
-        $output = $this->manifest->generate();
+        $output = $this->manifest->manifestJson();
 
         return response()->json($output);
     }
