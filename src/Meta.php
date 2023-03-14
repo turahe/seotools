@@ -307,7 +307,7 @@ class Meta implements MetaTagsContract
     /**
      * {@inheritdoc}
      */
-    public function addMeta(array|string $meta, string $value = null, string $name = 'name'): self
+    public function addMeta(array|string $meta, ?string $value = null, string $name = 'name'): self
     {
         // multiple metas
         if (is_array($meta)) {

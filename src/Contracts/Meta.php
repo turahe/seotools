@@ -135,7 +135,7 @@ interface Meta
      *
      * @return static
      */
-    public function addMeta(array|string $meta, string $value = null, string $name = 'name'): self;
+    public function addMeta(array|string $meta, ?string $value = null, string $name = 'name'): self;
 
     /**
      * Sets the canonical URL.

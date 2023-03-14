@@ -11,7 +11,7 @@ class JsonLdMultiTest extends BaseTest
     /**
      * @var string
      */
-    protected $defaultJsonLdHtml = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>';
+    protected $defaultJsonLdHtml = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website"}</script><script·type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"This·description·for·your·website"}</script>';
 
     /**
      * @var JsonLdMulti
@@ -34,7 +34,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setTitle('Turahe');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"For those who helped create the Genki Dama"}</script></head></html>';
+            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -44,7 +44,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setSite('http://wach.id');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://wach.id"}</script></head></html>';
+            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -54,7 +54,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setUrl('http://wach.id');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://wach.id"}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -67,7 +67,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setUrl(null);
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","url":"http://localhost"}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","url":"http://localhost"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -109,7 +109,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setImages(['sayajin.png', 'namekusei.png']);
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","image":["sayajin.png","namekusei.png"]}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","image":["sayajin.png","namekusei.png"]}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -119,7 +119,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setImage('sayajin.png');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","image":"sayajin.png"}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","image":"sayajin.png"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -130,7 +130,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->addValue('another', 'test-value');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","test":"1-2-3","another":"test-value"}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","test":"1-2-3","another":"test-value"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -144,7 +144,7 @@ class JsonLdMultiTest extends BaseTest
         ]);
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -160,7 +160,7 @@ class JsonLdMultiTest extends BaseTest
         ]);
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama","test":"1-2-3","author":{"@type":"Organization","name":"SeoTools"}}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website","test":"1-2-3","author":{"@type":"Organization","name":"SeoTools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -170,7 +170,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->newJsonLd();
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script></head></html>';
+            . '<script type="application/ld+json">{""@context":"https://schema.org","@type":"WebPage","name":"My·title·of·json·ld","description":"This·description·for·your·website"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
