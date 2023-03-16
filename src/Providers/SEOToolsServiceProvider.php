@@ -2,8 +2,6 @@
 namespace Turahe\SEOTools\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Config\Repository as Config;
-use Illuminate\Contracts\Support\DeferrableProvider;
 
 /**
  * SEOToolsServiceProvider bootstraps SEO tools services to the application.
@@ -28,10 +26,12 @@ use Illuminate\Contracts\Support\DeferrableProvider;
  * @see \Turahe\SEOTools\Contracts\JsonLd
  * @see \Turahe\SEOTools\Contracts\JsonLdMulti
  */
-class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvider
+class SEOToolsServiceProvider extends ServiceProvider
 {
     /**
      * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function boot()
     {
@@ -127,7 +127,7 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         $router = $this->app['router'];
 
-        require __DIR__.'./../../routers/web.php';
+        require __DIR__.'/../../routers/web.php';
     }
 
     /**
@@ -144,6 +144,8 @@ class SEOToolsServiceProvider extends ServiceProvider implements DeferrableProvi
      * Register views.
      *
      * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function registerViews()
     {
