@@ -99,7 +99,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setType('sayajin');
 
         $expected = '<html><head>' . $this->defaultJsonLdHtml
-            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"sayajin","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script></head></html>';
+            . '<script type="application/ld+json">{"@context":"https://schema.org","@type":"sayajin","name":"Over 9000 Thousand!","description":"This·description·for·your·website"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -195,7 +195,7 @@ class JsonLdMultiTest extends BaseTest
         $this->jsonLdMulti->setTitle('Turahe');
 
         $expected =
-            '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"For those who helped create the Genki Dama"}</script>'
+            '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"This·description·for·your·website"}</script>'
             . $this->defaultJsonLdHtml . '</head></html>';
 
         $this->setRightAssertion($expected);

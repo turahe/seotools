@@ -1,10 +1,9 @@
 [![Latest Stable Version](http://poser.pugx.org/turahe/seotools/v)](https://packagist.org/packages/turahe/seotools) [![Total Downloads](http://poser.pugx.org/turahe/seotools/downloads)](https://packagist.org/packages/turahe/seotools) [![Latest Unstable Version](http://poser.pugx.org/turahe/seotools/v/unstable)](https://packagist.org/packages/turahe/seotools) [![License](http://poser.pugx.org/turahe/seotools/license)](https://packagist.org/packages/turahe/seotools) [![PHP Version Require](http://poser.pugx.org/turahe/seotools/require/php)](https://packagist.org/packages/turahe/seotools)
 [![PHP Composer](https://github.com/turahe/seotools/actions/workflows/php.yml/badge.svg)](https://github.com/turahe/seotools/actions/workflows/php.yml)
 
-For license information check the [LICENSE](LICENSE)-file.
+This package generates valid and useful meta tags straight out-of-the-box, with limited initial configuration, whilst still providing a simple, but powerful API to work with.
 
-Features
---------
+## Features
 
 - Friendly simple interface
 - Easy of set titles and meta tags
@@ -12,8 +11,7 @@ Features
 - Easy of set for [JSON Linked Data](https://json-ld.org/)
 - Easy of set for PWA (Progressive web application)
 
-Installation
-------------
+## Installation
 
 ### 1 - Dependency
 
@@ -77,6 +75,7 @@ You may get access to the SEO tool services using following facades:
  - `Turahe\SEOTools\Facades\JsonLd`
  - `Turahe\SEOTools\Facades\JsonLdMulti`
  - `Turahe\SEOTools\Facades\SEOTools`
+ - `Turahe\SEOTools\Facades\PWA`
 
 You can setup a short-version aliases for these facades in your `config/app.php` file. For example:
 
@@ -710,8 +709,8 @@ While running the Laravel test server:
 3. Use the Application tab in the Chrome Developer Tools to verify the progressive web app is configured correctly.
 4. Use the "Add to homescreen" link on the Application Tab to verify you can add the app successfully.
 
-The Service Worker
------------------
+## The Service Worker
+
 By default, the service worker implemented by this app is:
 
 ```javascript
@@ -781,10 +780,11 @@ self.addEventListener("fetch", event => {
 ```
 To customize service worker functionality, update the `public/serviceworker.js`.
 
-The offline view
-------------------
+## The offline view
+
 By default, the offline view is implemented in resources/views/vendor/seotools/offline.blade.php
-```html
+
+```php
 @extends('layouts.app')
 
 @section('content')
