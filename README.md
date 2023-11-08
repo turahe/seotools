@@ -1,3 +1,5 @@
+<a href="https://s.id/standwithpalestine"><img alt="We stand with Palestine" src="https://cdn.jsdelivr.net/gh/Safouene1/support-palestine-banner@master/banner-project.svg" width="100%" /></a>
+
 [![Latest Stable Version](http://poser.pugx.org/turahe/seotools/v)](https://packagist.org/packages/turahe/seotools) [![Total Downloads](http://poser.pugx.org/turahe/seotools/downloads)](https://packagist.org/packages/turahe/seotools) [![Latest Unstable Version](http://poser.pugx.org/turahe/seotools/v/unstable)](https://packagist.org/packages/turahe/seotools) [![License](http://poser.pugx.org/turahe/seotools/license)](https://packagist.org/packages/turahe/seotools) [![PHP Version Require](http://poser.pugx.org/turahe/seotools/require/php)](https://packagist.org/packages/turahe/seotools)
 [![PHP Composer](https://github.com/turahe/seotools/actions/workflows/php.yml/badge.svg)](https://github.com/turahe/seotools/actions/workflows/php.yml)
 
