@@ -6,7 +6,7 @@ use Turahe\SEOTools\Contracts\JsonLdMulti as JsonLdMultiContract;
 /**
  * JsonLdMulti provides implementation for `JsonLdMulti` contract.
  *
- * @see \Turahe\SEOTools\Contracts\JsonLdMulti
+ * @see JsonLdMultiContract
  */
 class JsonLdMulti implements JsonLdMultiContract
 {
@@ -35,6 +35,7 @@ class JsonLdMulti implements JsonLdMultiContract
     public function __construct(array $defaultJsonLdData = [])
     {
         $this->defaultJsonLdData = $defaultJsonLdData;
+
         // init the first JsonLd group
         if (empty($this->list)) {
             $this->newJsonLd();

@@ -8,7 +8,7 @@ use Turahe\SEOTools\Contracts\OpenGraph as OpenGraphContract;
 /**
  * OpenGraph provides implementation for `OpenGraph` contract.
  *
- * @see \Turahe\SEOTools\Contracts\OpenGraph
+ * @see OpenGraphContract
  */
 class OpenGraph implements OpenGraphContract
 {

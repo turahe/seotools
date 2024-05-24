@@ -27,7 +27,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setTitle('Turahe');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"This·description·for·your·website"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Turahe","description":"This description for your website"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -36,7 +36,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setSite('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","url":"http://wach.id"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -45,7 +45,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setUrl('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","url":"http://wach.id"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -57,7 +57,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setUrl(null);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","url":"http://localhost"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://localhost"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }

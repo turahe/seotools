@@ -79,20 +79,20 @@ class PWA implements PWAContract
                     $icon = [];
                 }
 
-//                $basicManifest['shortcuts'][] = [
-//                    'name' => trans($shortcut['name']),
-//                    'description' => trans($shortcut['description']),
-//                    'url' => $shortcut['url'],
-//                    'icons' => [
-//                        $icon,
-//                    ],
-//                ];
+                //                $basicManifest['shortcuts'][] = [
+                //                    'name' => trans($shortcut['name']),
+                //                    'description' => trans($shortcut['description']),
+                //                    'url' => $shortcut['url'],
+                //                    'icons' => [
+                //                        $icon,
+                //                    ],
+                //                ];
             }
         }
 
-//        foreach (config('custom') as $tag => $value) {
-//            $basicManifest[$tag] = $value;
-//        }
+        //        foreach (config('custom') as $tag => $value) {
+        //            $basicManifest[$tag] = $value;
+        //        }
 
         return $basicManifest;
     }

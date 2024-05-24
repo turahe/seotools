@@ -30,7 +30,7 @@ abstract class BaseTest extends TestCase
 
     /**
      * @param $string
-     * @return \DOMDocument
+     * @return DOMDocument
      */
     protected function makeDomDocument($string)
     {

@@ -6,7 +6,7 @@ use Turahe\SEOTools\Contracts\TwitterCards as TwitterCardsContract;
 /**
  * TwitterCards provides implementation for `TwitterCards` contract.
  *
- * @see \Turahe\SEOTools\Contracts\TwitterCards
+ * @see TwitterCardsContract
  */
 class TwitterCards implements TwitterCardsContract
 {
@@ -62,12 +62,12 @@ class TwitterCards implements TwitterCardsContract
         foreach ($values as $key => $value):
             if (is_array($value)):
                 $this->eachValue($value, $key);
-                else:
-                    if (is_numeric($key)):
-                        $key = $prefix.$key;
-                        elseif (is_string($prefix)):
-                            $key = $prefix.':'.$key;
-                        endif;
+            else:
+                if (is_numeric($key)):
+                    $key = $prefix.$key;
+                elseif (is_string($prefix)):
+                    $key = $prefix.':'.$key;
+                endif;
 
             $this->html[] = $this->makeTag($key, $value);
             endif;

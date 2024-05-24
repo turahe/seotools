@@ -17,7 +17,7 @@ class PwaController
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function manifestJson(): JsonResponse
     {

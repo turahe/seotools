@@ -6,7 +6,7 @@ use Turahe\SEOTools\Contracts\JsonLd as JsonLdContract;
 /**
  * JsonLd provides implementation for `JsonLd` contract.
  *
- * @see \Turahe\SEOTools\Contracts\JsonLd
+ * @see JsonLdContract
  */
 class JsonLd implements JsonLdContract
 {

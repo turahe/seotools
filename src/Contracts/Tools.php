@@ -61,43 +61,43 @@ namespace Turahe\SEOTools\Contracts;
  * echo Tools::generate();
  * ```
  *
- * @see \Turahe\SEOTools\Contracts\Meta
- * @see \Turahe\SEOTools\Contracts\OpenGraph
- * @see \Turahe\SEOTools\Contracts\TwitterCards
- * @see \Turahe\SEOTools\Contracts\JsonLd
- * @see \Turahe\SEOTools\Contracts\JsonLdMulti
+ * @see Meta
+ * @see OpenGraph
+ * @see TwitterCards
+ * @see JsonLd
+ * @see JsonLdMulti
  *
  * @author `Nur Wachid`
  */
 interface Tools
 {
     /**
-     * @return \Turahe\SEOTools\Contracts\Meta
+     * @return Meta
      */
     public function metatags();
 
     /**
-     * @return \Turahe\SEOTools\Contracts\OpenGraph
+     * @return OpenGraph
      */
     public function opengraph();
 
     /**
-     * @return \Turahe\SEOTools\Contracts\TwitterCards
+     * @return TwitterCards
      */
     public function twitter();
 
     /**
-     * @return \Turahe\SEOTools\Contracts\JsonLd
+     * @return JsonLd
      */
     public function jsonLd();
 
     /**
-     * @return \Turahe\SEOTools\Contracts\JsonLdMulti
+     * @return JsonLdMulti
      */
     public function jsonLdMulti();
 
     /**
-     * @return \Turahe\SEOTools\Contracts\PWA
+     * @return PWA
      */
     public function pwa();
 

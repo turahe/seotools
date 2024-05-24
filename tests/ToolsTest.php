@@ -45,7 +45,7 @@ class ToolsTest extends BaseTest
     {
         $this->seoTools->setTitle('It\'s Turahe Post!');
 
-        $expected = "<title>My Title - It's Turahe Post!</title>";
+        $expected = "<title>It's Turahe Post! - My Title</title>";
         $expected .= '<meta name="description" content="This description for your website">';
         $expected .= '<meta property="og:title" content="My Title" />';
         $expected .= '<meta property="og:description" content="This description for your website" />';
@@ -74,7 +74,7 @@ class ToolsTest extends BaseTest
     {
         $this->seoTools->setCanonical('http://domain.com');
 
-        $expected = "<title>My Title</title>";
+        $expected = '<title>My Title</title>';
         $expected .= '<meta name="description" content="This description for your website">';
         $expected .= '<link rel="canonical" href="http://domain.com"/>';
         $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
@@ -89,7 +89,7 @@ class ToolsTest extends BaseTest
         $this->seoTools->addImages(['Kamehamehaaaaaaa.png']);
         $this->seoTools->addImages('Kamehamehaaaaaaa.png');
 
-        $expected = "<title>My Title</title>";
+        $expected = '<title>My Title</title>';
         $expected .= '<meta name="description" content="This description for your website">';
         $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
         $expected .= '<meta property="og:description" content="This description for your website" />';
@@ -103,7 +103,7 @@ class ToolsTest extends BaseTest
 
     public function test_generate()
     {
-        $expected = "<title>My Title</title>";
+        $expected = '<title>My Title</title>';
         $expected .= '<meta name="description" content="This description for your website">';
         $expected .= '<meta property="og:title" content="Over 9000 Thousand!" />';
         $expected .= '<meta property="og:description" content="This description for your website" />';

@@ -8,7 +8,7 @@ use Turahe\SEOTools\Contracts\Meta as MetaTagsContract;
 /**
  * Meta provides implementation for `Meta` contract.
  *
- * @see \Turahe\SEOTools\Contracts\Meta
+ * @see MetaTagsContract
  */
 class Meta implements MetaTagsContract
 {
@@ -104,7 +104,7 @@ class Meta implements MetaTagsContract
     protected $robots;
 
     /**
-     * @var \Illuminate\Config\Repository
+     * @var Repository
      */
     protected $config;
 

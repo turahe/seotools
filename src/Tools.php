@@ -6,7 +6,7 @@ use Turahe\SEOTools\Contracts\Tools as SEOContract;
 /**
  * Tools provides implementation for `Tools` contract.
  *
- * @see \Turahe\SEOTools\Contracts\Tools
+ * @see SEOContract
  */
 class Tools implements SEOContract
 {
