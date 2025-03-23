@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Tests\stubs;
 
 use Turahe\SEOTools\Traits\SEOTools;

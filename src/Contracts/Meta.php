@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -47,25 +48,17 @@ interface Meta
 {
     /**
      * Configuration.
-     *
-     * @param array $config
      */
     public function __construct(array $config);
 
     /**
      * Generates meta tags HTML.
-     *
-     * @param bool $minify
-     *
-     * @return string
      */
     public function generate(bool $minify = false): string;
 
     /**
      * Set the title.
      *
-     * @param string $title
-     * @param bool $appendDefault
      *
      * @return static
      */
@@ -74,7 +67,6 @@ interface Meta
     /**
      * Sets the default title tag.
      *
-     * @param string $default
      *
      * @return static
      */
@@ -83,7 +75,6 @@ interface Meta
     /**
      * Set the title separator.
      *
-     * @param string $separator
      *
      * @return static
      */
@@ -92,7 +83,6 @@ interface Meta
     /**
      * Set the description.
      *
-     * @param string $description
      *
      * @return static
      */
@@ -102,7 +92,6 @@ interface Meta
      * Sets the list of keywords, you can send an array or string separated with commas
      * also clears the previously set keywords.
      *
-     * @param array|string $keywords
      *
      * @return static
      */
@@ -111,7 +100,6 @@ interface Meta
     /**
      * Add a keyword.
      *
-     * @param array|string $keyword
      *
      * @return static
      */
@@ -120,7 +108,6 @@ interface Meta
     /**
      * Remove a metatag.
      *
-     * @param string $key
      *
      * @return static
      */
@@ -129,9 +116,6 @@ interface Meta
     /**
      * Add a custom meta tag.
      *
-     * @param array|string $meta
-     * @param string|null $value
-     * @param string $name
      *
      * @return static
      */
@@ -140,7 +124,6 @@ interface Meta
     /**
      * Sets the canonical URL.
      *
-     * @param string $url
      *
      * @return static
      */
@@ -149,7 +132,6 @@ interface Meta
     /**
      * Sets the prev URL.
      *
-     * @param string $url
      *
      * @return static
      */
@@ -158,7 +140,6 @@ interface Meta
     /**
      * Sets the next URL.
      *
-     * @param string $url
      *
      * @return static
      */
@@ -167,9 +148,7 @@ interface Meta
     /**
      * Add an alternate language.
      *
-     * @param string $lang language code in format ISO 639-1
-     * @param string $url
-     *
+     * @param  string  $lang  language code in format ISO 639-1
      * @return static
      */
     public function addAlternateLanguage(string $lang, string $url): self;
@@ -177,7 +156,6 @@ interface Meta
     /**
      * Add alternate languages.
      *
-     * @param array $languages
      *
      * @return static
      */
@@ -185,78 +163,56 @@ interface Meta
 
     /**
      * Get the title formatted for display.
-     *
-     * @return string
      */
     public function getTitle(): string;
 
     /**
      * Get the title that was set.
-     *
-     * @return string
      */
     public function getTitleSession(): string;
 
     /**
      * Get the title separator that was set.
-     *
-     * @return string
      */
     public function getTitleSeparator(): string;
 
     /**
      * Get all metatags.
-     *
-     * @return array
      */
     public function getMetatags(): array;
 
     /**
      * Get the Meta keywords.
-     *
-     * @return array
      */
     public function getKeywords(): array;
 
     /**
      * Get the Meta description.
-     *
-     * @return string|null
      */
-    public function getDescription(): null|string;
+    public function getDescription(): ?string;
 
     /**
      * Get the canonical URL.
-     *
-     * @return string
      */
     public function getCanonical(): string;
 
     /**
      * Get the prev URL.
-     *
-     * @return string
      */
     public function getPrev(): ?string;
 
     /**
      * Get the next URL.
-     *
-     * @return string
      */
     public function getNext(): ?string;
 
     /**
      * Get alternate languages.
-     *
-     * @return array
      */
     public function getAlternateLanguages(): array;
 
     /**
      * Takes the default title.
-     *
-     * @return string
      */
     public function getDefaultTitle(): string;
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\Meta;
@@ -26,7 +27,7 @@ class MetaTest extends BaseTest
     public function test_generate()
     {
         $expected = '<title>My Title</title>';
-        $expected .= '<meta name="description" content="This·description·for·your·website">';
+        $expected .= '<meta name="description" content="This description for your website">';
 
         $this->setRightAssertion($expected);
     }
@@ -34,8 +35,8 @@ class MetaTest extends BaseTest
     public function test_set_title_with_append_default()
     {
         $fullTitle = 'Turahe - My Title';
-        $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader = '<title>'.$fullTitle.'</title>';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
 
         $this->seoMeta->setTitle('Turahe');
 
@@ -46,8 +47,8 @@ class MetaTest extends BaseTest
     public function test_set_title_without_append_default()
     {
         $fullTitle = 'Turahe';
-        $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader = '<title>'.$fullTitle.'</title>';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
 
         $this->seoMeta->setTitle($fullTitle, false);
 
@@ -58,8 +59,8 @@ class MetaTest extends BaseTest
     public function test_set_default_title()
     {
         $fullTitle = 'Turahe';
-        $fullHeader = '<title>' . $fullTitle . '</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader = '<title>'.$fullTitle.'</title>';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
 
         $this->seoMeta->setTitleDefault($fullTitle);
 
@@ -70,7 +71,7 @@ class MetaTest extends BaseTest
     public function test_set_title_sepatator()
     {
         $fullHeader = '<title>Turahe | My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $separator = ' | ';
         $fullTitle = 'Turahe';
 
@@ -85,7 +86,7 @@ class MetaTest extends BaseTest
     {
         $description = 'Turahe';
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="' . $description . '">';
+        $fullHeader .= '<meta name="description" content="'.$description.'">';
 
         $this->seoMeta->setDescription($description);
 
@@ -108,7 +109,7 @@ class MetaTest extends BaseTest
     public function test_set_keywords()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<meta name="keywords" content="masenko,makankosappo">';
         $keywords = 'masenko,makankosappo';
 
@@ -121,7 +122,7 @@ class MetaTest extends BaseTest
     public function test_add_keywords()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<meta name="keywords" content="masenko, makankosappo">';
 
         $this->seoMeta->addKeyword('masenko');
@@ -138,13 +139,13 @@ class MetaTest extends BaseTest
     public function test_remove_metatag()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
 
         $this->seoMeta->addMeta('no-content');
         $this->seoMeta->addMeta(['custom-meta' => 'value']);
         $this->seoMeta->addMeta('custom-meta', 'value', 'test');
 
-        $fullHeaderWithTags = $fullHeader . '<meta test="custom-meta" content="value">';
+        $fullHeaderWithTags = $fullHeader.'<meta test="custom-meta" content="value">';
         $this->setRightAssertion($fullHeaderWithTags);
 
         $this->seoMeta->removeMeta('custom-meta');
@@ -157,7 +158,7 @@ class MetaTest extends BaseTest
     public function test_set_canonical()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<link rel="canonical" href="http://domain.com"/>';
         $canonical = 'http://domain.com';
 
@@ -167,7 +168,7 @@ class MetaTest extends BaseTest
         $this->assertEquals($canonical, $this->seoMeta->getCanonical());
     }
 
-    public function dataTestUrls()
+    public static function dataTestUrls()
     {
         return [
             ['http://localhost/hello/world', 'http://localhost/hello/world'],
@@ -214,7 +215,7 @@ class MetaTest extends BaseTest
     public function test_set_amp()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<link rel="amphtml" href="http://domain.com/amp"/>';
         $amphtml = 'http://domain.com/amp';
 
@@ -227,7 +228,7 @@ class MetaTest extends BaseTest
     public function test_set_next()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<link rel="next" href="http://domain.com"/>';
         $next = 'http://domain.com';
 
@@ -240,7 +241,7 @@ class MetaTest extends BaseTest
     public function test_set_prev()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<link rel="prev" href="http://domain.com"/>';
         $prev = 'http://domain.com';
 
@@ -253,7 +254,7 @@ class MetaTest extends BaseTest
     public function test_set_alternate_languages()
     {
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="This·description·for·your·website">';
+        $fullHeader .= '<meta name="description" content="This description for your website">';
         $fullHeader .= '<link rel="alternate" hreflang="en" href="http://domain.com"/>';
         $lang = 'en';
         $langUrl = 'http://domain.com';
@@ -272,7 +273,7 @@ class MetaTest extends BaseTest
     public function test_set_reset()
     {
         $expected = '<title>My Title</title>';
-        $expected .= '<meta name="description" content="This·description·for·your·website">';
+        $expected .= '<meta name="description" content="This description for your website">';
 
         $this->seoMeta->setDescription('test');
         $this->seoMeta->addKeyword('test');
@@ -287,9 +288,6 @@ class MetaTest extends BaseTest
         $this->setRightAssertion($expected);
     }
 
-    /**
-     * @param $expectedString
-     */
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);
@@ -309,7 +307,7 @@ class MetaTest extends BaseTest
         $this->assertEquals('all', $this->seoMeta->getRobots());
 
         $expected = '<title>My Title</title>';
-        $expected .= '<meta name="description" content="This·description·for·your·website">';
+        $expected .= '<meta name="description" content="This description for your website">';
         $expected .= '<meta name="robots" content="all">';
 
         $this->setRightAssertion($expected);
@@ -317,13 +315,14 @@ class MetaTest extends BaseTest
 
     /**
      * @depends test_set_description
+     *
      * @see     https://github.com/Turahe/seotools/issues/122
      */
     public function test_utf8()
     {
         $description = 'de fidélisation des salariés';
         $fullHeader = '<title>My Title</title>';
-        $fullHeader .= '<meta name="description" content="' . $description . '">';
+        $fullHeader .= '<meta name="description" content="'.$description.'">';
 
         $this->seoMeta->setDescription($description);
 
@@ -335,14 +334,14 @@ class MetaTest extends BaseTest
     {
         $this->seoMeta = new Meta(new \Illuminate\Config\Repository([
             'add_notranslate_class' => true,
-            'defaults'              => [
-                'title'       => 'It\'s Over 9000!',
-                'description' => 'This·description·for·your·website',
+            'defaults' => [
+                'title' => 'It\'s Over 9000!',
+                'description' => 'This description for your website',
             ],
         ]));
 
         $expected = '<title class="notranslate">My Title</title>';
-        $expected .= '<meta name="description" content="This·description·for·your·website">';
+        $expected .= '<meta name="description" content="This description for your website">';
 
         $this->setRightAssertion($expected);
     }

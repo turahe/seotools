@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Facades;
 
 use Illuminate\Support\Facades\Facade;
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * JsonLd is a facade for the `JsonLd` implementation access.
  *
  * @see \Turahe\SEOTools\Contracts\JsonLdMulti
+ *
  * @method static string generate(bool $minify = false)
  * @method static \Turahe\SEOTools\Contracts\JsonLdMulti newJsonLd()
  * @method static \Turahe\SEOTools\Contracts\JsonLdMulti isEmpty()

@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -97,15 +98,8 @@ interface Tools
     public function jsonLdMulti();
 
     /**
-     * @return PWA
-     */
-    public function pwa();
-
-    /**
      * Setup title for all seo providers.
      *
-     * @param string $title
-     * @param bool $appendDefault
      *
      * @return static
      */
@@ -114,7 +108,6 @@ interface Tools
     /**
      * Setup description for all seo providers.
      *
-     * @param string $description
      *
      * @return static
      */
@@ -123,7 +116,6 @@ interface Tools
     /**
      * Sets the canonical URL.
      *
-     * @param string $url
      *
      * @return static
      */
@@ -132,27 +124,18 @@ interface Tools
     /**
      * Add one or more images urls.
      *
-     * @param array|string $urls
-     *
+     * @param  array|string  $urls
      * @return static
      */
     public function addImages($urls): self;
 
     /**
      * Get current title from metatags.
-     *
-     * @param bool $session
-     *
-     * @return string
      */
     public function getTitle(bool $session = false): string;
 
     /**
      * Generate from all seo providers.
-     *
-     * @param bool $minify
-     *
-     * @return string
      */
     public function generate(bool $minify = false): string;
 }

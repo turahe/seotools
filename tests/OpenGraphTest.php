@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\OpenGraph;
@@ -8,9 +9,6 @@ use Turahe\SEOTools\OpenGraph;
  */
 class OpenGraphTest extends BaseTest
 {
-    /**
-     * @var
-     */
     protected $openGraphs;
 
     /**
@@ -37,7 +35,7 @@ class OpenGraphTest extends BaseTest
     {
         $this->openGraphs->setUrl('https://www.domain.com');
 
-        $expected = '<meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content=""This·description·for·your·website" /><meta content="https://www.domain.com" property="og:url">';
+        $expected = '<meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content=""This description for your website" /><meta content="https://www.domain.com" property="og:url">';
 
         $this->setRightAssertion($expected);
     }
@@ -51,14 +49,11 @@ class OpenGraphTest extends BaseTest
             'tag' => $tags,
         ]);
 
-        $expected = '<meta content="article" property="og:type"><meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content=""This·description·for·your·website" /><meta property="article:tag" content="Example" /><meta property="article:tag" content="tags" /><meta property="article:tag" content="test" />';
+        $expected = '<meta content="article" property="og:type"><meta property="og:title" content="Over 9000 Thousand!" /><meta property="og:description" content=""This description for your website" /><meta property="article:tag" content="Example" /><meta property="article:tag" content="tags" /><meta property="article:tag" content="test" />';
 
         $this->setRightAssertion($expected);
     }
 
-    /**
-     * @param $expectedString
-     */
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);

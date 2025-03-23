@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\TwitterCards as TwitterCardsContract;
@@ -30,9 +31,6 @@ class TwitterCards implements TwitterCardsContract
      */
     protected $images = [];
 
-    /**
-     * @param array $defaults
-     */
     public function __construct(array $defaults = [])
     {
         $this->values = $defaults;
@@ -52,34 +50,27 @@ class TwitterCards implements TwitterCardsContract
     /**
      * Make tags.
      *
-     * @param array       $values
-     * @param string|null $prefix
      *
      * @internal param array $properties
      */
     protected function eachValue(array $values, ?string $prefix = null)
     {
-        foreach ($values as $key => $value):
-            if (is_array($value)):
+        foreach ($values as $key => $value) {
+            if (is_array($value)) {
                 $this->eachValue($value, $key);
-            else:
-                if (is_numeric($key)):
+            } else {
+                if (is_numeric($key)) {
                     $key = $prefix.$key;
-                elseif (is_string($prefix)):
+                } elseif (is_string($prefix)) {
                     $key = $prefix.':'.$key;
-                endif;
+                }
 
-            $this->html[] = $this->makeTag($key, $value);
-            endif;
-        endforeach;
+                $this->html[] = $this->makeTag($key, $value);
+            }
+        }
     }
 
     /**
-     * @param string $key
-     * @param $value
-     *
-     * @return string
-     *
      * @internal param string $values
      */
     private function makeTag(string $key, $value): string
@@ -92,7 +83,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function addValue(string $key, array|string $value)
+    public function addValue(string $key, array|string $value): static
     {
         $this->values[$key] = $value;
 
@@ -102,7 +93,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): static
     {
         return $this->addValue('title', $title);
     }
@@ -110,7 +101,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setType(string $type)
+    public function setType(string $type): static
     {
         return $this->addValue('card', $type);
     }
@@ -118,7 +109,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setSite(string $site)
+    public function setSite(string $site): static
     {
         return $this->addValue('site', $site);
     }
@@ -126,7 +117,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription(string $description)
+    public function setDescription(string $description): static
     {
         return $this->addValue('description', htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false));
     }
@@ -134,7 +125,7 @@ class TwitterCards implements TwitterCardsContract
     /**
      * {@inheritdoc}
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): static
     {
         return $this->addValue('url', $url);
     }
@@ -144,7 +135,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @deprecated use setImage($image) instead
      */
-    public function addImage(array|string $image)
+    public function addImage(array|string $image): static
     {
         foreach ((array) $image as $url) {
             $this->images[] = $url;
@@ -158,7 +149,7 @@ class TwitterCards implements TwitterCardsContract
      *
      * @deprecated use setImage($image) instead
      */
-    public function setImages(array|string $images)
+    public function setImages(array|string $images): static
     {
         $this->images = [];
 
@@ -166,10 +157,9 @@ class TwitterCards implements TwitterCardsContract
     }
 
     /**
-     * @param array|string $image
      * @return TwitterCardsContract
      */
-    public function setImage(array|string $image)
+    public function setImage(array|string $image): static
     {
         return $this->addValue('image', $image);
     }

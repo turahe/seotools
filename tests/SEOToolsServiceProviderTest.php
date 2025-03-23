@@ -1,5 +1,8 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
+
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class SEOToolsServiceProviderTest.
@@ -8,13 +11,9 @@ class SEOToolsServiceProviderTest extends BaseTest
 {
     /**
      * Verify if classes are in service container.
-     *
-     * @dataProvider bindsListProvider
-     *
-     * @param string $contract
-     * @param string $concreteClass
      */
-    public function test_container_are_provided($contract, $concreteClass)
+    #[DataProvider('bindsListProvider')]
+    public function test_container_are_provided(string $contract, string $concreteClass)
     {
         $this->assertInstanceOf(
             $contract,
@@ -22,10 +21,7 @@ class SEOToolsServiceProviderTest extends BaseTest
         );
     }
 
-    /**
-     * @return array
-     */
-    public function bindsListProvider()
+    public static function bindsListProvider(): array
     {
         return [
             [

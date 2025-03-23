@@ -1,8 +1,9 @@
 <?php
+
 namespace Turahe\SEOTools;
 
-use Illuminate\Support\Arr;
 use Illuminate\Config\Repository;
+use Illuminate\Support\Arr;
 use Turahe\SEOTools\Contracts\Meta as MetaTagsContract;
 
 /**
@@ -110,21 +111,16 @@ class Meta implements MetaTagsContract
 
     /**
      * The webmaster tags.
-     *
-     * @var array
      */
     protected array $webmasterTags = [
-        'google'    => 'google-site-verification',
-        'bing'      => 'msvalidate.01',
-        'alexa'     => 'alexaVerifyID',
+        'google' => 'google-site-verification',
+        'bing' => 'msvalidate.01',
+        'alexa' => 'alexaVerifyID',
         'pinterest' => 'p:domain_verify',
-        'yandex'    => 'yandex-verification',
-        'norton'    => 'norton-safeweb-site-verification',
+        'yandex' => 'yandex-verification',
+        'norton' => 'norton-safeweb-site-verification',
     ];
 
-    /**
-     * @param array $config
-     */
     public function __construct(array $config)
     {
         $this->config = new Repository($config);
@@ -221,7 +217,7 @@ class Meta implements MetaTagsContract
         $this->title_session = $title;
 
         // store title
-        if (true === $appendDefault) {
+        if ($appendDefault === true) {
             $this->title = $this->parseTitle($title);
         } else {
             $this->title = $title;
@@ -257,7 +253,7 @@ class Meta implements MetaTagsContract
     {
         // clean and store description
         // if is false, set false
-        $this->description = (false == $description) ? $description : htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false);
+        $this->description = ! $description ? $description : htmlspecialchars($description, ENT_QUOTES, 'UTF-8', false);
 
         return $this;
     }
@@ -334,8 +330,7 @@ class Meta implements MetaTagsContract
     /**
      * Sets the AMP html URL.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return MetaTagsContract
      */
     public function setAmpHtml($url): self
@@ -388,7 +383,6 @@ class Meta implements MetaTagsContract
     /**
      * Sets the meta robots.
      *
-     * @param string $robots
      *
      * @return MetaTagsContract
      */
@@ -542,10 +536,6 @@ class Meta implements MetaTagsContract
 
     /**
      * Get parsed title.
-     *
-     * @param string $title
-     *
-     * @return string
      */
     protected function parseTitle(string $title): string
     {

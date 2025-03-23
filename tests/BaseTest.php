@@ -1,8 +1,9 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
-use Mockery;
 use DOMDocument;
+use Mockery;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -28,13 +29,9 @@ abstract class BaseTest extends TestCase
         return [\Turahe\SEOTools\Providers\SEOToolsServiceProvider::class];
     }
 
-    /**
-     * @param $string
-     * @return DOMDocument
-     */
-    protected function makeDomDocument($string)
+    protected function makeDomDocument($string): DOMDocument
     {
-        $dom = new DOMDocument();
+        $dom = new DOMDocument;
         $dom->loadHTML($string);
 
         return $dom;

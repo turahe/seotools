@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Traits;
 
 use Turahe\SEOTools\Contracts\SEOFriendly;
@@ -14,8 +15,6 @@ trait SEOTools
     }
 
     /**
-     * @param SEOFriendly $friendly
-     *
      * @return \Turahe\SEOTools\Contracts\Tools
      */
     protected function loadSEO(SEOFriendly $friendly)

@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\TwitterCards;
@@ -98,9 +99,6 @@ class TwitterCardsTest extends BaseTest
         $this->setRightAssertion($expected);
     }
 
-    /**
-     * @param $expectedString
-     */
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);

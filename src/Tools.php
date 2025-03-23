@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\Tools as SEOContract;
@@ -48,14 +49,6 @@ class Tools implements SEOContract
     public function jsonLdMulti()
     {
         return app('seotools.json-ld-multi');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function pwa()
-    {
-        return new PWA(config('seotools.manifest'));
     }
 
     /**
@@ -134,8 +127,6 @@ class Tools implements SEOContract
         $html .= $this->opengraph()->generate();
         $html .= PHP_EOL;
         $html .= $this->twitter()->generate();
-        $html .= PHP_EOL;
-        $html .= $this->pwa()->generate();
         $html .= PHP_EOL;
         // if json ld multi is use don't show simple json ld
         $html .= $this->jsonLdMulti()->generate() ?? $this->jsonLd()->generate();

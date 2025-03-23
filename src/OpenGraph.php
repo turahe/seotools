@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools;
 
 use Illuminate\Support\Arr;
@@ -14,149 +15,108 @@ class OpenGraph implements OpenGraphContract
 {
     /**
      * OpenGraph Prefix.
-     *
-     * @var string
      */
     protected string $og_prefix = 'og:';
 
     /**
      * Config.
-     *
-     * @var array
      */
     protected array $config;
 
     /**
      * Url property
-     *
-     * @var string
      */
     protected string $url = '';
 
     /**
      * Array of Properties.
-     *
-     * @var array
      */
     protected array $properties = [];
 
     /**
      * Array of Article Properties.
-     *
-     * @var array
      */
     protected array $articleProperties = [];
 
     /**
      * Array of Profile Properties.
-     *
-     * @var array
      */
     protected array $profileProperties = [];
 
     /**
      * Array of Music Song Properties.
-     *
-     * @var array
      */
     protected array $musicSongProperties = [];
 
     /**
      * Array of Music Album Properties.
-     *
-     * @var array
      */
     protected array $musicAlbumProperties = [];
 
     /**
      * Array of Music Playlist Properties.
-     *
-     * @var array
      */
     protected array $musicPlaylistProperties = [];
 
     /**
      * Array of Music Radio Properties.
-     *
-     * @var array
      */
     protected array $musicRadioStationProperties = [];
 
     /**
      * Array of Video Movie Properties.
-     *
-     * @var array
      */
     protected array $videoMovieProperties = [];
 
     /**
      * Array of Video Episode Properties.
-     *
-     * @var array
      */
     protected array $videoEpisodeProperties = [];
 
     /**
      * Array of Video TV Show Properties.
-     *
-     * @var array
      */
     protected array $videoTVShowProperties = [];
 
     /**
      * Array of Video Other Properties.
-     *
-     * @var array
      */
     protected array $videoOtherProperties = [];
 
     /**
      * Array of Book Properties.
-     *
-     * @var array
      */
     protected array $bookProperties = [];
 
     /**
      * Array of Video Properties.
-     *
-     * @var array
      */
     protected array $videoProperties = [];
 
     /**
      * Array of Audio Properties.
-     *
-     * @var array
      */
     protected array $audioProperties = [];
 
     /**
      * Array of Place Properties.
-     *
-     * @var array
      */
     protected array $placeProperties = [];
 
     /**
      * Array of Product Properties.
-     *
-     * @var array
      */
     protected array $productProperties = [];
 
     /**
      * Array of Image Properties.
-     *
-     * @var array
      */
     protected array $images = [];
 
     /**
      * Create a new OpenGraph instance.
      *
-     * @param array $config config
-     *
+     * @param  array  $config  config
      * @return void
      */
     public function __construct(array $config = [])
@@ -174,22 +134,22 @@ class OpenGraph implements OpenGraphContract
         $output = $this->eachProperties($this->properties);
 
         $props = [
-            'images'                      => ['image',   true],
-            'articleProperties'           => ['article', false],
-            'profileProperties'           => ['profile', false],
-            'bookProperties'              => ['book',    false],
-            'musicSongProperties'         => ['music',   false],
-            'musicAlbumProperties'        => ['music',   false],
-            'musicPlaylistProperties'     => ['music',   false],
+            'images' => ['image',   true],
+            'articleProperties' => ['article', false],
+            'profileProperties' => ['profile', false],
+            'bookProperties' => ['book',    false],
+            'musicSongProperties' => ['music',   false],
+            'musicAlbumProperties' => ['music',   false],
+            'musicPlaylistProperties' => ['music',   false],
             'musicRadioStationProperties' => ['music',   false],
-            'videoMovieProperties'        => ['video',   false],
-            'videoEpisodeProperties'      => ['video',   false],
-            'videoTVShowProperties'       => ['video',   false],
-            'videoOtherProperties'        => ['video',   false],
-            'videoProperties'             => ['video',   true],
-            'audioProperties'             => ['audio',   true],
-            'placeProperties'             => ['place',   false],
-            'productProperties'           => ['product', false],
+            'videoMovieProperties' => ['video',   false],
+            'videoEpisodeProperties' => ['video',   false],
+            'videoTVShowProperties' => ['video',   false],
+            'videoOtherProperties' => ['video',   false],
+            'videoProperties' => ['video',   true],
+            'audioProperties' => ['audio',   true],
+            'placeProperties' => ['place',   false],
+            'productProperties' => ['product', false],
         ];
 
         foreach ($props as $prop => $options) {
@@ -206,13 +166,11 @@ class OpenGraph implements OpenGraphContract
     /**
      * Make list of open graph tags.
      *
-     * @param array       $properties array of properties
-     * @param string|null $prefix     prefix of property
-     * @param bool        $ogPrefix   opengraph prefix
-     *
-     * @return string
+     * @param  array  $properties  array of properties
+     * @param  string|null  $prefix  prefix of property
+     * @param  bool  $ogPrefix  opengraph prefix
      */
-    protected function eachProperties(array $properties, ?string $prefix = null, bool $ogPrefix = true) : string
+    protected function eachProperties(array $properties, ?string $prefix = null, bool $ogPrefix = true): string
     {
         $html = [];
 
@@ -252,11 +210,9 @@ class OpenGraph implements OpenGraphContract
     /**
      * Make a og tag.
      *
-     * @param string|null $key      meta property key
-     * @param string|null $value    meta property value
-     * @param bool   $ogPrefix opengraph prefix
-     *
-     * @return string
+     * @param  string|null  $key  meta property key
+     * @param  string|null  $value  meta property value
+     * @param  bool  $ogPrefix  opengraph prefix
      */
     protected function makeTag(?string $key = null, ?string $value = null, bool $ogPrefix = false): string
     {
@@ -603,8 +559,7 @@ class OpenGraph implements OpenGraphContract
     /**
      * Set place properties.
      *
-     * @param array $attributes opengraph place attributes
-     *
+     * @param  array  $attributes  opengraph place attributes
      * @return OpenGraphContract
      */
     public function setPlace(array $attributes = []): self
@@ -622,8 +577,7 @@ class OpenGraph implements OpenGraphContract
     /**
      * Set product properties.
      *
-     * @param array $attributes opengraph product attributes
-     *
+     * @param  array  $attributes  opengraph product attributes
      * @return OpenGraphContract
      */
     public function setProduct(array $attributes = []): self
@@ -655,10 +609,8 @@ class OpenGraph implements OpenGraphContract
     /**
      * Clean invalid properties.
      *
-     * @param array $attributes attributes input
-     * @param string[] $validKeys  keys that are allowed
-     *
-     * @return array
+     * @param  array  $attributes  attributes input
+     * @param  string[]  $validKeys  keys that are allowed
      */
     protected function cleanProperties(array $attributes = [], array $validKeys = []): array
     {
@@ -676,11 +628,10 @@ class OpenGraph implements OpenGraphContract
     /**
      * Set properties.
      *
-     * @param string|null $type type of og:type
-     * @param string|null $key variable key
-     * @param array $attributes inputted opengraph attributes
-     * @param string[] $validKeys valid opengraph attributes
-     *
+     * @param  string|null  $type  type of og:type
+     * @param  string|null  $key  variable key
+     * @param  array  $attributes  inputted opengraph attributes
+     * @param  string[]  $validKeys  valid opengraph attributes
      * @return void
      */
     protected function setProperties(

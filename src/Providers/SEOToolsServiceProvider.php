@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -30,12 +31,10 @@ class SEOToolsServiceProvider extends ServiceProvider
 {
     /**
      * @return void
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function boot()
     {
-        $configFile = __DIR__ . '/../../config/seotools.php';
+        $configFile = __DIR__.'/../../config/seotools.php';
 
         if ($this->isLumen()) {
             $this->app->configure('seotools');
@@ -44,11 +43,6 @@ class SEOToolsServiceProvider extends ServiceProvider
                 $configFile => config_path('seotools.php'),
             ]);
         }
-
-        $this->registerViews();
-        $this->registerIcons();
-        $this->registerRoutes();
-        $this->registerServiceworker();
 
         $this->mergeConfigFrom($configFile, 'seotools');
     }
@@ -80,12 +74,8 @@ class SEOToolsServiceProvider extends ServiceProvider
             return new \Turahe\SEOTools\JsonLdMulti($app['config']->get('seotools.json-ld.defaults', []));
         });
 
-        $this->app->singleton('seotools.pwa', function ($app) {
-            return new \Turahe\SEOTools\PWA($app['config']->get('seotools.manifest', []));
-        });
-
         $this->app->singleton('seotools', function () {
-            return new \Turahe\SEOTools\Tools();
+            return new \Turahe\SEOTools\Tools;
         });
 
         $this->app->bind(\Turahe\SEOTools\Contracts\Meta::class, 'seotools.metatags');
@@ -93,7 +83,6 @@ class SEOToolsServiceProvider extends ServiceProvider
         $this->app->bind(\Turahe\SEOTools\Contracts\TwitterCards::class, 'seotools.twitter');
         $this->app->bind(\Turahe\SEOTools\Contracts\JsonLd::class, 'seotools.json-ld');
         $this->app->bind(\Turahe\SEOTools\Contracts\JsonLdMulti::class, 'seotools.json-ld-multi');
-        $this->app->bind(\Turahe\SEOTools\Contracts\Pwa::class, 'seotools.pwa');
         $this->app->bind(\Turahe\SEOTools\Contracts\Tools::class, 'seotools');
     }
 
@@ -109,25 +98,13 @@ class SEOToolsServiceProvider extends ServiceProvider
             \Turahe\SEOTools\Contracts\OpenGraph::class,
             \Turahe\SEOTools\Contracts\JsonLd::class,
             \Turahe\SEOTools\Contracts\JsonLdMulti::class,
-            \Turahe\SEOTools\Contracts\Pwa::class,
             'seotools',
             'seotools.metatags',
             'seotools.opengraph',
             'seotools.twitter',
             'seotools.json-ld',
-            'seotools.pwa',
             'seotools.json-ld-multi',
         ];
-    }
-
-    /**
-     * Register new routers to projects.
-     */
-    protected function registerRoutes()
-    {
-        $router = $this->app['router'];
-
-        require __DIR__.'/../../routers/web.php';
     }
 
     /**
@@ -138,60 +115,6 @@ class SEOToolsServiceProvider extends ServiceProvider
     protected function isLaravel()
     {
         return app() instanceof \Illuminate\Foundation\Application;
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/vendor/seo');
-
-        $sourcePath = __DIR__ . '/resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ], 'views');
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/vendor/seo';
-        }, $this->app['config']->get('view.paths')), [$sourcePath]), 'seo');
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerIcons()
-    {
-        $iconsPath = public_path('images/icons');
-
-        $sourcePath = __DIR__.'/resources/assets/images/icons';
-
-        $this->publishes([
-            $sourcePath => $iconsPath,
-        ], 'icons');
-    }
-
-    /**
-     * Register serviceworker.js.
-     *
-     * @return void
-     */
-    protected function registerServiceworker()
-    {
-        $publicPath = public_path();
-
-        $sourcePath = __DIR__.'./resources/assets/js';
-
-        $this->publishes([
-            $sourcePath => $publicPath,
-        ], 'serviceworker');
     }
 
     /**

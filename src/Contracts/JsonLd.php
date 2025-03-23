@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -47,88 +48,33 @@ namespace Turahe\SEOTools\Contracts;
  */
 interface JsonLd
 {
-    /**
-     * @param array $defaults
-     */
     public function __construct(array $defaults = []);
 
     /**
      * Generates linked data script tag.
-     *
-     * @param bool $minify
-     *
-     * @return string
      */
-    public function generate(bool $minify = false);
+    public function generate(bool $minify = false): string;
 
     /**
      *  Check if all attribute are empty
-     *
-     * @return static
      */
-    public function isEmpty();
+    public function isEmpty(): bool;
 
-    /**
-     * @param string $key
-     * @param array|string $value
-     *
-     * @return static
-     */
-    public function addValue(string $key, array|string $value);
+    public function addValue(string $key, array|string $value): static;
 
-    /**
-     * @param array $values
-     *
-     * @return static
-     */
-    public function addValues(array $values);
+    public function addValues(array $values): static;
 
-    /**
-     * @param string $type
-     *
-     * @return static
-     */
-    public function setType(string $type);
+    public function setType(string $type): static;
 
-    /**
-     * @param string $title
-     *
-     * @return static
-     */
-    public function setTitle(string $title);
+    public function setTitle(string $title): static;
 
-    /**
-     * @param string $site
-     *
-     * @return static
-     */
-    public function setSite(string $site);
+    public function setSite(string $site): static;
 
-    /**
-     * @param string $description
-     *
-     * @return static
-     */
-    public function setDescription(string $description);
+    public function setDescription(string $description): static;
 
-    /**
-     * @param bool|string|null $url
-     *
-     * @return static
-     */
-    public function setUrl(bool|string|null $url);
+    public function setUrl(bool|string|null $url): static;
 
-    /**
-     * @param array|string $image
-     *
-     * @return static
-     */
-    public function addImage(array|string $image);
+    public function addImage(array|string $image): static;
 
-    /**
-     * @param array|string $images
-     *
-     * @return static
-     */
-    public function setImages(array|string $images);
+    public function setImages(array|string $images): static;
 }

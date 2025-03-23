@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
 use Turahe\SEOTools\JsonLd;
@@ -36,7 +37,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setSite('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -45,19 +46,16 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setUrl('http://wach.id');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","url":"http://wach.id"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
 
-    /**
-     * @depends test_set_url
-     */
     public function test_use_current_url()
     {
         $this->jsonLd->setUrl(null);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This description for your website","url":"http://localhost"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","url":"http://localhost"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -66,7 +64,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setDescription('Turahe');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"Turahe"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"Turahe"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -77,7 +75,7 @@ class JsonLdTest extends BaseTest
 
         $this->jsonLd->setDescription($description);
 
-        $expected = htmlspecialchars_decode('<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"\"Foo bar\" -&gt; abc"}</script></head></html>');
+        $expected = htmlspecialchars_decode('<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"\"Foo bar\" -&gt; abc"}</script></head></html>');
 
         $this->setRightAssertion($expected);
     }
@@ -86,7 +84,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setType('sayajin');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"sayajin","name":"Over 9000 Thousand!","description":"This·description·for·your·website"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"sayajin","name":"My title of json ld","description":"This description for your website"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -95,7 +93,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setImages(['sayajin.png', 'namekusei.png']);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","image":["sayajin.png","namekusei.png"]}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","image":["sayajin.png","namekusei.png"]}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -104,7 +102,7 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->setImage('sayajin.png');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","image":"sayajin.png"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","image":"sayajin.png"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -114,7 +112,7 @@ class JsonLdTest extends BaseTest
         $this->jsonLd->addValue('test', '1-2-3');
         $this->jsonLd->addValue('another', 'test-value');
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","test":"1-2-3","another":"test-value"}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","test":"1-2-3","another":"test-value"}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -123,11 +121,11 @@ class JsonLdTest extends BaseTest
     {
         $this->jsonLd->addValue('author', [
             '@type' => 'Organization',
-            'name'  => 'SeoTools',
-            'url'   => 'https://github.com/Turahe/seotools',
+            'name' => 'SeoTools',
+            'url' => 'https://github.com/Turahe/seotools',
         ]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","author":{"@type":"Organization","name":"SeoTools","url":"https://github.com/Turahe/seotools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -137,10 +135,10 @@ class JsonLdTest extends BaseTest
         $this->jsonLd->addValue('author', new JsonLd([
             'type' => 'Organization',
             'name' => 'SeoTools',
-            'url'  => 'https://github.com/Turahe/seotools',
+            'url' => 'https://github.com/Turahe/seotools',
         ]));
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","author":{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","author":{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -150,10 +148,10 @@ class JsonLdTest extends BaseTest
         $this->jsonLd->addValue('author', [new JsonLd([
             'type' => 'Organization',
             'name' => 'SeoTools',
-            'url'  => 'https://github.com/Turahe/seotools',
+            'url' => 'https://github.com/Turahe/seotools',
         ])]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","author":[{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}]}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","author":[{"@type":"Organization","url":"https://github.com/Turahe/seotools","name":"SeoTools"}]}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -161,14 +159,14 @@ class JsonLdTest extends BaseTest
     public function test_add_values()
     {
         $this->jsonLd->addValues([
-            'test'   => '1-2-3',
+            'test' => '1-2-3',
             'author' => [
                 '@type' => 'Organization',
-                'name'  => 'SeoTools',
+                'name' => 'SeoTools',
             ],
         ]);
 
-        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"This·description·for·your·website","test":"1-2-3","author":{"@type":"Organization","name":"SeoTools"}}</script></head></html>';
+        $expected = '<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"My title of json ld","description":"This description for your website","test":"1-2-3","author":{"@type":"Organization","name":"SeoTools"}}</script></head></html>';
 
         $this->setRightAssertion($expected);
     }
@@ -177,15 +175,12 @@ class JsonLdTest extends BaseTest
     {
         // make default json-ld data as empty on create
         config()->set('seotools.json-ld.defaults', []);
-        $this->jsonLd = new JsonLd();
+        $this->jsonLd = new JsonLd;
 
         $this->assertTrue($this->jsonLd->isEmpty());
     }
 
-    /**
-     * @param string $expectedString
-     */
-    protected function setRightAssertion($expectedString)
+    protected function setRightAssertion(string $expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);
         $actualDom = $this->makeDomDocument($this->jsonLd->generate(true));

@@ -1,10 +1,11 @@
 <?php
+
 namespace Turahe\SEOTools\Tests;
 
-use Turahe\SEOTools\Tools;
 use Turahe\SEOTools\Contracts\Meta;
 use Turahe\SEOTools\Contracts\OpenGraph;
 use Turahe\SEOTools\Contracts\TwitterCards;
+use Turahe\SEOTools\Tools;
 
 /**
  * Class ToolsTest.
@@ -112,9 +113,6 @@ class ToolsTest extends BaseTest
         $this->setRightAssertion($expected);
     }
 
-    /**
-     * @param $expectedString
-     */
     protected function setRightAssertion($expectedString)
     {
         $expectedDom = $this->makeDomDocument($expectedString);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\JsonLd as JsonLdContract;
@@ -10,57 +11,41 @@ use Turahe\SEOTools\Contracts\JsonLd as JsonLdContract;
  */
 class JsonLd implements JsonLdContract
 {
-    /**
-     * @var array
-     */
     protected array $values = [];
-    /**
-     * @var string
-     */
+
     protected string $type = '';
-    /**
-     * @var string
-     */
+
     protected string $title = '';
-    /**
-     * @var string
-     */
+
     protected string $description = '';
-    /**
-     * @var string|null|bool
-     */
-    protected bool $url = false;
-    /**
-     * @var array
-     */
+
+    protected bool|string|null $url = false;
+
     protected array $images = [];
 
-    /**
-     * @param array $defaults
-     */
     public function __construct(array $defaults = [])
     {
-        if (key_exists('title', $defaults)) {
+        if (array_key_exists('title', $defaults)) {
             $this->setTitle($defaults['title']);
             unset($defaults['title']);
         }
 
-        if (key_exists('description', $defaults)) {
+        if (array_key_exists('description', $defaults)) {
             $this->setDescription($defaults['description']);
             unset($defaults['description']);
         }
 
-        if (key_exists('type', $defaults)) {
+        if (array_key_exists('type', $defaults)) {
             $this->setType($defaults['type']);
             unset($defaults['type']);
         }
 
-        if (key_exists('url', $defaults)) {
+        if (array_key_exists('url', $defaults)) {
             $this->setUrl($defaults['url']);
             unset($defaults['url']);
         }
 
-        if (key_exists('images', $defaults)) {
+        if (array_key_exists('images', $defaults)) {
             $this->setImages($defaults['images']);
             unset($defaults['images']);
         }
@@ -71,7 +56,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return empty($this->values)
             && empty($this->type)
@@ -93,7 +78,7 @@ class JsonLd implements JsonLdContract
             $this->convertToArray()
         );
 
-        return '<script type="application/ld+json">' . json_encode($generated, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
+        return '<script type="application/ld+json">'.json_encode($generated, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES).'</script>';
     }
 
     /**
@@ -127,8 +112,6 @@ class JsonLd implements JsonLdContract
     }
 
     /**
-     * @param mixed[] $values
-     *
      * @return string[]|string[][]
      */
     private static function convertSelfObjectInArray(array $values): array
@@ -151,7 +134,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function addValue(string $key, array|string $value)
+    public function addValue(string $key, array|string $value): static
     {
         $this->values[$key] = $value;
 
@@ -161,7 +144,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function addValues(array $values)
+    public function addValues(array $values): static
     {
         foreach ($values as $key => $value) {
             $this->addValue($key, $value);
@@ -173,7 +156,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setType(string $type)
+    public function setType(string $type): static
     {
         $this->type = $type;
 
@@ -183,7 +166,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
@@ -193,7 +176,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setSite(string $site)
+    public function setSite(string $site): static
     {
         $this->url = $site;
 
@@ -203,7 +186,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setDescription(string $description)
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
@@ -213,7 +196,7 @@ class JsonLd implements JsonLdContract
     /**
      *{@inheritdoc}
      */
-    public function setUrl(bool|string|null $url)
+    public function setUrl(bool|string|null $url): static
     {
         $this->url = $url;
 
@@ -223,7 +206,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function setImages(array|string $images)
+    public function setImages(array|string $images): static
     {
         $this->images = [];
 
@@ -233,7 +216,7 @@ class JsonLd implements JsonLdContract
     /**
      * {@inheritdoc}
      */
-    public function addImage(array|string $image)
+    public function addImage(array|string $image): static
     {
         if (is_array($image)) {
             $this->images = array_merge($this->images, $image);
@@ -245,8 +228,6 @@ class JsonLd implements JsonLdContract
     }
 
     /**
-     * @param array|string $image
-     *
      * @return static
      */
     public function setImage(array|string $image)

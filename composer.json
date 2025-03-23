@@ -1,6 +1,7 @@
 {
   "name": "turahe/seotools",
   "description": "SEO Tools for Laravel and Lumen",
+  "license": "MIT",
   "keywords": [
     "laravel",
     "lumen",
@@ -15,28 +16,28 @@
     "sitemap",
     "feed"
   ],
-  "license": "MIT",
-  "support": {
-    "issues": "https://github.com/turahe/seotools/issues",
-    "source": "https://github.com/turahe/seotools"
-  },
   "authors": [
     {
       "name": "Nur Wachid",
       "email": "nur@wach.id"
     }
   ],
+  "support": {
+    "issues": "https://github.com/turahe/seotools/issues",
+    "source": "https://github.com/turahe/seotools"
+  },
   "require": {
     "php": "^8.3",
     "ext-json": "*",
-    "laravel/framework": "^8.0|^9.0|^10.0|^11.0"
+    "laravel/framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.1",
-    "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
-    "phpspec/phpspec": "^7.0",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "orchestra/testbench": "^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0",
+    "laravel/pint": "^1.21"
   },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Turahe\\SEOTools\\": "src/"
@@ -52,19 +53,16 @@
   },
   "extra": {
     "laravel": {
+      "aliases": {
+        "JsonLd": "Turahe\\SEOTools\\Facades\\JsonLd",
+        "OpenGraph": "Turahe\\SEOTools\\Facades\\OpenGraph",
+        "SEO": "Turahe\\SEOTools\\Facades\\Tools",
+        "SEOMeta": "Turahe\\SEOTools\\Facades\\Meta",
+        "Twitter": "Turahe\\SEOTools\\Facades\\TwitterCard"
+      },
       "providers": [
         "Turahe\\SEOTools\\Providers\\SEOToolsServiceProvider"
-      ],
-      "aliases": {
-        "SEOMeta": "Turahe\\SEOTools\\Facades\\Meta",
-        "OpenGraph": "Turahe\\SEOTools\\Facades\\OpenGraph",
-        "Twitter": "Turahe\\SEOTools\\Facades\\TwitterCard",
-        "JsonLd": "Turahe\\SEOTools\\Facades\\JsonLd",
-        "SEO": "Turahe\\SEOTools\\Facades\\Tools",
-        "PWA": "Turahe\\SEOTools\\Facades\\PWA"
-      }
+      ]
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }

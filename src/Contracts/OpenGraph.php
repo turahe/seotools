@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools\Contracts;
 
 /**
@@ -59,34 +60,26 @@ namespace Turahe\SEOTools\Contracts;
 interface OpenGraph
 {
     /**
-     * @param array $config
      * @return void
      */
     public function __construct(array $config = []);
 
     /**
      * Generates open graph tags.
-     *
-     * @param bool $minify
-     *
-     * @return string
      */
     public function generate(bool $minify = false): string;
 
     /**
      * Add or update property.
      *
-     * @param string       $key
-     * @param array|string $value
      *
      * @return static
      */
-    public function addProperty(string $key, array|string $value) :self;
+    public function addProperty(string $key, array|string $value): self;
 
     /**
      * Remove property.
      *
-     * @param string $key
      *
      * @return static
      */
@@ -95,8 +88,6 @@ interface OpenGraph
     /**
      * Add image to properties.
      *
-     * @param string $url
-     * @param array  $attributes
      *
      * @return static
      */
@@ -105,7 +96,6 @@ interface OpenGraph
     /**
      * Add images to properties.
      *
-     * @param array $urls
      *
      * @return static
      */
@@ -114,7 +104,6 @@ interface OpenGraph
     /**
      * Define title property.
      *
-     * @param string $title
      *
      * @return static
      */
@@ -123,16 +112,14 @@ interface OpenGraph
     /**
      * Define description property.
      *
-     * @param string $description
      *
      * @return static
      */
-    public function setDescription(string $description):self;
+    public function setDescription(string $description): self;
 
     /**
      * Define url property.
      *
-     * @param string $url
      *
      * @return static
      */
@@ -141,7 +128,6 @@ interface OpenGraph
     /**
      * Define site_name property.
      *
-     * @param string $name
      *
      * @return static
      */
@@ -150,8 +136,7 @@ interface OpenGraph
     /**
      * Define type property.
      *
-     * @param string|null $type set the opengraph type
-     *
+     * @param  string|null  $type  set the opengraph type
      * @return static
      */
     public function setType(?string $type = null): self;
@@ -159,7 +144,6 @@ interface OpenGraph
     /**
      * Set Article properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -168,7 +152,6 @@ interface OpenGraph
     /**
      * Set Profile properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -177,7 +160,6 @@ interface OpenGraph
     /**
      * Set Music Song properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -186,7 +168,6 @@ interface OpenGraph
     /**
      * Set Music Album properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -195,7 +176,6 @@ interface OpenGraph
     /**
      * Set Music Playlist properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -204,7 +184,6 @@ interface OpenGraph
     /**
      * Set Music  RadioStation properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -213,7 +192,6 @@ interface OpenGraph
     /**
      * Set Video Movie properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -222,7 +200,6 @@ interface OpenGraph
     /**
      * Set Video Episode properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -231,7 +208,6 @@ interface OpenGraph
     /**
      * Set Video Episode properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -240,7 +216,6 @@ interface OpenGraph
     /**
      * Set Video Episode properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -249,7 +224,6 @@ interface OpenGraph
     /**
      * Set Book properties.
      *
-     * @param array $attributes
      *
      * @return static
      */
@@ -258,8 +232,6 @@ interface OpenGraph
     /**
      * Add Video properties.
      *
-     * @param string|null $source
-     * @param array $attributes
      *
      * @return static
      */
@@ -268,8 +240,6 @@ interface OpenGraph
     /**
      * Add audio properties.
      *
-     * @param string|null $source
-     * @param array $attributes
      *
      * @return static
      */

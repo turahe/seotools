@@ -1,4 +1,5 @@
 <?php
+
 namespace Turahe\SEOTools;
 
 use Turahe\SEOTools\Contracts\JsonLdMulti as JsonLdMultiContract;
@@ -12,25 +13,18 @@ class JsonLdMulti implements JsonLdMultiContract
 {
     /**
      * Index of the targeted JsonLd group
-     *
-     * @var int
      */
-    protected $index = 0;
+    protected int $index = 0;
+
     /**
      * List of the JsonLd groups
-     *
-     * @var array
      */
-    protected $list = [];
-    /**
-     * @var array
-     */
-    protected $defaultJsonLdData = [];
+    protected array $list = [];
+
+    protected array $defaultJsonLdData = [];
 
     /**
      * JsonLdMulti constructor.
-     *
-     * @param array $defaultJsonLdData
      */
     public function __construct(array $defaultJsonLdData = [])
     {
@@ -42,22 +36,18 @@ class JsonLdMulti implements JsonLdMultiContract
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function generate($minify = false)
+    public function generate(bool $minify = false): string
     {
         if (count($this->list) > 1) {
             return array_reduce($this->list, function (string $output, JsonLd $jsonLd) {
-                return $output . (! $jsonLd->isEmpty() ? $jsonLd->generate() : '');
+                return $output.(! $jsonLd->isEmpty() ? $jsonLd->generate() : '');
             }, '');
         }
+
+        return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function newJsonLd()
+    public function newJsonLd(): static
     {
         $this->index = count($this->list);
         $this->list[] = new JsonLd($this->defaultJsonLdData);
@@ -65,120 +55,84 @@ class JsonLdMulti implements JsonLdMultiContract
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->list[$this->index]->isEmpty();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function select(int $index)
+    public function select(int $index): static
     {
         // don't change the index if the new one doesn't exists
-        if (key_exists($this->index, $this->list)) {
+        if (array_key_exists($this->index, $this->list)) {
             $this->index = $index;
         }
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addValue(string $key, array|string $value)
+    public function addValue(string $key, array|string $value): static
     {
         $this->list[$this->index]->addValue($key, $value);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addValues(array $values)
+    public function addValues(array $values): static
     {
         $this->list[$this->index]->addValues($values);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setType(string $type)
+    public function setType(string $type): static
     {
         $this->list[$this->index]->setType($type);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setTitle(string $title)
+    public function setTitle(string $title): static
     {
         $this->list[$this->index]->setTitle($title);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setSite(string $site)
+    public function setSite(string $site): static
     {
         $this->list[$this->index]->setSite($site);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setDescription(string $description)
+    public function setDescription(string $description): static
     {
         $this->list[$this->index]->setDescription($description);
 
         return $this;
     }
 
-    /**
-     *{@inheritdoc}
-     */
-    public function setUrl(bool|string|null $url)
+    public function setUrl(bool|string|null $url): static
     {
         $this->list[$this->index]->setUrl($url);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setImages(array|string $images)
+    public function setImages(array|string $images): static
     {
         $this->list[$this->index]->setImages($images);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addImage(array|string $image)
+    public function addImage(array|string $image): static
     {
         $this->list[$this->index]->addImage($image);
 
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setImage($image)
     {
         $this->list[$this->index]->setImage($image);
